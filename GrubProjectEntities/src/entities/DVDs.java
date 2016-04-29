@@ -1,12 +1,15 @@
 package entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +18,6 @@ import javax.persistence.TemporalType;
 @Table(name = "DVDS")
 public class DVDs {
 	@Id
-	@OneToMany(mappedBy="dvds")
 	int id;
 	@Column(name = "dvd_title")
 	String dvdTitle;
@@ -26,6 +28,12 @@ public class DVDs {
 	@Column(name = "DVD_releasedate")
 	Date releaseDate;
 
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})     
+	@JoinTable(name="ORDER_DETAILS",              
+		joinColumns=@JoinColumn(name="DVDID"),             
+		inverseJoinColumns=@JoinColumn(name="ORDERID"))          
+	private List<CustomerOrder> customerDVDOrders;
+	
 	public DVDs() {
 
 	}
@@ -62,12 +70,23 @@ public class DVDs {
 		this.genreName = genreName;
 	}
 
-	public Date getRelease_date() {
+
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setRelease_date(Date releaseDate) {
+	public List<CustomerOrder> getCustomerDVDOrders() {
+		return customerDVDOrders;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+
+	public void setCustomerDVDOrders(List<CustomerOrder> customerDVDOrders) {
+		this.customerDVDOrders = customerDVDOrders;
+	}
+	
+	
 
 }

@@ -57,31 +57,12 @@ CREATE INDEX `fk_address_customer_email_idx` ON `grubflix`.`address` (`customer_
 
 
 -- -----------------------------------------------------
--- Table `grubflix`.`order_history`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `grubflix`.`order_history` ;
-
-CREATE TABLE IF NOT EXISTS `grubflix`.`order_history` (
-  `id` INT NOT NULL,
-  `customer_email` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_orderhistory_customer_email`
-    FOREIGN KEY (`customer_email`)
-    REFERENCES `grubflix`.`customers` (`email`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_orderhistory_customer_email_idx` ON `grubflix`.`order_history` (`customer_email` ASC);
-
-
--- -----------------------------------------------------
 -- Table `grubflix`.`customer_order`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `grubflix`.`customer_order` ;
 
 CREATE TABLE IF NOT EXISTS `grubflix`.`customer_order` (
-  `order_id` INT NOT NULL,
+  `order_id` INT NOT NULL AUTO_INCREMENT,
   `customer_email` VARCHAR(30) NOT NULL,
   `dateorder` DATETIME NULL,
   `status` VARCHAR(15) NOT NULL,
@@ -115,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `grubflix`.`dvds` (
   `aspect` VARCHAR(6) NULL,
   `upc` VARCHAR(15) NULL,
   `dvd_releasedate` DATETIME NULL,
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -127,11 +108,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `grubflix`.`order_details` ;
 
 CREATE TABLE IF NOT EXISTS `grubflix`.`order_details` (
-  `detailid` INT NULL,
   `dvdid` INT NOT NULL,
   `orderid` INT NOT NULL,
-  `lineitem` INT NOT NULL,
-  `quantity` INT NOT NULL,
   PRIMARY KEY (`dvdid`, `orderid`),
   CONSTRAINT `fk_orderdetails_orderid`
     FOREIGN KEY (`orderid`)
@@ -148,6 +126,53 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_orderdetails_orderid_idx` ON `grubflix`.`order_details` (`orderid` ASC);
 
 
+-- -----------------------------------------------------
+-- Table `grubflix`.`food`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `grubflix`.`food` ;
+
+CREATE TABLE IF NOT EXISTS `grubflix`.`food` (
+  `food_id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`food_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `grubflix`.`food_orders`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `grubflix`.`food_orders` ;
+
+CREATE TABLE IF NOT EXISTS `grubflix`.`food_orders` (
+  `foodid` INT NOT NULL,
+  `orderid` INT NOT NULL,
+  PRIMARY KEY (`foodid`, `orderid`),
+  CONSTRAINT `fk_foodorders_foodid`
+    FOREIGN KEY (`foodid`)
+    REFERENCES `grubflix`.`food` (`food_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_foodorders_orderid`
+    FOREIGN KEY (`orderid`)
+    REFERENCES `grubflix`.`customer_order` (`order_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_foodorders_orderid_idx` ON `grubflix`.`food_orders` (`orderid` ASC);
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `grubflix`.`dvds`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `grubflix`;
+INSERT INTO `grubflix`.`dvds` (`dvd_title`, `studio`, `released`, `status`, `sound`, `versions`, `price`, `rating`, `year`, `genreid`, `aspect`, `upc`, `dvd_releasedate`, `id`, `timestamp`) VALUES ('I Am Batman', NULL, NULL, NULL, NULL, NULL, 25.99, 'R', '2015', 'Action/Adventure', NULL, '123456789', '2015-09-24', 1, NULL);
+INSERT INTO `grubflix`.`dvds` (`dvd_title`, `studio`, `released`, `status`, `sound`, `versions`, `price`, `rating`, `year`, `genreid`, `aspect`, `upc`, `dvd_releasedate`, `id`, `timestamp`) VALUES ('I Am Batman', NULL, NULL, NULL, NULL, NULL, 25.99, 'R', '2015', 'Action/Adventure', NULL, '103949545', '2015-09-26', DEFAULT, NULL);
+
+COMMIT;
+

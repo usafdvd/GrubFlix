@@ -8,10 +8,9 @@
 		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
 		<class>entities.DVDs</class>
 		<class>entities.CustomerOrder</class>
-		<class>entities.OrderDetails</class>
-		<class>entities.OrderHistory</class>
 		<class>entities.Customers</class>
 		<class>entities.Address</class>
+		<class>entities.Food</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/grubflix" />

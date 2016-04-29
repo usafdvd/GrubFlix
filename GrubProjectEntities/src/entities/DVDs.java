@@ -27,6 +27,7 @@ public class DVDs {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DVD_releasedate")
 	Date releaseDate;
+	String rating;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})     
 	@JoinTable(name="ORDER_DETAILS",              
@@ -85,6 +86,14 @@ public class DVDs {
 
 	public void setCustomerDVDOrders(List<CustomerOrder> customerDVDOrders) {
 		this.customerDVDOrders = customerDVDOrders;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 	
 	

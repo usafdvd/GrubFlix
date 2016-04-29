@@ -4,11 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,20 +15,19 @@ import javax.persistence.TemporalType;
 @Table(name = "DVDS")
 public class DVDs {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy="dvds")
 	int id;
-	@Column(name="dvd_title")
+	@Column(name = "dvd_title")
 	String dvdTitle;
 	String status;
-	@ManyToOne
-	@JoinColumn(name = "genreid")
-	private Genres genre;
+	@Column(name = "genreid")
+	String genreName;
 	@Temporal(TemporalType.DATE)
-	@Column(name="DVD_releasedate")
-	Date release_date;
-	
+	@Column(name = "DVD_releasedate")
+	Date releaseDate;
+
 	public DVDs() {
-		
+
 	}
 
 	public int getId() {
@@ -57,20 +54,20 @@ public class DVDs {
 		this.status = status;
 	}
 
-	public Genres getGenre() {
-		return genre;
+	public String getGenreName() {
+		return genreName;
 	}
 
-	public void setGenre(Genres genre) {
-		this.genre = genre;
+	public void setGenreName(String genreName) {
+		this.genreName = genreName;
 	}
 
 	public Date getRelease_date() {
-		return release_date;
+		return releaseDate;
 	}
 
-	public void setRelease_date(Date release_date) {
-		this.release_date = release_date;
+	public void setRelease_date(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 }

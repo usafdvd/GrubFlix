@@ -9,7 +9,7 @@ import javax.persistence.IdClass;
 //@Table(name = "ADDRESS")
 @IdClass(Address_PK.class)
 public class Address {
-
+//ADDING COMMENT.
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	String name;

@@ -97,23 +97,6 @@ CREATE INDEX `fk_customerorder_customeremail_idx` ON `grubflix`.`customer_order`
 
 
 -- -----------------------------------------------------
--- Table `grubflix`.`genres`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `grubflix`.`genres` ;
-
-CREATE TABLE IF NOT EXISTS `grubflix`.`genres` (
-  `id` INT NOT NULL,
-  `genrename` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`genrename`),
-  CONSTRAINT `fk_genres_genreid`
-    FOREIGN KEY ()
-    REFERENCES `grubflix`.`dvds` ()
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `grubflix`.`dvds`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `grubflix`.`dvds` ;
@@ -128,21 +111,14 @@ CREATE TABLE IF NOT EXISTS `grubflix`.`dvds` (
   `price` DECIMAL(4,2) NULL,
   `rating` VARCHAR(5) NULL,
   `year` VARCHAR(4) NULL,
-  `genreid` VARCHAR(20) NOT NULL,
+  `genreid` VARCHAR(25) NOT NULL,
   `aspect` VARCHAR(6) NULL,
   `upc` VARCHAR(15) NULL,
   `dvd_releasedate` DATETIME NULL,
   `id` INT NOT NULL,
   `timestamp` DATETIME NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_dvds_genreid`
-    FOREIGN KEY (`genreid`)
-    REFERENCES `grubflix`.`genres` (`genrename`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_dvds_genreid_idx` ON `grubflix`.`dvds` (`genreid` ASC);
 
 
 -- -----------------------------------------------------

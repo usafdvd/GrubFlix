@@ -20,9 +20,9 @@ public class GrubImpDAO implements GrubFlixDAO {
 		System.out.println("id passed back from controller" + id);
 		System.out.println("inside jpa dao" + dvd.getDvdTitle());
 		
-		
-		
 		return dvd;
 	}
 
 }
+
+

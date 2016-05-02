@@ -40,6 +40,13 @@ public class GrubImpDAO implements GrubFlixDAO {
     }
     
     @Override
+    public String getDVDStatus (int id) {
+    	DVDs dvd = em.find(DVDs.class, id);
+    	String status = dvd.getStatus();
+    	return status;
+    }
+    
+    @Override
     public String getFoodType (int id) {
         Food food = em.find(Food.class, id);
         String foodType = food.getType();

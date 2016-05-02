@@ -10,13 +10,17 @@ public interface GrubFlixDAO {
 	
 	public DVDs getDVD(int id);
 
-	String getDVDGenre(int id);
+	public String getDVDGenre(int id);
 
-	String getFoodType(int id);
+	public String getFoodType(int id);
 
-	List<DVDs> getMovieByGenre(String genre);
+	public List<DVDs> getMovieByGenre(String genre, int limit);
 
-	int insertCust(Customers cust);
+	public int insertCust(Customers cust);
+	
+	public int deleteCust(Customers cust);
+	
+	public int updateCust(Customers cust);
 	
 
 }

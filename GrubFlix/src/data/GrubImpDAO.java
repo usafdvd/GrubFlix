@@ -55,6 +55,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     
     @Override
     public List<DVDs> getMovieByGenre (String g, int l) {
+    	System.out.println("**************************" + g);
          List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", g).setMaxResults(l).getResultList();
 //         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = " + "\'" + g +"\'", DVDs.class).getResultList();
          System.out.println(dvdsByGenre);

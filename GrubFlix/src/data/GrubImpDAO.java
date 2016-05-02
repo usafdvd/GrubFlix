@@ -65,7 +65,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     @Override
     public int insertCust (Customers cust) {
         
-        String sql = "INSERT INTO customers( email, password, access_level, birthdate, firstname, lastname, gender, phone ) " + 
+        String sql = "INSERT INTO customers( email, password, accessLevel, birthdate, firstName, lastName, gender, phone ) " + 
                 "VALUES ( '" + cust.getEmail() + "', '" + cust.getPassword() + "', " + cust.getAccessLevel() + ", " + cust.getBirthDate() + 
                 " '" + cust.getFirstName() +"', '" + cust.getLastName() + "', '" + cust.getGender() + "', " + cust.getPhone() + " )";
         
@@ -80,7 +80,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     	
     	String sql = "DELETE customer from CUSTOMERS customer WHERE customer.email = :emailaddress";
     	String emailaddress = cust.getEmail();
-    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("emailaddress", emailaddress).executeUpdate();
     	return rowsAffected;
     
     }
@@ -88,7 +88,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     @Override
     public int updateCust (Customers cust) {
     	
-    	String sql = "UPDATE CUSTOMERS customer set email= :email, password= :pw, access_level= :al, birthdate= :bd, firstname= :fn, lastname= :ln, gender= :g, phone= :pn";
+    	String sql = "UPDATE CUSTOMERS customer set customer.email= :email, customer.password= :pw, customer.accessLevel= :al, customer.birthDate= :bd, customer.firstName= :fn, customer.lastName= :ln, customer.gender= :g, customer.phone= :pn";
     	String email = cust.getEmail();
     	String pw = cust.getPassword();
     	int al = cust.getAccessLevel();
@@ -97,16 +97,16 @@ public class GrubImpDAO implements GrubFlixDAO {
     	String ln = cust.getLastName();
     	Gender g = cust.getGender();
     	int pn = cust.getPhone();
-    	cust.setEmail(email);
-    	cust.setPassword(pw);
-    	cust.setAccessLevel(al);
-    	cust.setBirthDate(bd);
-    	cust.setFirstName(fn);
-    	cust.setLastName(ln);
-    	cust.setGender(g);
-    	cust.setPhone(pn);
+//    	cust.setEmail(email);
+//    	cust.setPassword(pw);
+//    	cust.setAccessLevel(al);
+//    	cust.setBirthDate(bd);
+//    	cust.setFirstName(fn);
+//    	cust.setLastName(ln);
+//    	cust.setGender(g);
+//    	cust.setPhone(pn);
     	
-    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("email", email).setParameter("pw", pw).setParameter("al", al).setParameter("bd", bd).setParameter("fn", fn).setParameter("ln", ln).setParameter("g", g).setParameter("pn", pn).executeUpdate();
     	return rowsAffected;
     	
     }

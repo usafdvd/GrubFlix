@@ -584,7 +584,7 @@ smMargAll{
 
 .searchRow{
 	
-	margin-top: 60px;
+	margin-top: 0;
 
 }
 
@@ -598,6 +598,7 @@ smMargAll{
     border-right: 0px solid transparent;
     outline: none; 
     border-radius: 0px;
+    height: 34px;
 }
 
 
@@ -610,6 +611,8 @@ smMargAll{
     border-radius: 0px;
     outline: none; 
     height:34px;
+    width: 30px;
+   
     
 	
 }
@@ -617,12 +620,41 @@ smMargAll{
 #searchIcon{
     font-size: 13px;
     color: #000;
+    margin-right: 6px;
+    margin-bottom: 3px;
+    margin-left: -5px;
+   
 
+}
+
+.asdf{
+	visibility: hidden;	
+	margin-top: -500;
+	
 }
 
 
 
 
+
+.movieImage{
+	max-height: 80px;
+	
+	
+
+
+
+background: url(../img/borat.jpg) no-repeat bottom center scroll;
+background-color: #000;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;
+-o-background-size: cover;
+
+
+
+	
+}
 
 
 

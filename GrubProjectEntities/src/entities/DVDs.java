@@ -21,12 +21,12 @@ public class DVDs {
 	int id;
 	@Column(name = "dvd_title")
 	String dvdTitle;
-	String status;
+//	String status;
 	@Column(name = "genreid")
 	String genreName;
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DVD_releasedate")
-	Date releaseDate;
+//	@Temporal(TemporalType.DATE)
+//	@Column(name = "DVD_releasedate")
+//	Date releaseDate;
 	String rating;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})     
@@ -55,13 +55,13 @@ public class DVDs {
 		this.dvdTitle = dvdTitle;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+//	public String getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(String status) {
+//		this.status = status;
+//	}
 
 	public String getGenreName() {
 		return genreName;
@@ -72,17 +72,17 @@ public class DVDs {
 	}
 
 
-	public Date getReleaseDate() {
-		return releaseDate;
-	}
+//	public Date getReleaseDate() {
+//		return releaseDate;
+//	}
 
 	public List<CustomerOrder> getCustomerDVDOrders() {
 		return customerDVDOrders;
 	}
 
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
+//	public void setReleaseDate(Date releaseDate) {
+//		this.releaseDate = releaseDate;
+//	}
 
 	public void setCustomerDVDOrders(List<CustomerOrder> customerDVDOrders) {
 		this.customerDVDOrders = customerDVDOrders;

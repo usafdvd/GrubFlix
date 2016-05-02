@@ -15,10 +15,10 @@ pageEncoding="UTF-8"%>
 
 
 
-	<%@ include file="includes-base/inav-landing.jsp" %>
+<%@ include file="includes-base/inav-default.jsp" %>
 
    
-	<%@ include file="includes/intro.jsp" %>
+	<%@ include file="includes/imovies.jsp" %>
 
 
 

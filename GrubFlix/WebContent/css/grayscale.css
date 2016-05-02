@@ -1,15 +1,11 @@
-/*!
- * Start Bootstrap - Grayscale Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
+/*-----------basic body----------*/
 body {
     width: 100%;
     height: 100%;
-    font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #fff;
-    background-color: #000;
+    font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    
+    color: #000;
+    background-color: #fff;
 }
 
 html {
@@ -28,12 +24,15 @@ h6 {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #000;
 }
 
 p {
     margin: 0 0 25px;
     font-size: 18px;
     line-height: 1.5;
+    color: #000;
+    font-weight: 100;
 }
 
 @media(min-width:768px) {
@@ -54,12 +53,47 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #1d9b6c;
+    color: #b4b4b4;
 }
 
 .light {
     font-weight: 400;
 }
+
+
+
+
+/*--backgournd image
+
+
+background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+background-color: #000;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;
+-o-background-size: cover;
+
+
+---*/
+
+
+
+
+
+/*-----------Nav------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .navbar-custom {
     margin-bottom: 0;
@@ -67,6 +101,8 @@ a:focus {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #000;
+  
+   
 }
 
 .navbar-custom .navbar-brand {
@@ -77,30 +113,33 @@ a:focus {
     outline: 0;
 }
 
-.navbar-custom .navbar-brand .navbar-toggle {
+.navbar-custom .navbar-brand .navbar-toggle{
     padding: 4px 6px;
     font-size: 16px;
-    color: #fff;
 }
+
+
 
 .navbar-custom .navbar-brand .navbar-toggle:focus,
 .navbar-custom .navbar-brand .navbar-toggle:active {
     outline: 0;
+    color: #b4b4b4;
 }
 
 .navbar-custom a {
-    color: #fff;
+    color: #b4b4b4;
 }
 
 .navbar-custom .nav li a {
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
+    
 }
 
 .navbar-custom .nav li a:hover {
     outline: 0;
-    color: rgba(255,255,255,.8);
+/*    color: #b4b4b4;*/
     background-color: transparent;
 }
 
@@ -115,7 +154,7 @@ a:focus {
 }
 
 .navbar-custom .nav li.active a {
-    background-color: rgba(255,255,255,.3);
+    background-color: #000;
 }
 
 .navbar-custom .nav li.active a:hover {
@@ -133,12 +172,51 @@ a:focus {
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
 
-    .navbar-custom.top-nav-collapse {
+    .navbar-custom.top-nav-collapse{
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
         background: #000;
+        color: #fff;
+    }
+    
+    .btn-group .dropdown-menu{
+    	background-color: #fff;
     }
 }
+
+
+@media(max-width:768px) {
+	
+	 .btn-group .dropdown-menu{
+    	background-color: #000;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------sections---------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .intro {
     display: table;
@@ -147,12 +225,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+  
 }
 
 .intro .intro-body {
@@ -170,6 +243,7 @@ a:focus {
 
 @media(min-width:768px) {
     .intro {
+       
         height: 100%;
         padding: 0;
     }
@@ -182,6 +256,71 @@ a:focus {
         font-size: 26px;
     }
 }
+
+
+
+
+
+
+.content-section {
+    padding-top: 100px;
+}
+
+.download-section {
+    width: 100%;
+    padding: 50px 0;
+    color: #fff;
+    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
+    background-color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+#map {
+    width: 100%;
+    height: 200px;
+    margin-top: 100px;
+}
+
+@media(min-width:767px) {
+    .content-section {
+        padding-top: 250px;
+    }
+
+    .download-section {
+        padding: 100px 0;
+    }
+
+    #map {
+        height: 400px;
+        margin-top: 250px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------buttons---------------------------- */
+
+
+
+
+
+
+
+
+
+
+
 
 .btn-circle {
     width: 70px;
@@ -257,42 +396,27 @@ a:focus {
     }
 }
 
-.content-section {
-    padding-top: 100px;
+
+
+
+
+
+
+
+
+
+
+
+button > i {
+    color: azure;
 }
 
-.download-section {
-    width: 100%;
-    padding: 50px 0;
-    color: #fff;
-    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
 
-#map {
-    width: 100%;
-    height: 200px;
-    margin-top: 100px;
-}
 
-@media(min-width:767px) {
-    .content-section {
-        padding-top: 250px;
-    }
 
-    .download-section {
-        padding: 100px 0;
-    }
 
-    #map {
-        height: 400px;
-        margin-top: 250px;
-    }
-}
+
+
 
 .btn {
     border-radius: 0;
@@ -304,10 +428,11 @@ a:focus {
     transition: all .3s ease-in-out;
 }
 
+
 .btn-default {
-    border: 1px solid #42dca3;
-    color: #42dca3;
-    background-color: transparent;
+    border: 1px solid transparent;
+    color: #000;
+    background-color: #b4b4b4;
 }
 
 .btn-default:hover,
@@ -315,7 +440,7 @@ a:focus {
     border: 1px solid #42dca3;
     outline: 0;
     color: #000;
-    background-color: #42dca3;
+    background-color: #b4b4b4;
 }
 
 ul.banner-social-buttons {
@@ -340,13 +465,8 @@ ul.banner-social-buttons {
     }
 }
 
-footer {
-    padding: 50px 0;
-}
 
-footer p {
-    margin: 0;
-}
+
 
 ::-moz-selection {
     text-shadow: none;
@@ -371,3 +491,152 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-nav {
+    border: 0px solid transparent;
+    color: #b4b4b4;
+    background-color: transparent !important;
+    margin-top: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------onesies-------------------*/
+
+
+
+
+
+.nobrdr{
+    border: 0px solid transparent;
+}
+
+
+
+
+smMargAll{
+    margin: 5px;
+
+}
+
+
+
+.smargTop{
+    margin-top: 2%;
+}
+
+
+
+
+
+
+
+/*--------------------components-------------------*/
+
+
+
+
+.formDefault{
+    border: 2px solid black;
+    border-radius: 0;
+    font-weight: 400;
+}
+
+.searchRow{
+	
+	margin-top: 60px;
+
+}
+
+
+#searchBar{
+    color: #000;
+    background-color: transparent;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    border-right: 0px solid transparent;
+    outline: none; 
+    border-radius: 0px;
+}
+
+
+.btnSearch{
+	background-color: transparent;
+	border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    border-left: 0px solid transparent;
+    border-radius: 0px;
+    outline: none; 
+    height:34px;
+    
+	
+}
+
+#searchIcon{
+    font-size: 13px;
+    color: #000;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

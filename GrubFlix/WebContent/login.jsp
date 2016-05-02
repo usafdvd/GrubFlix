@@ -13,17 +13,19 @@ pageEncoding="UTF-8"%>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
  
 
-
-
-	<%@ include file="includes-base/inav-landing.jsp" %>
-
    
-	<%@ include file="includes/intro.jsp" %>
 
 
+	
 
-   <%@ include file="includes-base/iscripts.jsp" %>
+   <%@ include file="includes/ilogin.jsp" %>
+    <%@ include file="includes-base/iscripts.jsp" %>
     
 </body>
 
 </html>
+
+
+   
+      
+

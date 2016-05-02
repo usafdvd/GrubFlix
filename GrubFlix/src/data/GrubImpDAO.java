@@ -39,12 +39,12 @@ public class GrubImpDAO implements GrubFlixDAO {
         return name;
     }
     
-    @Override
-    public String getDVDStatus (int id) {
-    	DVDs dvd = em.find(DVDs.class, id);
-    	String status = dvd.getStatus();
-    	return status;
-    }
+//    @Override
+//    public String getDVDStatus (int id) {
+//    	DVDs dvd = em.find(DVDs.class, id);
+//    	String status = dvd.getStatus();
+//    	return status;
+//    }
     
     @Override
     public String getFoodType (int id) {
@@ -54,8 +54,9 @@ public class GrubImpDAO implements GrubFlixDAO {
     }
     
     @Override
-    public List<DVDs> getMovieByGenre (String genre, int limit) {
-         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreid = :genre limit :limit", DVDs.class).getResultList();
+    public List<DVDs> getMovieByGenre (String g, int l) {
+         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", g).setMaxResults(l).getResultList();
+//         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = " + "\'" + g +"\'", DVDs.class).getResultList();
          System.out.println(dvdsByGenre);
          return dvdsByGenre;         
     }

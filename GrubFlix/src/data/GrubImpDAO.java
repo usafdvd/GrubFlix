@@ -1,5 +1,7 @@
 package data;
 
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.Customers;
 import entities.DVDs;
 import entities.Food;
+import entities.Gender;
 
 @Transactional
 public class GrubImpDAO implements GrubFlixDAO {
@@ -62,6 +65,40 @@ public class GrubImpDAO implements GrubFlixDAO {
         
         
         
+    }
+    
+    @Override
+    public int deleteCust (Customers cust) {
+    	
+    	String sql = "DELETE customer from CUSTOMERS customer WHERE customer.email = :emailaddress";
+    	String emailaddress = cust.getEmail();
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	return rowsAffected;
+    
+    }
+    
+    public int updateCust (Customers cust) {
+    	String sql = "UPDATE CUSTOMERS customer set email= :email, password= :pw, access_level= :al, birthdate= :bd, firstname= :fn, lastname= :ln, gender= :g, phone= :pn";
+    	String email = cust.getEmail();
+    	String pw = cust.getPassword();
+    	int al = cust.getAccessLevel();
+    	Date bd = cust.getBirthDate();
+    	String fn = cust.getFirstName();
+    	String ln = cust.getLastName();
+    	Gender g = cust.getGender();
+    	int pn = cust.getPhone();
+    	cust.setEmail(email);
+    	cust.setPassword(pw);
+    	cust.setAccessLevel(al);
+    	cust.setBirthDate(bd);
+    	cust.setFirstName(fn);
+    	cust.setLastName(ln);
+    	cust.setGender(g);
+    	cust.setPhone(pn);
+    	
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	return rowsAffected;
+    	
     }
 }
 

@@ -22,5 +22,6 @@ public interface GrubFlixDAO {
 	
 	public int updateCust(Customers cust);
 	
+	public String getDVDStatus (int id);
 
 }

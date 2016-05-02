@@ -1,5 +1,8 @@
 package data;
 
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.Customers;
 import entities.DVDs;
 import entities.Food;
+import entities.Gender;
 
 @Transactional
 public class GrubImpDAO implements GrubFlixDAO {
@@ -21,8 +25,8 @@ public class GrubImpDAO implements GrubFlixDAO {
 		DVDs dvd = em.find(DVDs.class, id);
 //		em.detach(dvd);
 		
-		System.out.println("id passed back from controller" + id);
-		System.out.println("inside jpa dao" + dvd.getDvdTitle());
+		//System.out.println("id passed back from controller" + id);
+		//System.out.println("inside jpa dao" + dvd.getDvdTitle());
 		
 		return dvd;
 	}
@@ -43,8 +47,8 @@ public class GrubImpDAO implements GrubFlixDAO {
     }
     
     @Override
-    public List<DVDs> getMovieByGenre (String genre) {
-         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreid = :genre", DVDs.class).getResultList();
+    public List<DVDs> getMovieByGenre (String genre, int limit) {
+         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreid = :genre limit :limit", DVDs.class).getResultList();
          System.out.println(dvdsByGenre);
          return dvdsByGenre;         
     }
@@ -59,10 +63,46 @@ public class GrubImpDAO implements GrubFlixDAO {
         int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
         
         return rowsAffected;
-        
-        
-        
+           
     }
+    
+    @Override
+    public int deleteCust (Customers cust) {
+    	
+    	String sql = "DELETE customer from CUSTOMERS customer WHERE customer.email = :emailaddress";
+    	String emailaddress = cust.getEmail();
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	return rowsAffected;
+    
+    }
+    
+    @Override
+    public int updateCust (Customers cust) {
+    	
+    	String sql = "UPDATE CUSTOMERS customer set email= :email, password= :pw, access_level= :al, birthdate= :bd, firstname= :fn, lastname= :ln, gender= :g, phone= :pn";
+    	String email = cust.getEmail();
+    	String pw = cust.getPassword();
+    	int al = cust.getAccessLevel();
+    	Date bd = cust.getBirthDate();
+    	String fn = cust.getFirstName();
+    	String ln = cust.getLastName();
+    	Gender g = cust.getGender();
+    	int pn = cust.getPhone();
+    	cust.setEmail(email);
+    	cust.setPassword(pw);
+    	cust.setAccessLevel(al);
+    	cust.setBirthDate(bd);
+    	cust.setFirstName(fn);
+    	cust.setLastName(ln);
+    	cust.setGender(g);
+    	cust.setPhone(pn);
+    	
+    	int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
+    	return rowsAffected;
+    	
+    }
+    
+   
 }
 
 

@@ -1,8 +1,6 @@
 package data;
 
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.Customers;
 import entities.DVDs;
 import entities.Food;
-import entities.Gender;
 
 @Transactional
 public class GrubImpDAO implements GrubFlixDAO {
@@ -22,29 +19,10 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	@Override
 	public DVDs getDVD(int id) {
-		DVDs dvd = em.find(DVDs.class, id);
+		DVDs dvd = em.find(DVDs.class, id);	
 //		em.detach(dvd);
-		
-		//System.out.println("id passed back from controller" + id);
-		//System.out.println("inside jpa dao" + dvd.getDvdTitle());
-		
 		return dvd;
 	}
-
-	// IS THIS NECESSARY? WE HAVE BY GENRE AND RETURN ENTIRE DVD...
-    @Override
-    public String getDVDGenre(int id) {
-        DVDs dvd = em.find(DVDs.class, id);
-        String name = dvd.getGenreName();
-        return name;
-    }
-    
-//    @Override
-//    public String getDVDStatus (int id) {
-//    	DVDs dvd = em.find(DVDs.class, id);
-//    	String status = dvd.getStatus();
-//    	return status;
-//    }
     
     @Override
     public String getFoodType (int id) {
@@ -55,9 +33,8 @@ public class GrubImpDAO implements GrubFlixDAO {
     
     @Override
     public List<DVDs> getMovieByGenre (String g, int l) {
-         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", g).setMaxResults(l).getResultList();
-//         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = " + "\'" + g +"\'", DVDs.class).getResultList();
-  //       System.out.println(dvdsByGenre);
+         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class)
+        		 .setParameter("genre", g).setMaxResults(l).getResultList();
          return dvdsByGenre;         
     }
     
@@ -65,62 +42,47 @@ public class GrubImpDAO implements GrubFlixDAO {
     
     // CHECK WITH TEAM ON WHETHER THIS SHOULD RETURN A CUSTOMER OR INT. PROBABLY CUSTOMER. EXECUTE QUERY?
     public Customers insertCust (Customers cust) {
-        
-        String sql = "INSERT INTO customers( email, password, accessLevel, birthdate, firstName, lastName, gender, phone ) " + 
-                "VALUES ( '" + cust.getEmail() + "', '" + cust.getPassword() + "', " + cust.getAccessLevel() + ", " + cust.getBirthDate() + 
-                " '" + cust.getFirstName() +"', '" + cust.getLastName() + "', '" + cust.getGender() + "', " + cust.getPhone() + " )";
-        
-        int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
-        
-  //      return rowsAffected;
-        return cust;
-           
+        Customers newCust = new Customers();
+        newCust.setEmail(cust.getEmail());
+        newCust.setPassword(cust.getPassword());
+        newCust.setBirthDate(cust.getBirthDate());
+        newCust.setAccessLevel(cust.getAccessLevel());
+        newCust.setFirstName(cust.getFirstName());
+        newCust.setLastName(cust.getLastName());
+        newCust.setGender(cust.getGender());
+        newCust.setPhone(cust.getPhone());
+        em.persist(newCust);
+        return newCust;
     }
     
     @Override
-    // POSSIBLY RETURNING STRING SAYING CUSTOMER WAS DELETED. IF STATEMENT IF SUCCESSFUL??
-    public String deleteCust (Customers cust) {
-    	String success = "Account deleted.";
-    	String failure = "An error occurred. Please try again.";
-    	String sql = "DELETE customer from CUSTOMERS customer WHERE customer.email = :emailaddress";
-    	String emailaddress = cust.getEmail();
-    	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("emailaddress", emailaddress).executeUpdate();
-    	if (rowsAffected == 1) {
-    		return success;
-    	} else {
-    		return failure;
-    	}
-    	
-    
+    public Customers editCust (Customers cust) {
+    	Customers managedCust = em.find(Customers.class, cust);
+    	return managedCust;
     }
     
     @Override
     public Customers updateCust (Customers cust) {
-    	
-    	String sql = "UPDATE CUSTOMERS customer set customer.email= :email, customer.password= :pw, customer.accessLevel= :al, customer.birthDate= :bd, customer.firstName= :fn, customer.lastName= :ln, customer.gender= :g, customer.phone= :pn";
-    	String email = cust.getEmail();
-    	String pw = cust.getPassword();
-    	int al = cust.getAccessLevel();
-    	Date bd = cust.getBirthDate();
-    	String fn = cust.getFirstName();
-    	String ln = cust.getLastName();
-    	Gender g = cust.getGender();
-    	int pn = cust.getPhone();
-//    	cust.setEmail(email);
-//    	cust.setPassword(pw);
-//    	cust.setAccessLevel(al);
-//    	cust.setBirthDate(bd);
-//    	cust.setFirstName(fn);
-//    	cust.setLastName(ln);
-//    	cust.setGender(g);
-//    	cust.setPhone(pn);
-    	
-    //	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("email", email).setParameter("pw", pw).setParameter("al", al).setParameter("bd", bd).setParameter("fn", fn).setParameter("ln", ln).setParameter("g", g).setParameter("pn", pn).executeUpdate();
-    	//return rowsAffected;
-    	Customers updatedCust = cust;
-    	return updatedCust;
+    	Customers managedCust = em.find(Customers.class, cust.getEmail());
+    	managedCust.setEmail(cust.getEmail());
+    	managedCust.setPassword(cust.getPassword());
+    	// REMOVED ACCESS LEVEL CHANGES, SHOULDN'T BE ABLE TO CHANGE THEM.
+    	managedCust.setBirthDate(cust.getBirthDate());
+    	managedCust.setFirstName(cust.getFirstName());
+    	managedCust.setLastName(cust.getLastName());
+    	managedCust.setGender(cust.getGender());	
+    	managedCust.setPhone(cust.getPhone());
+    	return managedCust;
     	
     }
+    @Override
+    // POSSIBLY RETURNING STRING SAYING CUSTOMER WAS DELETED. IF STATEMENT IS SUCCESSFUL??
+    public void deleteCust (Customers cust) {
+    	Customers removedCust = em.find(Customers.class, cust);
+    	em.remove(removedCust);
+    
+    }
+    
     
    
 }

@@ -148,9 +148,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     	DVDs removedDVD = em.find(DVDs.class, dvd);
     	em.remove(removedDVD);
     
-    }
-    
-    
+    }   
    
 }
 

@@ -18,8 +18,6 @@
 						<div class="col-xs-12 col-sm-3 text-center checkOutInfo">
 							<div class="col-xs-12 col-sm-12">
 								<h4 class="checkOutItemTitle">Borat</h4>
-
-
 								<p>more info more info</p>
 							</div>
 						</div>
@@ -30,9 +28,18 @@
 							class="amountContainer col-xs-6 col-sm-3 itemButtonsContainer">
 							<div class="itemButton"></div>
 							<form action="">
+								Total Amount:
 								<input type="number" name="points" min="0" max="10" step="1"
 									value="0">
 							</form>
+							<br>
+							
+							<form action="">
+								In Stock:
+								<input type="number" name="points" min="0" max="10" step="1"
+									value="0">
+							</form>
+							
 
 							<!-- 							<div id="spinner_02" class="spinner ridged" value="0"></div>   -->
 

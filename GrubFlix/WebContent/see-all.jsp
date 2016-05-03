@@ -18,16 +18,14 @@ pageEncoding="UTF-8"%>
 <%@ include file="includes-base/inav-default.jsp" %>
 
 <div class="container-fluid movieWrapper">
-	 <div class="maxWidthWrapper">
-	 
-	
+	  <div class="maxWidthWrapper">
+ 	  	
 
  	  	
- 	  	<%@ include file="includes/imovies.jsp" %>
+ 	  	<%@ include file="includes/isee-all.jsp" %>
  	  	
  	  	
-	 </div>
- 	  	
+		</div>
 </div>
   
 

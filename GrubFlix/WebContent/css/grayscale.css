@@ -3,15 +3,31 @@ body {
     width: 100%;
     height: 100%;
     font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    
     color: #000;
     background-color: #fff;
 }
+
+
+
+
 
 html {
     width: 100%;
     height: 100%;
 }
+
+
+.movieWrapper{
+	margin: 0px 5% 0px 5%;
+}
+
+
+.maxWidthWrapper{
+	max-width: 1500px;
+}
+
+
+
 
 h1,
 h2,
@@ -88,6 +104,147 @@ background-size: cover;
 
 
 
+.navLogo{
+	
+	color: #b4b4b4;
+	
+}
+
+/*----logo------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.logoContainer{
+	position: absolute;
+	top: 10%;
+	left: 3%;
+}
+
+
+@media(max-width: 768){
+	.logoContainer{
+		position: fixed;
+		top: 10%;
+		left: 3%;
+		z-index: 50;
+	}
+	
+	
+
+}
+
+.home{
+	margin-top: -2px !important;
+}
+
+
+
+#logo {
+	width: 35px;
+	height: 35px;
+	background:rgba(255, 255, 255, 0.5);
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	padding: 6px 9px 10px 9px;
+	
+}
+
+.logo2 {
+	width: 35px;
+	height: 35px;
+	background: transparent;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	padding: 6px 9px 10px 9px;
+	
+}
+.ilogo2 {
+	width: 35px;
+	height: 35px;
+	background: transparent;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	padding: 6px 9px 10px 9px;
+	
+}
+
+
+.logo2 > h3{
+	color: #000;
+	font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+	
+
+}
+
+.ilogo2 > h3{
+	color: #000;
+	font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+	
+
+}
+
+
+#logo > h3{
+	color: #000;
+	font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------end logo Start Nav-------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -120,10 +277,18 @@ background-size: cover;
 
 
 
+
+
+
+
 .navbar-custom .navbar-brand .navbar-toggle:focus,
 .navbar-custom .navbar-brand .navbar-toggle:active {
     outline: 0;
     color: #b4b4b4;
+    
+	.btn-group .dropdown-menu{
+		background-color: #000;
+	}
 }
 
 .navbar-custom a {
@@ -161,9 +326,9 @@ background-size: cover;
     color: #fff;
 }
 
-@media(min-width:768px) {
+@media(min-width:992px) {
     .navbar-custom {
-        padding: 20px 0;
+        padding: 10px;
         border-bottom: 0;
         letter-spacing: 1px;
         background: 0 0;
@@ -179,9 +344,7 @@ background-size: cover;
         color: #fff;
     }
     
-    .btn-group .dropdown-menu{
-    	background-color: #fff;
-    }
+   
 }
 
 
@@ -191,7 +354,6 @@ background-size: cover;
     	background-color: #000;
     }
 }
-
 
 
 
@@ -583,35 +745,30 @@ smMargAll{
 }
 
 .searchRow{
-	
-	margin-top: 0;
-
+	margin-top: 50px;
 }
 
 
 #searchBar{
-    color: #000;
-    background-color: transparent;
-    border-top: 2px solid #000;
-    border-left: 2px solid #000;
-    border-bottom: 2px solid #000;
-    border-right: 0px solid transparent;
+    color: #b4b4b4;
+    background:rgba(114, 111, 111, 0.2);
+    border: 0px solid rgba(114, 111, 111, 0.2);
     outline: none; 
     border-radius: 0px;
-    height: 34px;
+    height: 28px;
+    margin-left: 10px;
+    
 }
 
 
 .btnSearch{
-	background-color: transparent;
-	border-top: 2px solid #000;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
-    border-left: 0px solid transparent;
+	background:rgba(114, 111, 111, 0.2);
+	border: 0px solid rgba(114, 111, 111, 0.2);
     border-radius: 0px;
     outline: none; 
-    height:34px;
+    height: 28px;
     width: 30px;
+    padding: 0px 0px 0px 20px;
    
     
 	
@@ -619,45 +776,123 @@ smMargAll{
 
 #searchIcon{
     font-size: 13px;
-    color: #000;
-    margin-right: 6px;
-    margin-bottom: 3px;
-    margin-left: -5px;
+    color: #b4b4b4;
+    margin-left: -18px;
    
 
 }
 
-.asdf{
+.searchGroup{
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
+
+/* .asdf{
 	visibility: hidden;	
 	margin-top: -500;
 	
+} */
+
+#menu{
+	margin-top: -3px;
 }
+
+
+
+
+
+
+
+/*------------Movie stuff----------*/
+
+
+
+
+
+
+
+
+.movieImageThumbNail{
+    max-height: 200px;
+    background:  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 5px -10px;
+	
+}
+
+
+
+
+
+
+.movieRow{
+	margin-top: 100px;
+}
+
+.seeMore{
+	margin: 0 0 35px;
+    font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #b4b4b4;
+    font-size: 12px;
+
+}
+
 
 
 
 
 
 .movieImage{
-	max-height: 80px;
 	
+	 max-height: 500px;
+    background:  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 5px -10px;
 	
+}
 
-
-
-background: url(../img/borat.jpg) no-repeat bottom center scroll;
-background-color: #000;
--webkit-background-size: cover;
--moz-background-size: cover;
-background-size: cover;
--o-background-size: cover;
-
-
-
+.movieContent{
+	margin-top: 25%;
 	
+}
+
+.movieInfo{
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+/*--------------Grub Stuff--------------*/
+
+.grubPic{
+	height: 200px;
+    background:  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 5px 15px;
+}
 
 
 

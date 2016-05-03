@@ -17,19 +17,17 @@ pageEncoding="UTF-8"%>
 
 <%@ include file="includes-base/inav-default.jsp" %>
 
-<div class="container-fluid movieWrapper">
-	 <div class="maxWidthWrapper">
-	 
-	
-
+<div class="container movieWrapper">
+	  <div class="maxWidthWrapper">
  	  	
- 	  	<%@ include file="includes/imovies.jsp" %>
+	<%@ include file="includes/iview-movie.jsp" %>
+ 	  	
+ 	  
  	  	
  	  	
-	 </div>
- 	  	
+	</div>
 </div>
-  
+
 
 
 

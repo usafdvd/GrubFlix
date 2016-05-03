@@ -15,19 +15,20 @@ import transfers.CustomerTO;
 
 @Controller
 public class controller1 {
-		
-	@Autowired
-	private GrubFlixDAO gfDAO;
-	
-	@RequestMapping(path = "getDVD.do", method = RequestMethod.POST)
-	public ModelAndView getDVD(int id) {
 
-		DVDs dvd = gfDAO.getDVD(id);
-
-		System.out.println("inside controller" + dvd);
-		return new ModelAndView("index.jsp", "dvd", dvd);
-	}
-
+	    @Autowired
+	    private GrubFlixDAO gfDAO;
+	    
+	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
+	    public ModelAndView getDVD(int id){
+	    		
+	    	DVDs dvd = gfDAO.getDVD(id);
+	    	
+	    	System.out.println("inside controller" + dvd);
+	    	 return new ModelAndView("index.jsp", "dvd", dvd);
+	    }
+	    
+	    
 	@RequestMapping(path = "searchByGenre.do", method = RequestMethod.GET)
 	public ModelAndView getMovieByGenre(String genre, int limit) {
 		ModelAndView mv = new ModelAndView();

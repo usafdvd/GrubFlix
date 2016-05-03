@@ -22,6 +22,8 @@ public interface GrubFlixDAO {
 	public Customers updateCust(Customers cust);
 
 	public void deleteCust(Customers cust);
+	
+	 public List<List<String>> listDVDsByGenre ();
 
 	
 //	public String getDVDStatus (int id);

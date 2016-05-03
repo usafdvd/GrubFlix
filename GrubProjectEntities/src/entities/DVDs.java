@@ -95,6 +95,12 @@ public class DVDs {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
+
+	@Override
+	public String toString() {
+		return "DVDs [id=" + id + ", dvdTitle=" + dvdTitle + ", genreName=" + genreName + ", rating=" + rating
+				+ ", customerDVDOrders=" + customerDVDOrders + "]";
+	}
 	
 	
 

@@ -15,12 +15,12 @@ public interface GrubFlixDAO {
 	public String getFoodType(int id);
 
 	public List<DVDs> getMovieByGenre(String genre, int limit);
-
-	public int insertCust(Customers cust);
-	
-	public int deleteCust(Customers cust);
-	
-	public int updateCust(Customers cust);
+	// Changed from int to Customers, discuss.
+	public Customers insertCust(Customers cust);
+	// Changed from int to String, discuss with team.
+	public String deleteCust(Customers cust);
+	// Changed from int to Customers, discuss.
+	public Customers updateCust(Customers cust);
 	
 //	public String getDVDStatus (int id);
 

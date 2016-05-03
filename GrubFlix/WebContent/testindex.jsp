@@ -36,9 +36,8 @@ pageEncoding="UTF-8"%>
 	</form>
 	
 	
-	<c:forEach var="dvds" items="${dvdList}">
-		<c:out value="${dvds.name}"></c:out>
-	
+	<c:forEach var="dvds" items="${list}">
+		<c:out value="${dvds.dvdTitle}"></c:out><br>
 	</c:forEach>
 
 

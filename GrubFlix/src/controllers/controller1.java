@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import data.GrubFlixDAO;
 import entities.DVDs;
+import entities.Customers;
 
 @Controller
 public class controller1 {
@@ -34,6 +35,27 @@ public class controller1 {
 	    	mv.setViewName("testindex.jsp");
 	    	mv.addObject("list", dvdList);
 	    	return mv;
+	    }
+	    
+	    @RequestMapping(path="createCust.do", method=RequestMethod.POST)
+	    public ModelAndView createCust(Customers cust) {
+	    	ModelAndView mv = new ModelAndView();
+	    	System.out.println("inside create customer");
+	    	Customers newCust = gfDAO.insertCust(cust);
+	//    	mv.setViewName("INSERT RESULT PAGE HERE");
+	//    	mv.addObject("RESULT PAGE HERE", newCust);
+	    	return mv;
+	    }
+	    
+	    @RequestMapping(path="updateCust.do", method=RequestMethod.POST)
+	    public ModelAndView updateCust(Customers cust) {
+	    	ModelAndView mv = new ModelAndView();
+	    	System.out.println("inside updating customer");
+	    	Customers updatedCust = gfDAO.updateCust(cust);
+	    	//    	mv.setViewName("INSERT RESULT PAGE HERE");
+	    	//    	mv.addObject("RESULT PAGE HERE", updatedCust);
+	    	    	return mv;
+	    	
 	    }
 
 

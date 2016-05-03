@@ -16,11 +16,11 @@ public class Demo {
 		EntityManager em = emf.createEntityManager();
 		// EntityTransaction et = em.getTransaction();
 		// et.begin();
+		 List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", "Comedy").setMaxResults(5).getResultList();
+//		List<DVDs> dvds = em.createQuery("Select d from DVDs d", DVDs.class).getResultList();
 
-		List<DVDs> dvds = em.createQuery("Select d from DVDs d", DVDs.class).getResultList();
 
-
-		for (DVDs dvd : dvds) {
+		for (DVDs dvd : dvdsByGenre) {
 			System.out.println(dvd.getDvdTitle());
 			System.out.println(dvd.getGenreName());
 			System.out.println(dvd.getId());

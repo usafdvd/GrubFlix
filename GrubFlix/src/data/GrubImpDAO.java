@@ -87,6 +87,7 @@ public class GrubImpDAO implements GrubFlixDAO {
     	return managedCust;
     	
     }
+    
     @Override
     // POSSIBLY RETURNING STRING SAYING CUSTOMER WAS DELETED. IF STATEMENT IS SUCCESSFUL??
     public void deleteCust (Customers cust) {
@@ -115,19 +116,39 @@ public class GrubImpDAO implements GrubFlixDAO {
     		}
     		return result;
     }
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     
+    @Override
+    public DVDs insertDVD (DVDs dvd) {
+    	DVDs newDVD = new DVDs();
+    	newDVD.setDvdTitle(dvd.getDvdTitle());
+    	newDVD.setRating(dvd.getRating());
+    	newDVD.setGenreName(dvd.getGenreName());
+    	em.persist(newDVD);
+    	return newDVD;
+    }
     
+    @Override
+    public DVDs editDVD (DVDs dvd) {
+    	DVDs managedDVD = em.find(DVDs.class, dvd);
+    	return managedDVD;
+    }
+    
+    @Override
+    public DVDs updateDVD (DVDs dvd) {
+    	DVDs managedDVD = em.find(DVDs.class, dvd.getId());
+    	managedDVD.setDvdTitle(dvd.getDvdTitle());
+    	managedDVD.setGenreName(dvd.getGenreName());
+    	managedDVD.setRating(dvd.getRating());
+        return managedDVD;	
+    }
+    
+    @Override
+    // POSSIBLY RETURNING STRING SAYING DVD WAS DELETED. IF STATEMENT IS SUCCESSFUL??
+    public void deleteDVD (DVDs dvd) {
+    	DVDs removedDVD = em.find(DVDs.class, dvd);
+    	em.remove(removedDVD);
+    
+    }   
    
 }
 

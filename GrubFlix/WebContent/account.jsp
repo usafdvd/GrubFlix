@@ -15,7 +15,6 @@ pageEncoding="UTF-8"%>
  
 
 
-
 <%@ include file="includes-base/inav-default.jsp" %>
 
 <div class="container-fluid movieWrapper">
@@ -23,7 +22,7 @@ pageEncoding="UTF-8"%>
  	  	
 
  	  	
- 	  	<%@ include file="includes/icheckout.jsp" %>
+ 	  	<%@ include file="includes/iaccount.jsp" %>
  	  	
  	  	
 	</div>

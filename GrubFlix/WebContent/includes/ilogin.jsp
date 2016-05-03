@@ -41,6 +41,10 @@
 			<form action="movies.jsp">
 				<button type="submit" value="" class=" btn btn-default ">Submit</button>
 			</form>
+			<br>
+			<form action="admin.jsp">
+				<button type="submit" value="" class=" btn btn-default ">Admin</button>
+			</form>
 			
 
 		</div>

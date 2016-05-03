@@ -21,7 +21,7 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="" href="#about">Sign up</a>
+                    <a class="" href="signup.jsp">Sign up</a>
                 </li>
                 <li>
                     <a class="" href="login.jsp">Login</a>

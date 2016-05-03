@@ -21,10 +21,7 @@ pageEncoding="UTF-8"%>
 <div class="container-fluid movieWrapper">
 	  <div class="maxWidthWrapper">
  	  	
-
- 	  	
- 	  	<%@ include file="includes/icheckout.jsp" %>
- 	  	
+ 	  	<%@ include file="includes/iadmin.jsp" %>
  	  	
 	</div>
 </div>

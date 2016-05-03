@@ -13,7 +13,15 @@ pageEncoding="UTF-8"%>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
  
-
+<script>
+	$(function() {
+		$(".meter > span").each(function() {
+			$(this).data("origWidth", $(this).width()).width(0).animate({
+				width : $(this).data("origWidth")
+			}, 1200);
+		});
+	});
+</script>
 
 
 <%@ include file="includes-base/inav-default.jsp" %>
@@ -23,7 +31,7 @@ pageEncoding="UTF-8"%>
  	  	
 
  	  	
- 	  	<%@ include file="includes/icheckout.jsp" %>
+ 	  	<%@ include file="includes/itracking.jsp" %>
  	  	
  	  	
 	</div>

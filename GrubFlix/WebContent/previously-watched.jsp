@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -23,10 +22,10 @@ pageEncoding="UTF-8"%>
  	  	
 
  	  	
- 	  	<%@ include file="includes/icheckout.jsp" %>
+ 	  	<%@ include file="includes/ipreviously-watched.jsp" %>
  	  	
  	  	
-	</div>
+		</div>
 </div>
   
 

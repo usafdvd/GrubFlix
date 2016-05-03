@@ -2,7 +2,13 @@
 	<div class="row  text-center">
 
 		<div class="row text-center">
-			<h1>Checkout</h1>
+		
+			<h1>Admin</h1>
+			<form action="new-movie.jsp">
+				<button type="submit" value="" class=" btn btn-default">
+					New Movie</button>
+			</form>
+			<br>
 		</div>
 
 		<div class="row">
@@ -27,19 +33,40 @@
 						<div
 							class="amountContainer col-xs-6 col-sm-3 itemButtonsContainer">
 							<div class="itemButton"></div>
+							Total Amount:
 							<form action="">
-								Total Amount:
-								<input type="number" name="points" min="0" max="10" step="1"
-									value="0">
+								<select class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+							</select>
 							</form>
 							<br>
-							
+							In Stock:
 							<form action="">
-								In Stock:
-								<input type="number" name="points" min="0" max="10" step="1"
-									value="0">
+								<select class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+							</select>
 							</form>
 							
+							
+
 
 							<!-- 							<div id="spinner_02" class="spinner ridged" value="0"></div>   -->
 
@@ -48,9 +75,9 @@
 						<div class="amountContainer col-xs-6 col-sm-2 itemButtons">
 
 
-							<form action="checkout.jsp">
+							<form action="edit-movie.jsp">
 								<button type="submit" value="" class=" btn btn-default">
-									Delete</button>
+									Edit</button>
 							</form>
 
 
@@ -65,42 +92,7 @@
 		</div>
 
 
-		<div class="row">
-			<div class="panel panel-default">
-				<div class="panel-body" id="finalCheckOutBox">
-
-					<div class="row">
-						<div id="checkOutTotal">
-							<h3>Total: $15.00</h3>
-						
-						</div>
-					
-					</div>
-					<div class="row" id="checkOutBottom">
-
-						<div class="checkbox" id="checkOutCheckBox">
-							<label> <input type="checkbox" id="blankCheckbox"
-								value="option1" aria-label="...">
-							</label>
-							<span>Use card and address on file</span>
-							
-						</div>
-						
-						
-						<form action="tracking.jsp">
-								<button type="submit" value="" class=" btn btn-default placeOrderBtn pull-right">
-								
-									Place Order</button>
-						</form>
-						
-						
-						
-
-					</div>
-				</div>
-			</div>
-		</div>
-
+		
 
 
 

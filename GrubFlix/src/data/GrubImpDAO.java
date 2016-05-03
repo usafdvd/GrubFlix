@@ -31,7 +31,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		return dvd;
 	}
 
-	
+	// IS THIS NECESSARY? WE HAVE BY GENRE AND RETURN ENTIRE DVD...
     @Override
     public String getDVDGenre(int id) {
         DVDs dvd = em.find(DVDs.class, id);
@@ -55,15 +55,16 @@ public class GrubImpDAO implements GrubFlixDAO {
     
     @Override
     public List<DVDs> getMovieByGenre (String g, int l) {
-    	System.out.println("**************************" + g);
          List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", g).setMaxResults(l).getResultList();
 //         List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = " + "\'" + g +"\'", DVDs.class).getResultList();
-         System.out.println(dvdsByGenre);
+  //       System.out.println(dvdsByGenre);
          return dvdsByGenre;         
     }
     
     @Override
-    public int insertCust (Customers cust) {
+    
+    // CHECK WITH TEAM ON WHETHER THIS SHOULD RETURN A CUSTOMER OR INT. PROBABLY CUSTOMER. EXECUTE QUERY?
+    public Customers insertCust (Customers cust) {
         
         String sql = "INSERT INTO customers( email, password, accessLevel, birthdate, firstName, lastName, gender, phone ) " + 
                 "VALUES ( '" + cust.getEmail() + "', '" + cust.getPassword() + "', " + cust.getAccessLevel() + ", " + cust.getBirthDate() + 
@@ -71,22 +72,30 @@ public class GrubImpDAO implements GrubFlixDAO {
         
         int rowsAffected = em.createNativeQuery(sql, Customers.class).executeUpdate();
         
-        return rowsAffected;
+  //      return rowsAffected;
+        return cust;
            
     }
     
     @Override
-    public int deleteCust (Customers cust) {
-    	
+    // POSSIBLY RETURNING STRING SAYING CUSTOMER WAS DELETED. IF STATEMENT IF SUCCESSFUL??
+    public String deleteCust (Customers cust) {
+    	String success = "Account deleted.";
+    	String failure = "An error occurred. Please try again.";
     	String sql = "DELETE customer from CUSTOMERS customer WHERE customer.email = :emailaddress";
     	String emailaddress = cust.getEmail();
     	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("emailaddress", emailaddress).executeUpdate();
-    	return rowsAffected;
+    	if (rowsAffected == 1) {
+    		return success;
+    	} else {
+    		return failure;
+    	}
+    	
     
     }
     
     @Override
-    public int updateCust (Customers cust) {
+    public Customers updateCust (Customers cust) {
     	
     	String sql = "UPDATE CUSTOMERS customer set customer.email= :email, customer.password= :pw, customer.accessLevel= :al, customer.birthDate= :bd, customer.firstName= :fn, customer.lastName= :ln, customer.gender= :g, customer.phone= :pn";
     	String email = cust.getEmail();
@@ -106,8 +115,10 @@ public class GrubImpDAO implements GrubFlixDAO {
 //    	cust.setGender(g);
 //    	cust.setPhone(pn);
     	
-    	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("email", email).setParameter("pw", pw).setParameter("al", al).setParameter("bd", bd).setParameter("fn", fn).setParameter("ln", ln).setParameter("g", g).setParameter("pn", pn).executeUpdate();
-    	return rowsAffected;
+    //	int rowsAffected = em.createNativeQuery(sql, Customers.class).setParameter("email", email).setParameter("pw", pw).setParameter("al", al).setParameter("bd", bd).setParameter("fn", fn).setParameter("ln", ln).setParameter("g", g).setParameter("pn", pn).executeUpdate();
+    	//return rowsAffected;
+    	Customers updatedCust = cust;
+    	return updatedCust;
     	
     }
     

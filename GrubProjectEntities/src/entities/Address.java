@@ -13,7 +13,6 @@ public class Address {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	String name;
-
 	String streetAddress;
 	String city;
 	String state;
@@ -52,6 +51,22 @@ public class Address {
 
 	public void setZip(int zip) {
 		this.zip = zip;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
 }

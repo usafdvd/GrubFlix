@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -111,7 +112,15 @@ public class Customers {
 	}
 
 	public void setAddresses(List<Address> addresses) {
+	
 		this.addresses = addresses;
+	}
+	
+	public void addAddress(Address address) {
+		if (addresses == null) {
+			addresses = new ArrayList<Address>();
+		}
+		this.addresses.add(address);
 	}
 
 	public void setCustomerOrder(List<CustomerOrder> customerOrder) {

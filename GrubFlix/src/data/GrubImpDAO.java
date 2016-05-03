@@ -8,9 +8,11 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Address;
 import entities.Customers;
 import entities.DVDs;
 import entities.Food;
+import transfers.CustomerTO;
 
 @Transactional
 public class GrubImpDAO implements GrubFlixDAO {
@@ -41,8 +43,9 @@ public class GrubImpDAO implements GrubFlixDAO {
     @Override
     
     // CHECK WITH TEAM ON WHETHER THIS SHOULD RETURN A CUSTOMER OR INT. PROBABLY CUSTOMER. EXECUTE QUERY?
-    public Customers insertCust (Customers cust) {
+    public Customers insertCust (CustomerTO cust) {
         Customers newCust = new Customers();
+        Address address = new Address();
         newCust.setEmail(cust.getEmail());
         newCust.setPassword(cust.getPassword());
         newCust.setBirthDate(cust.getBirthDate());
@@ -51,7 +54,15 @@ public class GrubImpDAO implements GrubFlixDAO {
         newCust.setLastName(cust.getLastName());
         newCust.setGender(cust.getGender());
         newCust.setPhone(cust.getPhone());
+        address.setName(cust.getName());
+        address.setStreetAddress(cust.getStreetAddress());
+        address.setCity(cust.getCity());
+        address.setState(cust.getState());
+        address.setZip(cust.getZip());
+        address.setCustomerEmail(newCust.getEmail());
+        newCust.addAddress(address);
         em.persist(newCust);
+        em.persist(address);
         return newCust;
     }
     

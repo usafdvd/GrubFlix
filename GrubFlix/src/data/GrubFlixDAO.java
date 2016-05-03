@@ -4,6 +4,7 @@ import java.util.List;
 
 import entities.Customers;
 import entities.DVDs;
+import transfers.CustomerTO;
 
 public interface GrubFlixDAO {
 	
@@ -14,7 +15,7 @@ public interface GrubFlixDAO {
 
 	public List<DVDs> getMovieByGenre(String genre, int limit);
 
-	public Customers insertCust(Customers cust);
+	public Customers insertCust(CustomerTO cust);
 	
 	public Customers editCust(Customers cust);
 	

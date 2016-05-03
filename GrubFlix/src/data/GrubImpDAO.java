@@ -1,6 +1,7 @@
 package data;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -82,6 +83,38 @@ public class GrubImpDAO implements GrubFlixDAO {
     	em.remove(removedCust);
     
     }
+    
+ 
+    
+ 
+    @Override
+    public List<List<String>> listDVDsByGenre () {
+    	
+    	List<List<String>> result = new ArrayList();
+    	List<String> genreList = new ArrayList();
+    	List<String> genres = em.createQuery("SELECT DISTINCT genreid FROM DVDs dvds", String.class).getResultList();
+    	
+    		for(String genre : genres) {
+    			genreList.add(genre);
+    		}
+    		
+    		for (String genre : genreList) {
+    			List<String> dvdByGenre = em.createQuery("SELECT dvd.dvdTitle from DVDs dvd where dvd.genreName='" + genre + "'" , String.class).getResultList();	
+    			result.add(dvdByGenre);
+    		}
+    		return result;
+    }
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
     
    

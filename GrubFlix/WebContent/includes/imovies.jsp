@@ -338,7 +338,28 @@
 
 		</div>
 
-
+		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
+				<form action="showDVDs.do" method="POST">			
+			<ul>
+				<!-- <ul> -->
+					<c:forEach var="test" items="${dvdGenre}">
+						<li>
+							
+									
+										${test.dvdTitle}
+										<!--  <input type="hidden" name="firstName" value="${test.firstName}"></input>-->
+										<!--  <button type="submit" name="delete" value="remove">Delete</button>-->
+								
+							
+						</
+					</c:forEach>
+			</ul>
+				</form>
+		
+		</div>
+	
+	
+	
 	</div>
 
 

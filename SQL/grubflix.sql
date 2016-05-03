@@ -97,7 +97,7 @@ CREATE TABLE `customers` (
   `email` varchar(30) NOT NULL,
   `password` varchar(15) NOT NULL,
   `access_level` int(11) NOT NULL,
-  `birthdate` datetime NOT NULL,
+  `birthdate` date NOT NULL,
   `firstname` varchar(15) NOT NULL,
   `lastname` varchar(15) NOT NULL,
   `gender` varchar(1) DEFAULT NULL,

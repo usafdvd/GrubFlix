@@ -23,7 +23,7 @@ public class CustomerTO {
 	private int zip;
 
 	public CustomerTO() {
-
+		System.out.println("in constructor");
 	}
 
 	public String getEmail() {
@@ -39,7 +39,6 @@ public class CustomerTO {
 	}
 
 	public String getBirthDate() {
-
 		DateFormat formatter1;
 		if (birthDate != null) {
 			formatter1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,6 +48,7 @@ public class CustomerTO {
 	}
 
 	public Date getBD() {
+		System.out.println("getBD");
 		return birthDate;
 	}
 

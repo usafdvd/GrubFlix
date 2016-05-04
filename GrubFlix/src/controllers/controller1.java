@@ -50,8 +50,8 @@ public class controller1 {
 		System.out.println(cust.getFirstName());
 		System.out.println(cust.getBirthDate());
 		Customers newCust = gfDAO.insertCust(cust);
-		mv.setViewName("movies.jsp");
-		mv.addObject("newCust", newCust);
+		mv.setViewName("account.jsp");
+		mv.addObject("profile", newCust);
 		return mv;
 	}
 
@@ -68,17 +68,18 @@ public class controller1 {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside updating customer");
 		Customers updatedCust = gfDAO.updateCust(cust);
-		// mv.setViewName("INSERT RESULT PAGE HERE");
-		// mv.addObject("RESULT PAGE HERE", updatedCust);
+		 mv.setViewName("account.jsp");
+		 mv.addObject("profile", updatedCust);
 		return mv;
 	}
 
 	@RequestMapping(path = "deleteCust.do", method = RequestMethod.GET)
-	public ModelAndView deleteCust(Customers cust) {
+	public ModelAndView deleteCust(String email) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside deleting controller");
-		gfDAO.deleteCust(cust);
-		mv.setViewName("INSERT PAGE RESULT HERE");
+		gfDAO.deleteCust(email);
+		System.out.println("in controller again");
+		mv.setViewName("index.jsp");
 		return mv;
 	}
 	
@@ -106,31 +107,25 @@ public class controller1 {
 	// }
 	
 	
-//	public HashMap<String, List<DVDs>> listDVDsByGenre() {
-//
-//		HashMap<String, List<DVDs>> result = new HashMap<>();
-//	
-//	   @RequestMapping("listGenreGroups.do")
-//	    public ModelAndView listGenreGroups(){
-//	        
-//	        ArrayList<ArrayList<Employee>> employees = gfDAO.listDVDsByGenre();
-//	        
-//	        System.out.println(employees);
-//	        
-//	        
-//
-//	        
-//	        ModelAndView mv = new ModelAndView();
-//	        mv.setViewName("movies.jsp");
-//	        
-//
-//	        mv.addObject("listing", employees);
-//
-//	        System.out.println(employees);
-//	        return mv;
-//	        
-//	    }
-//	
+
+
+
+		HashMap<String, List<DVDs>> result = new HashMap<>();
+	
+	   @RequestMapping("listGenreGroups.do")
+	    public ModelAndView listGenreGroups(){
+		   ModelAndView mv = new ModelAndView();
+	        mv.setViewName("movies.jsp");
+	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
+	        
+	        System.out.println(gfDAO.listDVDsByGenre());
+	        return mv;
+	        
+	    }
+	   
+	   
+	   
+	
 	
 	@RequestMapping(path = "createDVD.do", method = RequestMethod.GET)
 	public ModelAndView createDVD(DVDs dvd) {

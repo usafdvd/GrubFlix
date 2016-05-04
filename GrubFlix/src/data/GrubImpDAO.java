@@ -10,8 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import entities.Address;
+import entities.CustomerOrder;
 import entities.Customers;
 import entities.DVDs;
 import entities.Food;
@@ -125,9 +127,20 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	@Override
 
-	public void deleteCust(Customers cust) {
-		Customers removedCust = em.find(Customers.class, cust);
+	public void deleteCust(String email) {
+		System.out.println("before");
+		Customers removedCust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email",  email).getSingleResult());
+		for (Address a: removedCust.getAddresses()) {
+			System.out.println("removing: " + a.getName());
+			em.remove(a);
+		}
+		for (CustomerOrder c: removedCust.getCustomerOrder()) {
+			em.remove(c);
+		}
+		
+		System.out.println(removedCust.getEmail());
 		em.remove(removedCust);
+		
 
 	}
 
@@ -146,7 +159,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
-					urlConnection = new URL(s + dvd.getDvdTitle()).openConnection();
+					
+
+					String newDvdTitle = StringUtils.replace(dvd.getDvdTitle(), " ", "+");
+					
+					
+					urlConnection = new URL(s + newDvdTitle).openConnection();
 					byte[] bytes = new byte[urlConnection.getContentLength()];
 					urlConnection.getInputStream().read(bytes);
 					String json = new String(bytes);

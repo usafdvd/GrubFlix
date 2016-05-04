@@ -23,7 +23,7 @@ public class CustomerTO {
 	private int zip;
 
 	public CustomerTO() {
-
+		System.out.println("in constructor");
 	}
 
 	public String getEmail() {
@@ -39,7 +39,6 @@ public class CustomerTO {
 	}
 
 	public String getBirthDate() {
-
 		DateFormat formatter1;
 		if (birthDate != null) {
 			formatter1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,6 +48,7 @@ public class CustomerTO {
 	}
 
 	public Date getBD() {
+		System.out.println("getBD");
 		return birthDate;
 	}
 
@@ -89,22 +89,18 @@ public class CustomerTO {
 	}
 
 	public void setEmail(String email) {
-		System.out.println("set eamil");
 		this.email = email;
 	}
 
 	public void setPassword(String password) {
-		System.out.println("in password");
 		this.password = password;
 	}
 
 	public void setAccessLevel(int accessLevel) {
-		System.out.println("in accesslevel");
 		this.accessLevel = accessLevel;
 	}
 
 	public void setBirthDate(String birthDate) {
-		System.out.println("in birthdate");
 		System.out.println(birthDate);
 		DateFormat formatter1;
 		formatter1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -118,47 +114,38 @@ public class CustomerTO {
 	}
 
 	public void setFirstName(String firstName) {
-		System.out.println("in firstname");
 		this.firstName = firstName;
 	}
 
 	public void setLastName(String lastName) {
-		System.out.println("in lastname");
 		this.lastName = lastName;
 	}
 
 	public void setGender(Gender gender) {
-		System.out.println("in gender");
 		this.gender = gender;
 	}
 
 	public void setPhone(int phone) {
-		System.out.println("in phone");
 		this.phone = phone;
 	}
 
 	public void setName(String name) {
-		System.out.println("in name");
 		this.name = name;
 	}
 
 	public void setStreetAddress(String streetAddress) {
-		System.out.println("in street address");
 		this.streetAddress = streetAddress;
 	}
 
 	public void setCity(String city) {
-		System.out.println("in city");
 		this.city = city;
 	}
 
 	public void setState(String state) {
-		System.out.println("in state");
 		this.state = state;
 	}
 
 	public void setZip(int zip) {
-		System.out.println("in zip");
 		this.zip = zip;
 	}
 

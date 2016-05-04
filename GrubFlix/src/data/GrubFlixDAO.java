@@ -1,5 +1,6 @@
 package data;
 
+import java.util.HashMap;
 import java.util.List;
 
 import entities.Customers;
@@ -11,7 +12,7 @@ public interface GrubFlixDAO {
 	
 	public DVDs getDVD(int id);
 
-	public List<List<String>> listDVDsByGenre ();
+	public HashMap<String,List<DVDs>> listDVDsByGenre ();
 
 	public String getFoodType(int id);
 

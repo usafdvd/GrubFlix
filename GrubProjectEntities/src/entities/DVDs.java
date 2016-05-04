@@ -28,7 +28,9 @@ public class DVDs {
 //	@Column(name = "DVD_releasedate")
 //	Date releaseDate;
 	String rating;
+	String posterURL;
 
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})     
 	@JoinTable(name="ORDER_DETAILS",              
 		joinColumns=@JoinColumn(name="DVDID"),             
@@ -47,6 +49,16 @@ public class DVDs {
 		this.id = id;
 	}
 
+	public String getPosterURL() {
+		return posterURL;
+	}
+
+	public void setPosterURL(String posterURL) {
+		this.posterURL = posterURL;
+	}
+
+	
+	
 	public String getDvdTitle() {
 		return dvdTitle;
 	}

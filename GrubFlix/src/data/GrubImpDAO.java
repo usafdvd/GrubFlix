@@ -1,5 +1,6 @@
 package data;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,9 @@ public class GrubImpDAO implements GrubFlixDAO {
         Address address = new Address();
         newCust.setEmail(cust.getEmail());
         newCust.setPassword(cust.getPassword());
-        newCust.setBirthDate(cust.getBirthDate());
+//        newCust.setBirthDate(cust.getBirthDate());
+        
+		newCust.setBirthDate(cust.getBD());
         newCust.setAccessLevel(cust.getAccessLevel());
         newCust.setFirstName(cust.getFirstName());
         newCust.setLastName(cust.getLastName());

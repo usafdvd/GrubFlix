@@ -43,8 +43,10 @@ public class controller1 {
 	public ModelAndView createCust(CustomerTO cust) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside create customer");
+		System.out.println(cust.getFirstName());
+		System.out.println(cust.getBirthDate());
 		Customers newCust = gfDAO.insertCust(cust);
-		mv.setViewName("testindex.jsp");
+		mv.setViewName("movies.jsp");
 		mv.addObject("newCust", newCust);
 		return mv;
 	}

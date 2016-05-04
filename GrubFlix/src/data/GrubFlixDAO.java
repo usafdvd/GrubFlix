@@ -14,6 +14,8 @@ public interface GrubFlixDAO {
 	public List<List<String>> listDVDsByGenre ();
 
 	public String getFoodType(int id);
+	
+	public List<DVDs> getAllDVDs();
 
 	public List<DVDs> getMovieByGenre(String genre, int limit);
 

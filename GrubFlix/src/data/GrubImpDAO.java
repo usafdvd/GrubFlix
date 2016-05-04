@@ -17,6 +17,7 @@ import transfers.CustomerTO;
 @Transactional
 public class GrubImpDAO implements GrubFlixDAO {
 	private List<Customers> customers = new ArrayList<>();
+	private List<DVDs> dvds = new ArrayList<>();
 	
 	
 	@PersistenceContext
@@ -35,6 +36,12 @@ public class GrubImpDAO implements GrubFlixDAO {
         Food food = em.find(Food.class, id);
         String foodType = food.getType();
         return foodType;    
+    }
+    
+    @Override
+    public List<DVDs> getAllDVDs () {
+    	dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
+    	return dvds;
     }
     
     @Override
@@ -78,8 +85,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers cust = null;
 		for (Customers custX : customers) {
 			System.out.println("inside for loop");
+			System.out.println(custX.getEmail());
+			System.out.println("email:" + email);
 			if (custX.getEmail().equalsIgnoreCase(email)) {
+				System.out.println("inside if statement");
 				cust = custX;
+				System.out.println(cust);
 				break;
 			}
 		}

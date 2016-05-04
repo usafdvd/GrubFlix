@@ -76,10 +76,11 @@ public class controller1 {
 		return mv;
 	}
 	
-	@RequestMapping(path="viewCust.do")
+	@RequestMapping(path="viewCust.do", method=RequestMethod.GET)
 	public ModelAndView viewCust(String email) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside view customer controller");
+		System.out.println(email);
 		mv.setViewName("testindex2.jsp");
 		mv.addObject("profile", gfDAO.viewCust(email));
 		System.out.println("back in view cust");

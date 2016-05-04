@@ -65,8 +65,8 @@ public class controller1 {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside updating customer");
 		Customers updatedCust = gfDAO.updateCust(cust);
-		// mv.setViewName("INSERT RESULT PAGE HERE");
-		// mv.addObject("RESULT PAGE HERE", updatedCust);
+		 mv.setViewName("account.jsp");
+		 mv.addObject("profile", updatedCust);
 		return mv;
 	}
 

@@ -12,18 +12,18 @@
 <body>
 	TEST CUSTOMER UPDATES HERE:
 	<br>
-	<form:form action="updateCust.do">
-		First Name: <form:input path="firstName"/>${profile.firstName}<br> 
-		Last Name: <form:input path="lastName"/>${profile.lastName}<br> 
+	<form:form action="updateCust.do" modelAttribute="profile" method="GET">
+		First Name: <form:input path="firstName"/><br> 
+		Last Name: <form:input path="lastName"/><br> 
 		<%-- <input type="text" value="hidden" name="accessLevel"/>${profile.accessLevel} --%>
 		Gender: <form:select path="gender">
 			<option value="M">Male</option>
 			<option value="F">Female</option>
 			</form:select><br>
-			Email: <form:input path="email"/>${profile.email}<br> 
-			PW: <form:input path="password"/>${profile.password}<br> 
-		Birthday: <form:input path="birthDate"/>${profile.birthDate} <br>
-		Phone: <form:input path="phone"/>${profile.phone}<br>
+			Email: <form:input path="email"/><br> 
+			PW: <form:input path="password"/><br> 
+		Birthday: <form:input path="birthDate"/><br>
+		Phone: <form:input path="phone"/><br>
 		<%-- Address Nickname: <form:input name="name"><br>
 		Street: <form:input type="text" name="streetAddress"> <br>
 		City: <input type="text" name="city"> <br>

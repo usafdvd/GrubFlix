@@ -56,7 +56,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Address address = new Address();
 		newCust.setEmail(cust.getEmail());
 		newCust.setPassword(cust.getPassword());
-		newCust.setBirthDate(cust.getBirthDate());
+		newCust.setBirthDate(cust.getBD());
 		newCust.setAccessLevel(cust.getAccessLevel());
 		newCust.setFirstName(cust.getFirstName());
 		newCust.setLastName(cust.getLastName());
@@ -73,15 +73,14 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.persist(address);
 		return newCust;
 	}
-    
-    @Override
-    public List<DVDs> getAllDVDs () {
-    	dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
-    	return dvds;
-    }
 
-    
-    @Override
+	@Override
+	public List<DVDs> getAllDVDs() {
+		dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
+		return dvds;
+	}
+
+	@Override
 	public Customers viewCust(String email) {
 		System.out.println("inside viewCustDAO");
 		customers = em.createQuery("SELECT cust FROM Customers cust", Customers.class).getResultList();
@@ -98,7 +97,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 				break;
 			}
 		}
-		// Customers managedCust = em.find(Customers.class, cust);
+
 		System.out.println(cust);
 		return cust;
 	}
@@ -114,7 +113,6 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers managedCust = em.find(Customers.class, cust.getEmail());
 		managedCust.setEmail(cust.getEmail());
 		managedCust.setPassword(cust.getPassword());
-		// REMOVED ACCESS LEVEL CHANGES, SHOULDN'T BE ABLE TO CHANGE THEM.
 		managedCust.setBirthDate(cust.getBirthDate());
 		managedCust.setFirstName(cust.getFirstName());
 		managedCust.setLastName(cust.getLastName());
@@ -125,8 +123,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-	// POSSIBLY RETURNING STRING SAYING CUSTOMER WAS DELETED. IF STATEMENT IS
-	// SUCCESSFUL??
+
 	public void deleteCust(Customers cust) {
 		Customers removedCust = em.find(Customers.class, cust);
 		em.remove(removedCust);
@@ -162,8 +159,6 @@ public class GrubImpDAO implements GrubFlixDAO {
 					int posterEnd = json.indexOf('"', posterStart);
 					String url = json.substring(posterStart, posterEnd);
 					dvd.setPosterURL(url);
-					// System.out.println(url);
-					// System.out.println(json);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -201,33 +196,11 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-	// POSSIBLY RETURNING STRING SAYING DVD WAS DELETED. IF STATEMENT IS
-	// SUCCESSFUL??
+
 	public void deleteDVD(DVDs dvd) {
 		DVDs removedDVD = em.find(DVDs.class, dvd);
 		em.remove(removedDVD);
 
 	}
-
-	// public String getGenreIndex(){
-	// String s = "http://www.omdbapi.com/?i=&t=";
-	// URLConnection urlConnection;
-	// try {
-	// urlConnection = new URL(s + "star+wars+Episode+IV").openConnection();
-	// byte[] bytes = new byte[urlConnection.getContentLength()];
-	// urlConnection.getInputStream().read(bytes);
-	// String json = new String(bytes);
-	// int start = json.indexOf("Poster");
-	// int posterStart = json.indexOf(':', start) + 2;
-	// int posterEnd = json.indexOf('"', posterStart);
-	// String url = json.substring(posterStart, posterEnd);
-	// System.out.println(url);
-	// System.out.println(json);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// return s;
-	// }
-	//
 
 }

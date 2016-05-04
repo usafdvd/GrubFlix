@@ -47,8 +47,8 @@ public class controller1 {
 		System.out.println(cust.getFirstName());
 		System.out.println(cust.getBirthDate());
 		Customers newCust = gfDAO.insertCust(cust);
-		mv.setViewName("movies.jsp");
-		mv.addObject("newCust", newCust);
+		mv.setViewName("index2.jsp");
+		mv.addObject("profile", newCust);
 		return mv;
 	}
 

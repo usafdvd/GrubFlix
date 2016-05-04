@@ -1,95 +1,83 @@
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 		<div class="col-lg-8 col-lg-offset-2">
 			<h2>Your stuff</h2>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-			<form action="createCust.do" method="POST">
+			<form:form action="updateCust.do" modelAttribute="profile" method="POST">
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="firstName" placeholder="First Name"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="firstName" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="lastName" placeholder="Last Name"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="lastName" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="form col-xs-12 col-md-6">
-							<select name="gender" class="form-control formNoBrdrSpacing"
+							<form:select path="gender" class="form-control formNoBrdrSpacing"
 								id="">
 								<option value="M">Male</option>
 								<option value="F">Female</option>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="email" placeholder="Email"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="email" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="password" name="password" placeholder="Password"
-									class="form-control formNoBrdrSpacing"> <input
-									type="hidden" name="accessLevel" value="1">
+								<form:input path="password" class="form-control formNoBrdrSpacing"/> 
+								<form:input type="hidden" path="accessLevel" value="1"/>
 							</div>
 						</div>
 						
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="date" name="birthDate" placeholder="Birthday"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="birthDate" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 
 							<div class="input text-center ">
-								<input type="tel" name="phone" placeholder="Phone Number"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="phone" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="name" placeholder="Address title"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="name" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="streetAddress"
-									placeholder="Street Address"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="streetAddress" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="city" placeholder="City"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="city" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" name="state" placeholder="State"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="state" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 
 						<div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
-								<input type="text" size="5" name="zip" placeholder="Zip"
-									class="form-control formNoBrdrSpacing">
+								<form:input path="zip" class="form-control formNoBrdrSpacing"/>
 							</div>
 						</div>
 					</div>
@@ -111,7 +99,7 @@
 					<div>
 				
 				</div>
-			</form>
+			</form:form>
 		</div>
 		<div class="movieRow row">
 	<div class="row text-center">

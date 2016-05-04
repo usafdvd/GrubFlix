@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +101,38 @@ public class controller1 {
 	// public ModelAndView addToCart(Orders item) {
 	//
 	// }
+	
+	
+//	public HashMap<String, List<DVDs>> listDVDsByGenre() {
+//
+//		HashMap<String, List<DVDs>> result = new HashMap<>();
+//	
+//	   @RequestMapping("listGenreGroups.do")
+//	    public ModelAndView listGenreGroups(){
+//	        
+//	        ArrayList<ArrayList<Employee>> employees = gfDAO.listDVDsByGenre();
+//	        
+//	        System.out.println(employees);
+//	        
+//	        
+//
+//	        
+//	        ModelAndView mv = new ModelAndView();
+//	        mv.setViewName("movies.jsp");
+//	        
+//
+//	        mv.addObject("listing", employees);
+//
+//	        System.out.println(employees);
+//	        return mv;
+//	        
+//	    }
+//	
+	
+	
+	
+	
+	
+	
 
 }

@@ -71,11 +71,12 @@ public class controller1 {
 	}
 
 	@RequestMapping(path = "deleteCust.do", method = RequestMethod.GET)
-	public ModelAndView deleteCust(Customers cust) {
+	public ModelAndView deleteCust(String email) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside deleting controller");
-		gfDAO.deleteCust(cust);
-		mv.setViewName("INSERT PAGE RESULT HERE");
+		gfDAO.deleteCust(email);
+		System.out.println("in controller again");
+		mv.setViewName("index.jsp");
 		return mv;
 	}
 	

@@ -91,6 +91,7 @@
 						Save
 					</button>
 				</div>
+				
 					<br>
 					<br>
 					<br>
@@ -100,6 +101,16 @@
 				
 				</div>
 			</form:form>
+			
+			<form action="deleteCust.do" method="GET">
+				<div class="col-xs-12 text-center">
+					${profile.email}
+					<button type="submit" name="email" value="${profile.email}" class=" btn btn-default floatR smargBottom">
+						DELETE
+					</button>
+				</div>
+				
+				</form>
 		</div>
 		<div class="movieRow row">
 	<div class="row text-center">

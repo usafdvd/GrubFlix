@@ -36,9 +36,9 @@
 	<br>
 	<br>
 	<br>
-	<form action="editCust.do" method="GET">
-	<input type="email" value="test@test.com">
-	<input type="submit" name="click to test">
+	<form action="viewCust.do" method="GET">
+	<input type="text" name="email">
+	<input type="submit">
 	</form>
 	
 	<br>

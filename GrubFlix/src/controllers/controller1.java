@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,11 @@ public class controller1 {
 		return mv;
 	}
 	
-	@RequestMapping(path="viewCust.do")
+	@RequestMapping(path="viewCust.do", method=RequestMethod.GET)
 	public ModelAndView viewCust(String email) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside view customer controller");
+		System.out.println(email);
 		mv.setViewName("testindex2.jsp");
 		mv.addObject("profile", gfDAO.viewCust(email));
 		System.out.println("back in view cust");
@@ -97,5 +99,38 @@ public class controller1 {
 	// public ModelAndView addToCart(Orders item) {
 	//
 	// }
+	
+	
+//	public HashMap<String, List<DVDs>> listDVDsByGenre() {
+//
+//		HashMap<String, List<DVDs>> result = new HashMap<>();
+//	
+//	   @RequestMapping("listGenreGroups.do")
+//	    public ModelAndView listGenreGroups(){
+//	        
+//	        ArrayList<ArrayList<Employee>> employees = gfDAO.listDVDsByGenre();
+//	        
+//	        System.out.println(employees);
+//	        
+//	        
+//
+//	        
+//	        ModelAndView mv = new ModelAndView();
+//	        mv.setViewName("movies.jsp");
+//	        
+//
+//	        mv.addObject("listing", employees);
+//
+//	        System.out.println(employees);
+//	        return mv;
+//	        
+//	    }
+//	
+	
+	
+	
+	
+	
+	
 
 }

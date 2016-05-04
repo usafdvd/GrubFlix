@@ -95,7 +95,7 @@
 
 				<li class="hidden"><a href="#page-top"></a></li>
 				<li>
-					<form action="movies.jsp">
+					<form action="listGenreGroups.do">
 						<button type="submit" value="" class=" btn btn-nav ">Movies</button>
 					</form>
 				<li>

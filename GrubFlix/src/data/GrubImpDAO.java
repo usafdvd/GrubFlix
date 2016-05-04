@@ -21,6 +21,7 @@ import transfers.CustomerTO;
 public class GrubImpDAO implements GrubFlixDAO {
 	private List<Customers> customers = new ArrayList<>();
 
+	private List<DVDs> dvds = new ArrayList<>();
 	@PersistenceContext
 	private EntityManager em;
 
@@ -71,8 +72,15 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.persist(address);
 		return newCust;
 	}
+    
+    @Override
+    public List<DVDs> getAllDVDs () {
+    	dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
+    	return dvds;
+    }
 
-	@Override
+    
+    @Override
 	public Customers viewCust(String email) {
 		System.out.println("inside viewCustDAO");
 		customers = em.createQuery("SELECT cust FROM Customers cust", Customers.class).getResultList();
@@ -80,8 +88,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers cust = null;
 		for (Customers custX : customers) {
 			System.out.println("inside for loop");
+			System.out.println(custX.getEmail());
+			System.out.println("email:" + email);
 			if (custX.getEmail().equalsIgnoreCase(email)) {
+				System.out.println("inside if statement");
 				cust = custX;
+				System.out.println(cust);
 				break;
 			}
 		}

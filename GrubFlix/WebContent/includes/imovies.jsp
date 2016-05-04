@@ -69,7 +69,31 @@
 
 </div>
 
+<c:forEach var="empRow" items="${listing}">
 
+
+		<c:forEach var="employee" items="${empRow}">
+		<div class=" col-xs-12 col-sm-4 col-md-3 empBoxContainer">
+	<div class="empBox">
+
+	<div class="btnRow row">
+		<button type="submit" name="id" value="${employee.id}" class="editBtn text-center">
+			<i class="fa fa-pencil-square-o editBtnIcon" aria-hidden="true"></i>
+		</button>
+	</div>
+
+
+	<div class="nameRow row text-center">
+
+		
+		<b>${employee.firstname}</b> <b>${employee.lastname}</b>
+
+	</div>
+	</div>
+	</div>
+	</c:forEach>
+
+</c:forEach>
 
 
 

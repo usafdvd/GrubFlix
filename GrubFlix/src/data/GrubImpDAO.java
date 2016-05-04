@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import entities.Address;
 import entities.Customers;
@@ -147,7 +148,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
-					urlConnection = new URL(s + dvd.getDvdTitle()).openConnection();
+					
+
+					String newDvdTitle = StringUtils.replace(dvd.getDvdTitle(), " ", "+");
+					
+					
+					urlConnection = new URL(s + newDvdTitle).openConnection();
 					byte[] bytes = new byte[urlConnection.getContentLength()];
 					urlConnection.getInputStream().read(bytes);
 					String json = new String(bytes);

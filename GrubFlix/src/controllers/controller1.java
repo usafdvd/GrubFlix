@@ -101,31 +101,25 @@ public class controller1 {
 	// }
 	
 	
-//	public HashMap<String, List<DVDs>> listDVDsByGenre() {
-//
-//		HashMap<String, List<DVDs>> result = new HashMap<>();
-//	
-//	   @RequestMapping("listGenreGroups.do")
-//	    public ModelAndView listGenreGroups(){
-//	        
-//	        ArrayList<ArrayList<Employee>> employees = gfDAO.listDVDsByGenre();
-//	        
-//	        System.out.println(employees);
-//	        
-//	        
-//
-//	        
-//	        ModelAndView mv = new ModelAndView();
-//	        mv.setViewName("movies.jsp");
-//	        
-//
-//	        mv.addObject("listing", employees);
-//
-//	        System.out.println(employees);
-//	        return mv;
-//	        
-//	    }
-//	
+
+
+
+		HashMap<String, List<DVDs>> result = new HashMap<>();
+	
+	   @RequestMapping("listGenreGroups.do")
+	    public ModelAndView listGenreGroups(){
+		   ModelAndView mv = new ModelAndView();
+	        mv.setViewName("movies.jsp");
+	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
+	        
+	        System.out.println(gfDAO.listDVDsByGenre());
+	        return mv;
+	        
+	    }
+	   
+	   
+	   
+	
 	
 	
 	

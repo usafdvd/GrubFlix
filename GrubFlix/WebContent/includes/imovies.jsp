@@ -1,7 +1,7 @@
 
 
 
-
+<%-- 
 <div class="movieRow row">
 	<div class="row">
 
@@ -66,13 +66,45 @@
 
 
 
-
+ --%>
 </div>
 
-<c:forEach var="empRow" items="${listing}">
+
+<div class="movieRow row">
+<c:forEach var="genreRow" items="${genreGroups}">
 
 
-		<c:forEach var="employee" items="${empRow}">
+	<form action="see-all.jsp">
+			<button type="submit" value="" class=" btn btn-nav moreMovies">
+				<h3>
+					Comedy<span class="seeMore"> See More</span>
+				</h3>
+			</button>
+		</form>
+		<div class="row">
+		<c:forEach var="genreGroups" items="${DVDs}">
+		
+		
+		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
+			<form action="view-movie.jsp">
+				<button type="submit" value="${DVDs.getId}" class=" btn btn-nav moreMovies">
+					<img src="${DVDs.getPosterURL}" class="movieImageThumbNail" />
+				</button>
+					
+
+			</form>
+
+		</div>
+	
+
+	</c:forEach>
+	</div>
+	</div>
+</c:forEach>
+
+
+<%-- 
+
 		<div class=" col-xs-12 col-sm-4 col-md-3 empBoxContainer">
 	<div class="empBox">
 
@@ -91,14 +123,7 @@
 	</div>
 	</div>
 	</div>
-	</c:forEach>
-
-</c:forEach>
-
-
-
-
-
+ --%>
 
 
 

@@ -52,7 +52,7 @@ public class controller1 {
 	@RequestMapping(path = "EditCust.do")
 	public ModelAndView editCust(Customers cust) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("editCustomer.jsp");
+		mv.setViewName("testindex.jsp");
 		mv.addObject("profile", gfDAO.editCust(cust));
 		return mv;
 	}
@@ -73,6 +73,16 @@ public class controller1 {
 		System.out.println("inside deleting controller");
 		gfDAO.deleteCust(cust);
 		mv.setViewName("INSERT PAGE RESULT HERE");
+		return mv;
+	}
+	
+	@RequestMapping(path="viewCust.do")
+	public ModelAndView viewCust(String email) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inside view customer controller");
+		mv.setViewName("testindex2.jsp");
+		mv.addObject("profile", gfDAO.viewCust(email));
+		System.out.println("back in view cust");
 		return mv;
 	}
 	// CONSULT WITH TEAM ON BEST WAY TO ACCOMPLISH ORDER LIST

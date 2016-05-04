@@ -12,7 +12,7 @@
 <body>
 	TEST CUSTOMER UPDATES HERE:
 	<br>
-	<form action="createCust.do" method="GET">
+	<%-- <form action="viewCust.do" method="GET">
 		First Name: <input type="text" name="firstName"><br> 
 		Last Name: <input type="text" name="lastName"><br> 
 		Gender: <select name="gender">
@@ -32,12 +32,26 @@
 		<input type="submit">
 
 	</form>
-
+ --%>
 	<br>
 	<br>
-	<br>TEST MOVIE SEARCH BY GENRE:
 	<br>
-	<form action="searchByGenre.do" method="GET">
+	<form action="editCust.do" method="GET">
+	<input type="email" value="test@test.com">
+	<input type="submit" name="click to test">
+	</form>
+	
+	<br>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<%-- 	<form action="searchByGenre.do" method="GET">
 		<select name="genre">
 			<option value="Action/Adventure">Action/Adventure</option>
 			<option value="Action/Comedy">Action/Comedy</option>
@@ -59,7 +73,7 @@
 		</select>
 		<button type="submit">Submit</button>
 	</form>
-
+ --%>
 
 	<c:forEach var="dvds" items="${list}">
 		<c:out value="${dvds.dvdTitle}"></c:out>

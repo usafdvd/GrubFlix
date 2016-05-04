@@ -38,6 +38,10 @@ public class Customers {
 
 	@OneToMany(mappedBy = "customer")
 	private List<CustomerOrder> customerOrder;
+	
+	public Customers() {
+		
+	}
 
 	public String getEmail() {
 		return email;

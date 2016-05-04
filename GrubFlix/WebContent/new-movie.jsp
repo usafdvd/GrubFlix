@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,14 +17,17 @@ pageEncoding="UTF-8"%>
 
 <%@ include file="includes-base/inav-admin.jsp" %>
 
-<div class="container-fluid movieWrapper">
+<div class="container movieWrapper">
 	  <div class="maxWidthWrapper">
  	  	
- 	  	<%@ include file="includes/iadmin.jsp" %>
+	<%@ include file="includes/inew-movie.jsp" %>
+ 	  	
+ 	  
+ 	  	
  	  	
 	</div>
 </div>
-  
+
 
 
 

@@ -26,11 +26,14 @@ public interface GrubFlixDAO {
 	public Customers updateCust(Customers cust);
 
 	public void deleteCust(Customers cust);
-	
-	
-	
+	 
+	 public DVDs insertDVD (DVDs dvd);
+	 
+	 public DVDs editDVD (DVDs dvd);
+	 
+	 public DVDs updateDVD (DVDs dvd);
+	 
+	 public void deleteDVD (DVDs dvd);
 
-	
-//	public String getDVDStatus (int id);
 
 }

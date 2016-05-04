@@ -1,6 +1,4 @@
 
-<section id="about" class="container content-section text-center">
-	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
 			<h2>Your stuff</h2>
 		</div>
@@ -100,7 +98,7 @@
 				
 				</div>
 				
-				<div class="col-xs-12">
+				<div class="col-xs-12 text-center">
 					<button type="submit" class=" btn btn-default floatR smargBottom">
 						Save
 					</button>
@@ -116,16 +114,16 @@
 			</form>
 		</div>
 		<div class="movieRow row">
-	<div class="row">
+	<div class="row text-center">
 
 
 
 
 		<form action="previously-watched.jsp">
-			<button type="submit" value="" class=" btn btn-nav moreMovies">
-				<h3>
+			<button type="submit" value="" class=" btn btn-nav moreMovies ">
+				<h4>
 					Previously Watched<span class="seeMore"> See More</span>
-				</h3>
+				</h4>
 			</button>
 		</form>
 

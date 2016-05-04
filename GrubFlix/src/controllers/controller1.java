@@ -20,13 +20,16 @@ public class controller1 {
 	    @Autowired
 	    private GrubFlixDAO gfDAO;
 	    
-	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
+	    @RequestMapping(path="getDVD.do", params="id", method=RequestMethod.GET)
 	    public ModelAndView getDVD(int id){
-	    		
+	    	ModelAndView mv = new ModelAndView();	
 	    	DVDs dvd = gfDAO.getDVD(id);
 	    	
 	    	System.out.println("inside controller" + dvd);
-	    	 return new ModelAndView("index.jsp", "dvd", dvd);
+	    	 //return new ModelAndView("DVDtest2.jsp", "dvd", dvd);
+	    	mv.setViewName("DVDtest2.jsp");
+			mv.addObject("dvd", dvd);
+			return mv;
 	    }
 	    
 	    
@@ -129,10 +132,45 @@ public class controller1 {
 //	    }
 //	
 	
+	@RequestMapping(path = "createDVD.do", method = RequestMethod.GET)
+	public ModelAndView createDVD(DVDs dvd) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inside create customer");
 	
+		DVDs newDVD = gfDAO.insertDVD(dvd);
+		mv.setViewName("DVDtest.jsp");
+		mv.addObject("newDVD", newDVD);
+		return mv;
+	}
 	
+	@RequestMapping(path = "deleteDVD.do", method = RequestMethod.POST)
+	public ModelAndView deleteDVD(DVDs dvd) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inside deleting controller");
+		//gfDAO.deleteDVD(dvd);
+		mv.setViewName("DVDtest.jsp");
+		mv.addObject("remove", gfDAO.deleteDVD(dvd));
+		return mv;
+	}
 	
-	
+	@RequestMapping(path = "EditDVD.do")
+	public ModelAndView editDVD(DVDs dvd) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("testindex.jsp");
+		mv.addObject("profile", gfDAO.editDVD(dvd));
+		return mv;
+	}
+
+	@RequestMapping(path = "updateCust.do", method = RequestMethod.POST)
+	public ModelAndView updateCust(DVDs dvd) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inside updating DVD");
+		DVDs updateDVD = gfDAO.updateDVD(dvd);
+		mv.setViewName("INSERT RESULT PAGE HERE");
+		mv.addObject("RESULT PAGE HERE");
+		return mv;
+	}
+
 	
 
 }

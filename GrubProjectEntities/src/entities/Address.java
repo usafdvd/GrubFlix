@@ -1,9 +1,10 @@
 package entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 //@Table(name = "ADDRESS")
@@ -11,15 +12,15 @@ import javax.persistence.IdClass;
 public class Address {
 //ADDING COMMENT.
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	String name;
 	String streetAddress;
 	String city;
 	String state;
 	int zip;
 	@Id
-	@Column(name="customer_email", insertable=false, updatable=false)
-	private String customerEmail;
+	@ManyToOne
+	@JoinColumn(name="customer_email")
+	private Customers customer;
 
 	public String getStreetAddress() {
 		return streetAddress;
@@ -57,16 +58,16 @@ public class Address {
 		return name;
 	}
 
-	public String getCustomerEmail() {
-		return customerEmail;
+	public Customers getCustomer() {
+		return customer;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+	public void setCustomer(Customers customer) {
+		this.customer = customer;
 	}
 
 }

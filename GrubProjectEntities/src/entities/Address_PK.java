@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Address_PK implements Serializable {
-	private String customerEmail;
+	private String customer;
 	private String name;
 
 	public Address_PK() {
@@ -14,7 +14,7 @@ public class Address_PK implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((customerEmail == null) ? 0 : customerEmail.hashCode());
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -28,10 +28,10 @@ public class Address_PK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Address_PK other = (Address_PK) obj;
-		if (customerEmail == null) {
-			if (other.customerEmail != null)
+		if (customer == null) {
+			if (other.customer != null)
 				return false;
-		} else if (!customerEmail.equals(other.customerEmail))
+		} else if (!customer.equals(other.customer))
 			return false;
 		if (name == null) {
 			if (other.name != null)

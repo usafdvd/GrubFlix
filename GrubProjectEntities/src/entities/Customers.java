@@ -31,10 +31,7 @@ public class Customers {
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 	int phone;
-	//UNIDirectional One-To-Many
-	@OneToMany
-	@JoinColumn(name = "customer_email",
-	referencedColumnName="email", nullable=false)
+	@OneToMany(mappedBy="customer")
 	List<Address> addresses;
 
 	@OneToMany(mappedBy = "customer")

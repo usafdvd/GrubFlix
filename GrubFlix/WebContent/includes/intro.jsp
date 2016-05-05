@@ -6,11 +6,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h1 class="brand-heading">GRUBFLIX</h1>
+                    <img src="img/mainTitle.svg" class="image-responsive" id="mainTitle"/>
+                 
+
                     <p class="intro-text">Delivery just got better...</p>
-                    <a href="#about" class="btn btn-circle page-scroll">
-                        <i class="fa fa-angle-double-down animated"></i>
-                    </a>
+                   <div class="row">
+                   
+                   <img src="img/mainTitleLogos.svg" class="image-responsive" id="mainTitleLogos"/>
+                   
+                   
+                   
+                   </div>
+			
                 </div>
             </div>
         </div>

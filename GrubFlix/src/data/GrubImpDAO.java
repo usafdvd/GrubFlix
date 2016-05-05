@@ -32,7 +32,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		DVDs dvd = em.find(DVDs.class, dvdId);
 		// em.detach(dvd);
 		System.out.println(dvd.getDvdTitle());
-//		em.persist(dvd);
+		// em.persist(dvd);
 		return dvd;
 	}
 
@@ -76,7 +76,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.persist(address);
 		return newCust;
 	}
-	
+
 	@Override
 	public List<DVDs> getAllDVDs() {
 		List<DVDs> dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
@@ -110,8 +110,6 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers managedCust = em.find(Customers.class, cust);
 		return managedCust;
 	}
-	
-	
 
 	@Override
 	public Customers updateCust(Customers cust) {
@@ -127,23 +125,22 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	}
 
-
 	@Override
 
 	public void deleteCust(String email) {
 		System.out.println("before");
-		Customers removedCust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email",  email).getSingleResult());
-		for (Address a: removedCust.getAddresses()) {
+		Customers removedCust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", email).getSingleResult());
+		for (Address a : removedCust.getAddresses()) {
 			System.out.println("removing: " + a.getName());
 			em.remove(a);
 		}
-		for (CustomerOrder c: removedCust.getCustomerOrder()) {
+		for (CustomerOrder c : removedCust.getCustomerOrder()) {
 			em.remove(c);
 		}
-		
+
 		System.out.println(removedCust.getEmail());
 		em.remove(removedCust);
-		
 
 	}
 
@@ -151,7 +148,8 @@ public class GrubImpDAO implements GrubFlixDAO {
 	public HashMap<String, List<DVDs>> listDVDsByGenre() {
 
 		HashMap<String, List<DVDs>> result = new HashMap<>();
-		List<String> genres = em.createQuery("SELECT DISTINCT dvds.genreName FROM DVDs dvds", String.class).getResultList();
+		List<String> genres = em.createQuery("SELECT DISTINCT dvds.genreName FROM DVDs dvds", String.class)
+				.getResultList();
 		String s = "http://www.omdbapi.com/?i=&t=";
 		URLConnection urlConnection;
 
@@ -162,8 +160,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
-					
-					
+
 					String dvdTitle = dvd.getDvdTitle();
 					dvdTitle = dvdTitle.replaceAll(" ", "+");
 
@@ -175,10 +172,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 					int posterStart = json.indexOf(':', start) + 2;
 					int posterEnd = json.indexOf('"', posterStart);
 					String url = json.substring(posterStart, posterEnd);
-					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
+					if (!url.startsWith("http")) {
+						url = "img/no-image.jpg";
+					}
 					dvd.setPosterURL(url);
 					System.out.println(url);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -190,15 +189,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 		System.out.println(result);
 		return result;
 	}
-	
 
-
-	
 	@Override
 	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName) {
 
 		HashMap<String, List<DVDs>> result = new HashMap<>();
-		
+
 		List<String> gn = new ArrayList<String>();
 		gn.add(genreName);
 		List<String> genres = gn;
@@ -206,12 +202,13 @@ public class GrubImpDAO implements GrubFlixDAO {
 		URLConnection urlConnection;
 
 		for (String genre : genres) {
-			List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
+			List<DVDs> dvdByGenre = em
+					.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class)
+					.getResultList();
 			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
-					
-					
+
 					String dvdTitle = dvd.getDvdTitle();
 					dvdTitle = dvdTitle.replaceAll(" ", "+");
 
@@ -223,10 +220,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 					int posterStart = json.indexOf(':', start) + 2;
 					int posterEnd = json.indexOf('"', posterStart);
 					String url = json.substring(posterStart, posterEnd);
-					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
+					if (!url.startsWith("http")) {
+						url = "img/no-image.jpg";
+					}
 					dvd.setPosterURL(url);
 					System.out.println(url);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -238,86 +237,74 @@ public class GrubImpDAO implements GrubFlixDAO {
 		System.out.println(result);
 		return result;
 	}
-	
-//	@Override
-//	public HashMap<String, List<DVDs>> getDVDInfo(String id) {
-//
-//		int dvdId = Integer.parseInt(id);
-//		DVDs dvd = em.find(DVDs.class, dvdId);
-//		
-//		HashMap<String, List<DVDs>> result = new HashMap<>();
-//		
-//		List<String> gn = new ArrayList<String>();
-//		gn.add(genreName);
-//		List<String> genres = gn;
-//		String s = "http://www.omdbapi.com/?i=&t=";
-//		URLConnection urlConnection;
-//
-//		for (String genre : genres) {
-//			List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
-//			// for each DVD:
-//			for (DVDs dvd : dvdByGenre) {
-//				try {
-//					
-//					
-//					String dvdTitle = dvd.getDvdTitle();
-//					dvdTitle = dvdTitle.replaceAll(" ", "+");
-//
-//					urlConnection = new URL(s + dvdTitle).openConnection();
-//					byte[] bytes = new byte[urlConnection.getContentLength()];
-//					urlConnection.getInputStream().read(bytes);
-//					String json = new String(bytes);
-//					int start = json.indexOf("Poster");
-//					int posterStart = json.indexOf(':', start) + 2;
-//					int posterEnd = json.indexOf('"', posterStart);
-//					String url = json.substring(posterStart, posterEnd);
-//					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
-//					dvd.setPosterURL(url);
-//					System.out.println(url);
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//
-//			result.put(genre, dvdByGenre);
-//
-//		}
-//		System.out.println(result);
-//		return result;
-//	}
-//
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// @Override
+	// public HashMap<String, List<DVDs>> getDVDInfo(String id) {
+	//
+	// int dvdId = Integer.parseInt(id);
+	// DVDs dvd = em.find(DVDs.class, dvdId);
+	//
+	// HashMap<String, List<DVDs>> result = new HashMap<>();
+	//
+	// List<String> gn = new ArrayList<String>();
+	// gn.add(genreName);
+	// List<String> genres = gn;
+	// String s = "http://www.omdbapi.com/?i=&t=";
+	// URLConnection urlConnection;
+	//
+	// for (String genre : genres) {
+	// List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where
+	// dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
+	// // for each DVD:
+	// for (DVDs dvd : dvdByGenre) {
+	// try {
+	//
+	//
+	// String dvdTitle = dvd.getDvdTitle();
+	// dvdTitle = dvdTitle.replaceAll(" ", "+");
+	//
+	// urlConnection = new URL(s + dvdTitle).openConnection();
+	// byte[] bytes = new byte[urlConnection.getContentLength()];
+	// urlConnection.getInputStream().read(bytes);
+	// String json = new String(bytes);
+	// int start = json.indexOf("Poster");
+	// int posterStart = json.indexOf(':', start) + 2;
+	// int posterEnd = json.indexOf('"', posterStart);
+	// String url = json.substring(posterStart, posterEnd);
+	// if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
+	// dvd.setPosterURL(url);
+	// System.out.println(url);
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	//
+	// result.put(genre, dvdByGenre);
+	//
+	// }
+	// System.out.println(result);
+	// return result;
+	// }
+	//
+	//
+
 	@Override
-	public DVDs insertDVD(DVDs dvd) {
+	public List<DVDs> insertDVD(DVDs dvd) {
 		DVDs newDVD = new DVDs();
 		newDVD.setDvdTitle(dvd.getDvdTitle());
 		newDVD.setRating(dvd.getRating());
 		newDVD.setGenreName(dvd.getGenreName());
 		em.persist(newDVD);
-		return newDVD;
+		List<DVDs> updatedList = getAllDVDs();
+		return updatedList;
 	}
 
 	@Override
 	public DVDs editDVD(int id) {
 		System.out.println("in editDAO before the find");
-//		DVDs managedDVD = em.createQuery("Select d from DVDs d where DVDs.id = " + dvd.getId(), DVDs.class).getSingleResult();
+		// DVDs managedDVD = em.createQuery("Select d from DVDs d where DVDs.id
+		// = " + dvd.getId(), DVDs.class).getSingleResult();
 		DVDs managedDVD = em.find(DVDs.class, id);
 		System.out.println("in editDAO after the find");
 		return managedDVD;
@@ -335,10 +322,12 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	@Override
 
-	public DVDs deleteDVD(DVDs dvd) {
-		DVDs removedDVD = em.find(DVDs.class, dvd);
+	public List<DVDs> deleteDVD(int id) {
+		DVDs removedDVD = em.find(DVDs.class, id);
+		
 		em.remove(removedDVD);
-		return removedDVD;
+		List<DVDs> updatedList = getAllDVDs();
+		return updatedList;
 
 	}
 

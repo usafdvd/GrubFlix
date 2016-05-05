@@ -17,6 +17,12 @@ public class Demo2 {
 		EntityManager em = emf.createEntityManager();
 		 EntityTransaction et = em.getTransaction();
 		 et.begin();
+		 int id = 291378;
+		 DVDs dvd = em.find(DVDs.class, id);
+		 System.out.println(dvd);
+		 em.remove(dvd);
+		 et.commit();
+		
 //		 List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class).setParameter("genre", "Comedy").setMaxResults(5).getResultList();
 ////		List<DVDs> dvds = em.createQuery("Select d from DVDs d", DVDs.class).getResultList();
 //

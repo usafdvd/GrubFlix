@@ -30,8 +30,17 @@ public class controller1 {
 		System.out.println("inside controller" + dvd);
 		return new ModelAndView("index.jsp", "dvd", dvd);
 	}
-	
-	@RequestMapping(path="editDVD.do")
+
+	@RequestMapping(path = "addDVD.do", method = RequestMethod.GET)
+	public ModelAndView addDVD(DVDs dvd) {
+		System.out.println("inside addDVD");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", gfDAO.insertDVD(dvd));
+		return mv;
+	}
+
+	@RequestMapping(path = "editDVD.do")
 	public ModelAndView editDVD(@RequestParam("id") int id) {
 		System.out.println("in edit controller");
 		ModelAndView mv = new ModelAndView();
@@ -40,12 +49,23 @@ public class controller1 {
 		System.out.println("after editDAO back in controller");
 		return mv;
 	}
-	
-	@RequestMapping(path="updateDVD.do", method=RequestMethod.POST)
+
+	@RequestMapping(path = "updateDVD.do", method = RequestMethod.POST)
 	public ModelAndView updateDVD(DVDs dvd) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin.jsp");
 		mv.addObject("dvds", gfDAO.updateDVD(dvd));
+		return mv;
+	}
+	
+	@RequestMapping(path="deleteDVD.do", method=RequestMethod.GET)
+	public ModelAndView deleteDVD(@RequestParam("id") int id) {
+		System.out.println(id);
+		System.out.println("INSIDE DELETE DVD");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", gfDAO.deleteDVD(id));
+		System.out.println("after DELETEDAO back in controller");
 		return mv;
 	}
 

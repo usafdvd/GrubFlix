@@ -3,6 +3,7 @@
 	<div class="row  text-center">
 
 <form:form action="updateDVD.do" modelAttribute="dvd" method="POST">
+
 		<div class="col-xs-12 col-md-6">
 			<input type="image" src="${dvd.posterURL}"/>
 			<%-- <img src="${dvd.posterURL}" class="movieImage" /> --%>
@@ -33,6 +34,7 @@
 									<form:input path="rating" class="form-control formNoBrdrSpacing"/>
 								</div>
 							</div>
+							
 							<form:input type="hidden" path="id"/>
 							<form:input type="hidden" path="posterURL"/>
 
@@ -53,16 +55,19 @@
 						<button type="submit" class=" btn btn-default floatR smargBottom">
 							Save</button>
 					</div>
-					<br> <br> <br> <br>
 
-					<div></div>
 			</div>
 
 
 
 		</div>
 				</form:form>
-
+					<form action="deleteDVD.do" method="GET">
+					<div class="col-xs-12 text-center">
+						<button type="submit" id="${dvd.id}" name="id" value="${dvd.id}" class=" btn btn-default floatR smargBottom">
+							Delete</button>
+					</div>
+					</form>
 
 	</div>
 </div>

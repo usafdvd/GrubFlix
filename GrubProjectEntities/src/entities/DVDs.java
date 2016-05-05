@@ -1,11 +1,13 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,7 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "DVDS")
-public class DVDs {
+public class DVDs implements Serializable{
 	@Id
 	int id;
 	@Column(name = "dvd_title")
@@ -31,7 +33,7 @@ public class DVDs {
 	String posterURL;
 
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})     
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})     
 	@JoinTable(name="ORDER_DETAILS",              
 		joinColumns=@JoinColumn(name="DVDID"),             
 		inverseJoinColumns=@JoinColumn(name="ORDERID"))          

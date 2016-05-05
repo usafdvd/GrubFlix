@@ -31,6 +31,8 @@ public class GrubImpDAO implements GrubFlixDAO {
 		int dvdId = Integer.parseInt(id);
 		DVDs dvd = em.find(DVDs.class, dvdId);
 		// em.detach(dvd);
+		System.out.println(dvd.getDvdTitle());
+		em.persist(dvd);
 		return dvd;
 	}
 
@@ -341,9 +343,10 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	@Override
 
-	public void deleteDVD(DVDs dvd) {
+	public DVDs deleteDVD(DVDs dvd) {
 		DVDs removedDVD = em.find(DVDs.class, dvd);
 		em.remove(removedDVD);
+		return removedDVD;
 
 	}
 

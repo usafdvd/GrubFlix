@@ -223,16 +223,46 @@ public class controller1 {
 			System.out.println("----xx------" + dv + "-----------x--------");
 		}
 		
-		
-		
-//		int itemCount = cart.size();
-//		session.setAttribute("itemCount", itemCount);
-//		mv.addObject("genreGroups", gfDAO.getAllDVDs());
-//		mv.setViewName("movies.jsp");
-	
-
-		
 		return listGenreGroups();
+		}
+		
+		
+		
+		
+			
+			@RequestMapping(path="removeFromCart.do", method=RequestMethod.POST)
+		public ModelAndView removeFromCart( @RequestParam("dvdid") String id) {
+			ModelAndView mv = new ModelAndView();
+			DVDs dvd = gfDAO.getDVD(id);
+			System.out.println(dvd);
+			
+			System.out.println("----------------------ADDING MOVIE TO CART---"
+					+ "---------------dvd passed in--------------" + dvd + "------------"
+							+ "---------------------------------");
+			
+
+			
+			
+			System.out.println(dvd.getDvdTitle());
+			
+			cart.remove(dvd);
+			
+		
+//			System.out.println(dvd.getId());
+//			System.out.println(cart.size());
+//			
+//			for (DVDs dv : cart) {
+//				System.out.println("----xx------" + dv + "-----------x--------");
+//			}
+		
+		
+		
+		
+			model.addAttribute("size", cart.size());
+			mv.setViewName("checkout.jsp");
+			mv.addObject("cart",cart);
+
+		return mv;
 	}
 	
 
@@ -251,15 +281,8 @@ public class controller1 {
 	
 		
 		
-		
-//		session.invalidate();
-		
-//		
-//		List shoppingCart = dao.getAllItems();
-//		session.setAttribute("shoppingCart",  shoppingCArt);
-//		session.removeAttribute("shoppingCart");
-//		List shoppingCArt = dao.getAllItems();
-//		session.setAttribute("shoppingCart",  shoppingCArt);
+
+
 		
 		
 

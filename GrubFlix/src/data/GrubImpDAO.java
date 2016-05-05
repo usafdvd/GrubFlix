@@ -68,7 +68,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		address.setCity(cust.getCity());
 		address.setState(cust.getState());
 		address.setZip(cust.getZip());
-		address.setCustomerEmail(newCust.getEmail());
+		address.setCustomer(newCust);
 		newCust.addAddress(address);
 		em.persist(newCust);
 		em.persist(address);

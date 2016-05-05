@@ -347,6 +347,13 @@ background-size: cover;
    
 }
 
+.itemCount{
+	color: red;
+	font-family: Roboto, sans-serif;
+}
+
+
+
 
 @media(max-width:768px) {
 	

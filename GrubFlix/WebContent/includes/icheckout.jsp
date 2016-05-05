@@ -89,7 +89,6 @@
 
 						<div class="col-xs-12 col-sm-3 text-center">
 							<h4 class="itemTitle">Borat</h4>
-
 						</div>
 
 						<div class="col-xs-12 col-sm-3 text-center checkOutInfo">

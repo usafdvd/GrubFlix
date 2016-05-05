@@ -105,7 +105,7 @@
 				</li>
 				<li>
 					<form action="checkout.jsp">
-						<button type="submit" value="" class=" btn btn-nav ">Checkout</button>
+						<button type="submit" value="" class=" btn btn-nav ">Checkout <b class="itemCount">( ${size} )</b></button>
 					</form>
 				</li>
 				<li>

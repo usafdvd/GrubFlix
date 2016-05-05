@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,9 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.GrubFlixDAO;
@@ -18,7 +22,12 @@ import entities.DVDs;
 import transfers.CustomerTO;
 
 @Controller
+@SessionAttributes({"cart", "size"})
 public class controller1 {
+//	private ArrayList<DVDs> cart;
+
+	
+	
 
 	    @Autowired
 	    private GrubFlixDAO gfDAO;
@@ -83,6 +92,8 @@ public class controller1 {
 		return mv;
 	}
 	
+	
+	
 	@RequestMapping(path="viewCust.do", method=RequestMethod.GET)
 	public ModelAndView viewCust(String email) {
 		ModelAndView mv = new ModelAndView();
@@ -96,35 +107,110 @@ public class controller1 {
 	
 	
 	
-//	@RequestMapping(path="login.do", method=RequestMethod.POST)
-//	public ModelAndView login(HttpSession session, String email, String password){
-//		
-//		Costomers cust = .getUserByEmail(email);
-//		
-//		if(null){
-//			send back as errror
-//			mv.addObject("Invalid email")
-//			mv.setViewName("login.jsp")
-//			return mv;
-//		}
-//		
-//		if(!password.equals(user.password)){
-//			//send back as error
-//		}
-//		session.setAttribute("user",  user);
-//		mv.addObject("homepage.jsp")
-//		
+	@RequestMapping(path="login.do", method=RequestMethod.POST)
+	public ModelAndView login( Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("email") String email, @RequestParam("password")String password){
+		ModelAndView mv = new ModelAndView();
+		
+		boolean verify = gfDAO.login(email, password); 
+		
+		String wrong = "Wrong Email or Password";
+		
+		if(verify == false){
+		
+			mv.addObject("wrong", wrong);
+			mv.setViewName("login.jsp");
+			return mv;
+		}
+		else{
+			
+			Customers cust = gfDAO.getCustomerById(email);
+			
+			model.addAttribute("cart", new ArrayList<DVDs>());
+			
+//			session.setAttribute("cust", cust);
+			mv.addObject("size", cart.size());
+			
+//	
+			
+			
+			mv.setViewName("movies.jsp");
+		    mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
+		}
+		    
+		    
+		    
+			return mv;
+		}
+	
+
+	
+	
+	
+	@RequestMapping(path="addMovieToCart.do", method=RequestMethod.POST)
+	public ModelAndView addToCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("dvdid") String id) {
+		ModelAndView mv = new ModelAndView();
+		DVDs dvd = gfDAO.getDVD(id);
+		System.out.println(dvd);
+		
+		System.out.println("----------------------ADDING MOVIE TO CART---"
+				+ "---------------dvd passed in--------------" + dvd + "------------"
+						+ "---------------------------------");
+		
+
+		
+		
+		System.out.println(dvd.getDvdTitle());
+		
+		cart.add(dvd);
+		
+		model.addAttribute("size", cart.size());
+		System.out.println(dvd.getId());
+		System.out.println(cart.size());
+		
+		for (DVDs dv : cart) {
+			System.out.println("----xx------" + dv + "-----------x--------");
+		}
+		
+		
+		
+//		int itemCount = cart.size();
+//		session.setAttribute("itemCount", itemCount);
+//		mv.addObject("genreGroups", gfDAO.getAllDVDs());
+//		mv.setViewName("movies.jsp");
+	
+
+		
+		return listGenreGroups();
+	}
+	
+
+	@RequestMapping(path="logout.do", method=RequestMethod.POST)
+	public ModelAndView logout(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		session.invalidate();
+		cart.clear();
+		mv.setViewName("index.jsp");
+		return mv;
+	}
+	
+	
+	
+	
+	
+		
+		
+		
 //		session.invalidate();
-//		
+		
 //		
 //		List shoppingCart = dao.getAllItems();
 //		session.setAttribute("shoppingCart",  shoppingCArt);
 //		session.removeAttribute("shoppingCart");
 //		List shoppingCArt = dao.getAllItems();
 //		session.setAttribute("shoppingCart",  shoppingCArt);
-//		
-//		
-//	}
+		
+		
+
 	
 	
 	
@@ -154,12 +240,11 @@ public class controller1 {
 	
 	   @RequestMapping("listGenreGroups.do")
 	    public ModelAndView listGenreGroups(){
-		    System.out.println("in list genre groups in controller");
+		   
 		   ModelAndView mv = new ModelAndView();
 	        mv.setViewName("movies.jsp");
 	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
-	        
-	        System.out.println("in list genre groups in controller");
+	   
 	        return mv;
 	        
 	    }

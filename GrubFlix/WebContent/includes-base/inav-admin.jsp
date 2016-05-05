@@ -51,10 +51,10 @@
 					<li>
 						<div class="input-group text-center searchGroup">
 							<div class="row">
-								<form>
+								<form action="searchDVD.do">
 
 
-									<input type="search" class=" col-xs-10" id="searchBar"
+									<input type="search" name="words" class=" col-xs-10" id="searchBar"
 										placeholder="Search Movie"> <span
 										class="input-group-btn">
 										<button type="submit"

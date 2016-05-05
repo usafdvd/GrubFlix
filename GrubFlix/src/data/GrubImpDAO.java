@@ -324,11 +324,27 @@ public class GrubImpDAO implements GrubFlixDAO {
 
 	public List<DVDs> deleteDVD(int id) {
 		DVDs removedDVD = em.find(DVDs.class, id);
-		
+
 		em.remove(removedDVD);
 		List<DVDs> updatedList = getAllDVDs();
 		return updatedList;
 
 	}
 
+	@Override
+	public DVDs searchDVDByTitle(String title) {
+		if (title == null) {
+			DVDs selectedDVD = em
+					.createQuery("SELECT dvd from DVDs dvd where lower(dvd.dvdTitle) like lower('%ex machina%')",
+							DVDs.class)
+					.getSingleResult(); 
+			return selectedDVD;
+		} else {
+		DVDs selectedDVD = em
+				.createQuery("SELECT dvd from DVDs dvd where lower(dvd.dvdTitle) like lower('%" + title + "%')",
+						DVDs.class)
+				.getSingleResult();
+		return selectedDVD;
+		}
+	}
 }

@@ -40,5 +40,5 @@ public interface GrubFlixDAO {
 
 	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName);
 
-
+	public DVDs searchDVDByTitle(String title);
 }

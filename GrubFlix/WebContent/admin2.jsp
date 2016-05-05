@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 <div class="container-fluid movieWrapper">
 	  <div class="maxWidthWrapper text-center">
  	  	
- 	  	<%@ include file="includes/iadmin.jsp" %>
+ 	  	<%@ include file="includes/iadmin2.jsp" %>
  	  	
 	</div>
 </div>

@@ -38,7 +38,7 @@
 					<!-- <button type="submit" value="update" class=" btn btn-default ">Submit</button> -->
 			</form>
 			
-			<form action="listGenres.do">
+			<form action="listGenreGroups.do">
 				<button type="submit" value="" class=" btn btn-default ">Submit</button>
 			</form>
 			<br>

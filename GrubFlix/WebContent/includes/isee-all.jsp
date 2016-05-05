@@ -1,357 +1,42 @@
-
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="movieRow row">
-	<div class="row">
+	<c:forEach var="genre" items="${genreGroups}">
+
+	
 
 
 
-
-		<div class=" btn btn-nav moreMovies">
-			<h3>
-					Comedy
+				<h3>
+					${genre.key}<span class="seeMore"></span>
 				</h3>
-		
-		</div>
-		
+	
 
+	
 
-
-
-
-
-	</div>
-
-
-
-	<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
 		<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
+			<c:forEach var="dvd" items="${genre.value}">
 
+
+				<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
+					<form action="view-movie.jsp">
+						<button type="submit" value="${dvd.id}"
+							class=" btn btn-nav moreMovies">
+							<img src="${dvd.posterURL}" class="movieImageThumbNail" />
+						</button>
+						<div class="dvdTitle">
+							${dvd.dvdTitle}
+						</div>
+
+					</form>
+
+				</div>
+
+
+			</c:forEach>
 		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
-		<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
-		<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
-		<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
-		<div class="row">
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
-			<form action="view-movie.jsp">
-				<button type="submit" value="" class=" btn btn-nav moreMovies">
-					<img src="img/borat.jpg" class="movieImageThumbNail" />
-				</button>
-			</form>
-
-		</div>
-		
-	</div>
-
-		
-		
-		
-
-
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
+	</c:forEach>
+</div>
 
 
 

@@ -10,7 +10,7 @@ import transfers.CustomerTO;
 public interface GrubFlixDAO {
 	
 	
-	public DVDs getDVD(int id);
+	public DVDs getDVD(String id);
 
 	public HashMap<String,List<DVDs>> listDVDsByGenre ();
 
@@ -37,6 +37,8 @@ public interface GrubFlixDAO {
 	 public DVDs updateDVD (DVDs dvd);
 	 
 	 public void deleteDVD (DVDs dvd);
+
+	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName);
 
 
 }

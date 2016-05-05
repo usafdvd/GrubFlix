@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.GrubFlixDAO;
@@ -20,15 +21,15 @@ public class controller1 {
 	    @Autowired
 	    private GrubFlixDAO gfDAO;
 	    
-	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
-	    public ModelAndView getDVD(int id){
-	    		
-	    	DVDs dvd = gfDAO.getDVD(id);
-	    	
-	    	System.out.println("inside controller" + dvd);
-	    	 return new ModelAndView("index.jsp", "dvd", dvd);
-	    }
-	    
+//	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
+//	    public ModelAndView getDVD(int id){
+//	    		
+//	    	DVDs dvd = gfDAO.getDVD(id);
+//	    	
+//	    	System.out.println("inside controller" + dvd);
+//	    	 return new ModelAndView("index.jsp", "dvd", dvd);
+//	    }
+//	    
 	    
 	@RequestMapping(path = "searchByGenre.do", method = RequestMethod.GET)
 	public ModelAndView getMovieByGenre(String genre, int limit) {
@@ -110,17 +111,41 @@ public class controller1 {
 	
 	   @RequestMapping("listGenreGroups.do")
 	    public ModelAndView listGenreGroups(){
+		    System.out.println("in list genre groups in controller");
 		   ModelAndView mv = new ModelAndView();
 	        mv.setViewName("movies.jsp");
 	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
 	        
-	        System.out.println(gfDAO.listDVDsByGenre());
+	        System.out.println("in list genre groups in controller");
 	        return mv;
 	        
 	    }
 	   
+	   @RequestMapping("listAllOfGenre.do")
+	    public ModelAndView listAllGenre(@RequestParam("genre")String genre){
+		   System.out.println("list all of genre.do in controller" + genre);
+		 
+		   ModelAndView mv = new ModelAndView();
+	        mv.setViewName("see-all.jsp");
+	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre(genre));
+	        
+	 
+
+	        return mv;
+	        
+	    }
 	   
-	   
+	   @RequestMapping("viewMovie.do")
+	    public ModelAndView viewMovie(@RequestParam("id")String id){
+		   System.out.println("id in controller" + id);
+		 
+		   ModelAndView mv = new ModelAndView();
+	        mv.setViewName("view-movie.jsp");
+	        mv.addObject("dvd", gfDAO.getDVD(id));
+
+	        return mv;
+	        
+	    }
 	
 	
 	

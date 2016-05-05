@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import entities.Address;
 import entities.Customers;
@@ -27,8 +26,9 @@ public class GrubImpDAO implements GrubFlixDAO {
 	private EntityManager em;
 
 	@Override
-	public DVDs getDVD(int id) {
-		DVDs dvd = em.find(DVDs.class, id);
+	public DVDs getDVD(String id) {
+		int dvdId = Integer.parseInt(id);
+		DVDs dvd = em.find(DVDs.class, dvdId);
 		// em.detach(dvd);
 		return dvd;
 	}
@@ -134,23 +134,23 @@ public class GrubImpDAO implements GrubFlixDAO {
 	public HashMap<String, List<DVDs>> listDVDsByGenre() {
 
 		HashMap<String, List<DVDs>> result = new HashMap<>();
-		List<String> genres = em.createQuery("SELECT DISTINCT genreid FROM DVDs dvds", String.class).getResultList();
+		List<String> genres = em.createQuery("SELECT DISTINCT dvds.genreName FROM DVDs dvds", String.class).getResultList();
 		String s = "http://www.omdbapi.com/?i=&t=";
 		URLConnection urlConnection;
 
 		for (String genre : genres) {
 			List<DVDs> dvdByGenre = em
 					.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genre + "'", DVDs.class)
-					.getResultList();
+					.setMaxResults(6).getResultList();
 			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
 					
+					
+					String dvdTitle = dvd.getDvdTitle();
+					dvdTitle = dvdTitle.replaceAll(" ", "+");
 
-					String newDvdTitle = StringUtils.replace(dvd.getDvdTitle(), " ", "+");
-					
-					
-					urlConnection = new URL(s + newDvdTitle).openConnection();
+					urlConnection = new URL(s + dvdTitle).openConnection();
 					byte[] bytes = new byte[urlConnection.getContentLength()];
 					urlConnection.getInputStream().read(bytes);
 					String json = new String(bytes);
@@ -158,7 +158,10 @@ public class GrubImpDAO implements GrubFlixDAO {
 					int posterStart = json.indexOf(':', start) + 2;
 					int posterEnd = json.indexOf('"', posterStart);
 					String url = json.substring(posterStart, posterEnd);
+					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
 					dvd.setPosterURL(url);
+					System.out.println(url);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -167,9 +170,123 @@ public class GrubImpDAO implements GrubFlixDAO {
 			result.put(genre, dvdByGenre);
 
 		}
+		System.out.println(result);
 		return result;
 	}
+	
 
+
+	
+	@Override
+	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName) {
+
+		HashMap<String, List<DVDs>> result = new HashMap<>();
+		
+		List<String> gn = new ArrayList<String>();
+		gn.add(genreName);
+		List<String> genres = gn;
+		String s = "http://www.omdbapi.com/?i=&t=";
+		URLConnection urlConnection;
+
+		for (String genre : genres) {
+			List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
+			// for each DVD:
+			for (DVDs dvd : dvdByGenre) {
+				try {
+					
+					
+					String dvdTitle = dvd.getDvdTitle();
+					dvdTitle = dvdTitle.replaceAll(" ", "+");
+
+					urlConnection = new URL(s + dvdTitle).openConnection();
+					byte[] bytes = new byte[urlConnection.getContentLength()];
+					urlConnection.getInputStream().read(bytes);
+					String json = new String(bytes);
+					int start = json.indexOf("Poster");
+					int posterStart = json.indexOf(':', start) + 2;
+					int posterEnd = json.indexOf('"', posterStart);
+					String url = json.substring(posterStart, posterEnd);
+					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
+					dvd.setPosterURL(url);
+					System.out.println(url);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			result.put(genre, dvdByGenre);
+
+		}
+		System.out.println(result);
+		return result;
+	}
+	
+//	@Override
+//	public HashMap<String, List<DVDs>> getDVDInfo(String id) {
+//
+//		int dvdId = Integer.parseInt(id);
+//		DVDs dvd = em.find(DVDs.class, dvdId);
+//		
+//		HashMap<String, List<DVDs>> result = new HashMap<>();
+//		
+//		List<String> gn = new ArrayList<String>();
+//		gn.add(genreName);
+//		List<String> genres = gn;
+//		String s = "http://www.omdbapi.com/?i=&t=";
+//		URLConnection urlConnection;
+//
+//		for (String genre : genres) {
+//			List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
+//			// for each DVD:
+//			for (DVDs dvd : dvdByGenre) {
+//				try {
+//					
+//					
+//					String dvdTitle = dvd.getDvdTitle();
+//					dvdTitle = dvdTitle.replaceAll(" ", "+");
+//
+//					urlConnection = new URL(s + dvdTitle).openConnection();
+//					byte[] bytes = new byte[urlConnection.getContentLength()];
+//					urlConnection.getInputStream().read(bytes);
+//					String json = new String(bytes);
+//					int start = json.indexOf("Poster");
+//					int posterStart = json.indexOf(':', start) + 2;
+//					int posterEnd = json.indexOf('"', posterStart);
+//					String url = json.substring(posterStart, posterEnd);
+//					if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
+//					dvd.setPosterURL(url);
+//					System.out.println(url);
+//					
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//			result.put(genre, dvdByGenre);
+//
+//		}
+//		System.out.println(result);
+//		return result;
+//	}
+//
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public DVDs insertDVD(DVDs dvd) {
 		DVDs newDVD = new DVDs();

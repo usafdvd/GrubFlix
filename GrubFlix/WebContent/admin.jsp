@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="includes-base/inav-admin.jsp" %>
 
 <div class="container-fluid movieWrapper">
-	  <div class="maxWidthWrapper">
+	  <div class="maxWidthWrapper text-center">
  	  	
  	  	<%@ include file="includes/iadmin.jsp" %>
  	  	

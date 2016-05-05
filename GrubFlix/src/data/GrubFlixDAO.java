@@ -45,13 +45,13 @@ public interface GrubFlixDAO {
 
 	
 	 
-	 public DVDs insertDVD (DVDs dvd);
+	 public List<DVDs> insertDVD (DVDs dvd);
 	 
-	 public DVDs editDVD (DVDs dvd);
+	 public DVDs editDVD (int id);
 	 
-	 public DVDs updateDVD (DVDs dvd);
+	 public List<DVDs> updateDVD(DVDs dvd);
 	 
-	 public DVDs deleteDVD (DVDs dvd);
+	 public List<DVDs> deleteDVD(int id);
 
 	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName);
 

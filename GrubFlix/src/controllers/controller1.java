@@ -24,24 +24,69 @@ import transfers.CustomerTO;
 @Controller
 @SessionAttributes({"cart", "size"})
 public class controller1 {
-//	private ArrayList<DVDs> cart;
+	HashMap<String, List<DVDs>> result = new HashMap<>();
 
-	
-	
+	@Autowired
+	private GrubFlixDAO gfDAO;
 
-	    @Autowired
-	    private GrubFlixDAO gfDAO;
-	    
-	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
-	    public ModelAndView getDVD(String id){
-	    		
-	    	DVDs dvd = gfDAO.getDVD(id);
-	    	
-	    	System.out.println("inside controller" + dvd);
-	    	 return new ModelAndView("index.jsp", "dvd", dvd);
-	    }
-	    
-	    
+	@RequestMapping(path = "getDVD.do", method = RequestMethod.POST)
+	public ModelAndView getDVD(String id) {
+
+		DVDs dvd = gfDAO.getDVD(id);
+
+		System.out.println("inside controller" + dvd);
+		return new ModelAndView("index.jsp", "dvd", dvd);
+	}
+
+	@RequestMapping(path = "addDVD.do", method = RequestMethod.GET)
+	public ModelAndView addDVD(DVDs dvd) {
+		System.out.println("inside addDVD");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", gfDAO.insertDVD(dvd));
+		return mv;
+	}
+
+	@RequestMapping(path = "editDVD.do")
+	public ModelAndView editDVD(@RequestParam("id") int id) {
+		System.out.println("in edit controller");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("edit-movie.jsp");
+		mv.addObject("dvd", gfDAO.editDVD(id));
+		System.out.println("after editDAO back in controller");
+		return mv;
+	}
+
+	@RequestMapping(path = "updateDVD.do", method = RequestMethod.POST)
+	public ModelAndView updateDVD(DVDs dvd) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", gfDAO.updateDVD(dvd));
+		return mv;
+	}
+	
+	@RequestMapping(path="deleteDVD.do", method=RequestMethod.GET)
+	public ModelAndView deleteDVD(@RequestParam("id") int id) {
+		System.out.println(id);
+		System.out.println("INSIDE DELETE DVD");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", gfDAO.deleteDVD(id));
+		System.out.println("after DELETEDAO back in controller");
+		return mv;
+	}
+
+	@RequestMapping(path = "adminPower.do", method = RequestMethod.GET)
+	public ModelAndView getDVDList() {
+		ModelAndView mv = new ModelAndView();
+		List<DVDs> dvdList = gfDAO.getAllDVDs();
+		mv.setViewName("admin.jsp");
+		mv.addObject("dvds", dvdList);
+		return mv;
+	}
+
+
+
 	@RequestMapping(path = "searchByGenre.do", method = RequestMethod.GET)
 	public ModelAndView getMovieByGenre(String genre, int limit) {
 		ModelAndView mv = new ModelAndView();
@@ -51,7 +96,7 @@ public class controller1 {
 		mv.addObject("list", dvdList);
 		return mv;
 	}
- // THIS WORKS. DO NOT EDIT!!!!
+
 	@RequestMapping(path = "createCust.do", method = RequestMethod.GET)
 	public ModelAndView createCust(CustomerTO cust) {
 		ModelAndView mv = new ModelAndView();
@@ -77,8 +122,8 @@ public class controller1 {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside updating customer");
 		Customers updatedCust = gfDAO.updateCust(cust);
-		 mv.setViewName("account.jsp");
-		 mv.addObject("profile", updatedCust);
+		mv.setViewName("account.jsp");
+		mv.addObject("profile", updatedCust);
 		return mv;
 	}
 
@@ -91,10 +136,8 @@ public class controller1 {
 		mv.setViewName("index.jsp");
 		return mv;
 	}
-	
-	
-	
-	@RequestMapping(path="viewCust.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "viewCust.do", method = RequestMethod.GET)
 	public ModelAndView viewCust(String email) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside view customer controller");
@@ -219,6 +262,7 @@ public class controller1 {
 	
 	
 	
+
 	// CONSULT WITH TEAM ON BEST WAY TO ACCOMPLISH ORDER LIST
 	// @RequestMapping(path="checkout.do", method=RequestMethod.POST)
 	// public ModelAndView checkout(Customers order) {
@@ -231,12 +275,9 @@ public class controller1 {
 	// public ModelAndView addToCart(Orders item) {
 	//
 	// }
-	
-	
 
 
-
-		HashMap<String, List<DVDs>> result = new HashMap<>();
+//		HashMap<String, List<DVDs>> result = new HashMap<>();
 	
 	   @RequestMapping("listGenreGroups.do")
 	    public ModelAndView listGenreGroups(){
@@ -274,13 +315,6 @@ public class controller1 {
 	        return mv;
 	        
 	    }
-	
-	
-	
-	
-	
-	
-	
+
 
 }
-

@@ -343,7 +343,7 @@ background-size: cover;
         background: #000;
         color: #fff;
     }
-    
+
    
 }
 
@@ -682,27 +682,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*--------------------onesies-------------------*/
 
 
@@ -821,7 +800,8 @@ smMargAll{
 
 
 .movieImageThumbNail{
-    max-height: 200px;
+    height: 200px;
+    width: 140px;
     background:  no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -841,7 +821,7 @@ smMargAll{
 }
 
 .seeMore{
-	margin: 0 0 35px;
+	margin: 0;
     font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 200;
     letter-spacing: 1px;
@@ -849,26 +829,29 @@ smMargAll{
     font-size: 12px;
 
 }
-
+form > .moreMovies > h3 {
+	margin: 0;
+	
+}
 
 
 
 
 
 .movieImage{
-	
 	 max-height: 500px;
     background:  no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    margin: 5px -10px;
+    margin: 2px -10px;
 	
 }
 
 .movieContent{
-	margin-top: 25%;
+	margin-top: 15%;
+	padding-top: 40px;
 	
 }
 
@@ -881,7 +864,12 @@ smMargAll{
 
 
 
-
+.dvdTitle{
+	width: 140px;
+	padding: 2px;
+	font-size: 10px;
+	
+}
 
 
 
@@ -939,9 +927,10 @@ smMargAll{
 
 #finalCheckOutBox{
 	
-	height: 168px;
+	height: 180px;
 	background: #f4f4f4;
 	bottom: 2px;
+	padding: 20px;
 	
 	
 }
@@ -972,16 +961,7 @@ smMargAll{
 
 
 
-.itemButtonsOuterContianer{
-	
-	
-	
-}
 
-.itemButtonsInnerContianer{
-	
-	
-}
 
 
 /* .itemButtons{
@@ -997,11 +977,48 @@ smMargAll{
 	
 } */
 
+.itemTitle{
+	margin-top: 30%;
+	margin-bottom: 40%;
+}
 
 
+.adminEditBtn {
+	margin-top: 30%;
+	margin-bottom: 40%;
+}
+
+.checkOutAmountContainer{
+	margin-top: 6%;
+	margin-bottom: 5%;
+}
 
 
+@media(max-width:768px){
+	.adminEditBtn {
+		margin-top: 10%;
+		margin-bottom: 5%;
+	}
+	.itemTitle{
+		margin-top: 2%;
+		margin-bottom: 0;
+	}
+	.itemContainer{
+		margin-left: 0px;
+		margin-right: 0%;
+	}
+	.checkOutAmountContainer{
+		margin-top: 0%;
+		margin-bottom: 0%;
+	}
+	
+}
 
+.itemContainer{
+	max-width: 800px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
 
 
 

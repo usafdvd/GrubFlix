@@ -75,6 +75,21 @@ public class GrubImpDAO implements GrubFlixDAO {
 		return newCust;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<DVDs> getAllDVDs() {
 		dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();

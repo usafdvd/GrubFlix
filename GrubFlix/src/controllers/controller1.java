@@ -3,6 +3,8 @@ package controllers;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +23,15 @@ public class controller1 {
 	    @Autowired
 	    private GrubFlixDAO gfDAO;
 	    
-//	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
-//	    public ModelAndView getDVD(int id){
-//	    		
-//	    	DVDs dvd = gfDAO.getDVD(id);
-//	    	
-//	    	System.out.println("inside controller" + dvd);
-//	    	 return new ModelAndView("index.jsp", "dvd", dvd);
-//	    }
-//	    
+	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
+	    public ModelAndView getDVD(int id){
+	    		
+	    	DVDs dvd = gfDAO.getDVD(id);
+	    	
+	    	System.out.println("inside controller" + dvd);
+	    	 return new ModelAndView("index.jsp", "dvd", dvd);
+	    }
+	    
 	    
 	@RequestMapping(path = "searchByGenre.do", method = RequestMethod.GET)
 	public ModelAndView getMovieByGenre(String genre, int limit) {
@@ -91,6 +93,46 @@ public class controller1 {
 		System.out.println("back in view cust");
 		return mv;
 	}
+	
+	
+	
+//	@RequestMapping(path="login.do", method=RequestMethod.POST)
+//	public ModelAndView login(HttpSession session, String email, String password){
+//		
+//		Costomers cust = .getUserByEmail(email);
+//		
+//		if(null){
+//			send back as errror
+//			mv.addObject("Invalid email")
+//			mv.setViewName("login.jsp")
+//			return mv;
+//		}
+//		
+//		if(!password.equals(user.password)){
+//			//send back as error
+//		}
+//		session.setAttribute("user",  user);
+//		mv.addObject("homepage.jsp")
+//		
+//		session.invalidate();
+//		
+//		
+//		List shoppingCArt = dao.getAllItems();
+//		session.setAttribute("shoppingCart",  shoppingCArt);
+//		session.removeAttribute("shoppingCart");
+//		List shoppingCArt = dao.getAllItems();
+//		session.setAttribute("shoppingCart",  shoppingCArt);
+//		
+//		
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
 	// CONSULT WITH TEAM ON BEST WAY TO ACCOMPLISH ORDER LIST
 	// @RequestMapping(path="checkout.do", method=RequestMethod.POST)
 	// public ModelAndView checkout(Customers order) {

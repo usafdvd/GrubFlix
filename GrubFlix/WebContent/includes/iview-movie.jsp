@@ -16,8 +16,8 @@
 			<h6>Rated: ${dvd.rating}</h6>
 		</div>
 		<div class="row">
-			<form action="movies.jsp">
-				<button type="submit" value="" class=" btn btn-default">
+			<form action="addMovieToCart.do" method="POST">
+				<button type="submit" name="dvdid" value="${dvd.id}" class=" btn btn-default">
 					Add to Cart
 				</button>
 			</form>

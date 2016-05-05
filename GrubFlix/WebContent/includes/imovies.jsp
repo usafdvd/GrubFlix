@@ -1,7 +1,12 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+
+
+
 <div class="movieRow row">
+
 	<c:forEach var="genre" items="${genreGroups}">
 
 		<form action="listAllOfGenre.do">
@@ -13,7 +18,6 @@
 		</form>
 		<div class="row">
 			<c:forEach var="dvd" items="${genre.value}">
-
 
 				<div class="col-xs-4 col-md-2 col-lg-2 movieImageThumbNailContainer">
 					<form action="viewMovie.do">

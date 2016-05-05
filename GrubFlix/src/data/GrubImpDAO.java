@@ -126,7 +126,6 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-
 	public void deleteCust(String email) {
 		System.out.println("before");
 		Customers removedCust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
@@ -143,6 +142,111 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.remove(removedCust);
 
 	}
+	
+	
+	
+	
+	
+	
+//	
+//	@Override
+//	public Customer getCustById(String e) {
+//		System.out.println("dao passed in email: " + e + "passed in password: " + p );
+//		
+//		boolean verify = false;
+//		
+//		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
+//		System.out.println("data base get cust by email: " + cust);
+//		System.out.println("data base get password: " + cust.getPassword());
+//		
+//		
+//		if(p.equals(cust.getPassword())){
+//			verify = true;
+//		}else{
+//			verify = false;
+//		}
+//		
+//		return verify;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public boolean login(String e, String p) {
+		System.out.println("dao passed in email: " + e + "passed in password: " + p );
+		
+		boolean verify;
+		
+		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
+		System.out.println("data base get cust by email: " + cust);
+		System.out.println("data base get password: " + cust.getPassword());
+		
+		
+		if(p.equals(cust.getPassword())){
+			verify = true;
+		}else{
+			verify = false;
+		}
+		
+		return verify;
+	}
+	
+	
+	
+	public Customers getCustomerById(String e){
+		
+		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
+		
+		
+		return cust;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<Object> cart(String e){
+		
+		List cart = new ArrayList();
+		
+		
+		
+		
+		return cart;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public HashMap<String, List<DVDs>> listDVDsByGenre() {
@@ -238,57 +342,6 @@ public class GrubImpDAO implements GrubFlixDAO {
 		return result;
 	}
 
-	// @Override
-	// public HashMap<String, List<DVDs>> getDVDInfo(String id) {
-	//
-	// int dvdId = Integer.parseInt(id);
-	// DVDs dvd = em.find(DVDs.class, dvdId);
-	//
-	// HashMap<String, List<DVDs>> result = new HashMap<>();
-	//
-	// List<String> gn = new ArrayList<String>();
-	// gn.add(genreName);
-	// List<String> genres = gn;
-	// String s = "http://www.omdbapi.com/?i=&t=";
-	// URLConnection urlConnection;
-	//
-	// for (String genre : genres) {
-	// List<DVDs> dvdByGenre = em.createQuery("SELECT dvd from DVDs dvd where
-	// dvd.genreName='" + genreName + "'", DVDs.class).getResultList();
-	// // for each DVD:
-	// for (DVDs dvd : dvdByGenre) {
-	// try {
-	//
-	//
-	// String dvdTitle = dvd.getDvdTitle();
-	// dvdTitle = dvdTitle.replaceAll(" ", "+");
-	//
-	// urlConnection = new URL(s + dvdTitle).openConnection();
-	// byte[] bytes = new byte[urlConnection.getContentLength()];
-	// urlConnection.getInputStream().read(bytes);
-	// String json = new String(bytes);
-	// int start = json.indexOf("Poster");
-	// int posterStart = json.indexOf(':', start) + 2;
-	// int posterEnd = json.indexOf('"', posterStart);
-	// String url = json.substring(posterStart, posterEnd);
-	// if (!url.startsWith("http")) { url = "img/no-image.jpg"; }
-	// dvd.setPosterURL(url);
-	// System.out.println(url);
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	//
-	// result.put(genre, dvdByGenre);
-	//
-	// }
-	// System.out.println(result);
-	// return result;
-	// }
-	//
-	//
-
 	@Override
 	public List<DVDs> insertDVD(DVDs dvd) {
 		DVDs newDVD = new DVDs();
@@ -347,4 +400,5 @@ public class GrubImpDAO implements GrubFlixDAO {
 		return selectedDVD;
 		}
 	}
+
 }

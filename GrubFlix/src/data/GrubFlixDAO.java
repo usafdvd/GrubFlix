@@ -27,8 +27,23 @@ public interface GrubFlixDAO {
 	public Customers viewCust(String email);
 	
 	public Customers updateCust(Customers cust);
-
+	
 	public void deleteCust(String email);
+	
+	
+	
+	
+	
+	public Customers getCustomerById(String e);
+	
+	public boolean login(String e, String p);
+	
+	public List<Object> cart(String e);
+	
+	
+	
+
+	
 	 
 	 public List<DVDs> insertDVD (DVDs dvd);
 	 

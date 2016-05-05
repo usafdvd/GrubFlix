@@ -2,16 +2,17 @@
 <div class="movieContent">
 	<div class="row  text-center">
 
-
+<form:form action="updateDVD.do" modelAttribute="dvd" method="POST">
 		<div class="col-xs-12 col-md-6">
-			<img src="img/borat.jpg" class="movieImage" />
+			<input type="image" src="${dvd.posterURL}"/>
+			<%-- <img src="${dvd.posterURL}" class="movieImage" /> --%>
 		</div>
 		<div class="col-xs-12 col-md-6 movieInfo">
 			<div class="row">
 
 
 
-				<form:form action="updateDVD.do" modelAttribute="dvd" method="POST">
+				<%-- <form:form action="updateDVD.do" modelAttribute="dvd" method="POST"> --%>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="col-xs-12 col-md-6">
@@ -55,12 +56,12 @@
 					<br> <br> <br> <br>
 
 					<div></div>
-				</form:form>
 			</div>
 
 
 
 		</div>
+				</form:form>
 
 
 	</div>

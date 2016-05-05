@@ -104,7 +104,6 @@
 			
 			<form action="deleteCust.do" method="GET">
 				<div class="col-xs-12 text-center">
-					${profile.email}
 					<button type="submit" name="email" value="${profile.email}" class=" btn btn-default floatR smargBottom">
 						DELETE
 					</button>

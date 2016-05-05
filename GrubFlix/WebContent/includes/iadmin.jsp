@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
 <!-- <div class="movieContent">
 	<div class="row  text-center">
 
@@ -118,7 +125,9 @@
 			</form>
 			<br>
 		</div>
-
+		text here
+<c:forEach var="dvd" items="${dvds}">
+		<form action="editDVD.do">
 		<div class="row">
 			<div class="panel panel-default ">
 				<div class="panel-body">
@@ -126,14 +135,17 @@
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-3 text-center">
-							<h4 class="itemTitle">Borat</h4>
+							<h4 class="itemTitle">${dvd.dvdTitle}</h4>
+							<input type="hidden" name="id" value="${dvd.id}">
+							${dvd.id}
 
 						</div>
 
 						<div class="col-xs-12 col-sm-3 text-center checkOutInfo">
 							<div class="col-xs-12 col-sm-12">
 								
-								<p>more info more info</p>
+								<p>Rated: ${dvd.rating}</p>
+								<p>Genre: ${dvd.genreName}</p>
 							</div>
 						</div>
 
@@ -142,52 +154,17 @@
 						<div
 							class="amountContainer col-xs-12 col-sm-3 itemButtonsContainer">
 							<div class="itemButton"></div>
-							Total Amount:
-							<form action="">
-								<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>10</option>
-							</select>
-							</form>
-							<br>
-							In Stock:
-							<form action="">
-								<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>10</option>
-							</select>
-							</form>
-							
-							
 
-
-							<!-- 							<div id="spinner_02" class="spinner ridged" value="0"></div>   -->
 
 
 						</div>
-						<div class="amountContainer col-xs-12 col-sm-3 itemButtons">
+					 <div class="amountContainer col-xs-12 col-sm-3 itemButtons">
 
 
-							<form action="edit-movie.jsp">
-								<button type="submit" value="" class=" btn btn-default adminEditBtn">
+							
+								<button type="submit" class=" btn btn-default adminEditBtn">
 									Edit</button>
-							</form>
+							
 
 
 						</div>
@@ -199,6 +176,9 @@
 
 
 		</div>
+		
+	</form>
+	</c:forEach>
 
 
 		

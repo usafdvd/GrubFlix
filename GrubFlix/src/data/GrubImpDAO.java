@@ -32,7 +32,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		DVDs dvd = em.find(DVDs.class, dvdId);
 		// em.detach(dvd);
 		System.out.println(dvd.getDvdTitle());
-		em.persist(dvd);
+//		em.persist(dvd);
 		return dvd;
 	}
 
@@ -76,25 +76,10 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.persist(address);
 		return newCust;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Override
 	public List<DVDs> getAllDVDs() {
-		dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
+		List<DVDs> dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
 		return dvds;
 	}
 
@@ -125,6 +110,8 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers managedCust = em.find(Customers.class, cust);
 		return managedCust;
 	}
+	
+	
 
 	@Override
 	public Customers updateCust(Customers cust) {
@@ -139,6 +126,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 		return managedCust;
 
 	}
+
 
 	@Override
 
@@ -327,18 +315,22 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-	public DVDs editDVD(DVDs dvd) {
-		DVDs managedDVD = em.find(DVDs.class, dvd);
+	public DVDs editDVD(int id) {
+		System.out.println("in editDAO before the find");
+//		DVDs managedDVD = em.createQuery("Select d from DVDs d where DVDs.id = " + dvd.getId(), DVDs.class).getSingleResult();
+		DVDs managedDVD = em.find(DVDs.class, id);
+		System.out.println("in editDAO after the find");
 		return managedDVD;
 	}
 
 	@Override
-	public DVDs updateDVD(DVDs dvd) {
+	public List<DVDs> updateDVD(DVDs dvd) {
 		DVDs managedDVD = em.find(DVDs.class, dvd.getId());
 		managedDVD.setDvdTitle(dvd.getDvdTitle());
 		managedDVD.setGenreName(dvd.getGenreName());
 		managedDVD.setRating(dvd.getRating());
-		return managedDVD;
+		List<DVDs> updatedList = getAllDVDs();
+		return updatedList;
 	}
 
 	@Override

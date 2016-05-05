@@ -42,7 +42,7 @@
 				<button type="submit" value="" class=" btn btn-default ">Submit</button>
 			</form>
 			<br>
-			<form action="admin.jsp">
+			<form action="adminPower.do" method="GET">
 				<button type="submit" value="" class=" btn btn-default ">Admin</button>
 			</form>
 			

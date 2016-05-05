@@ -32,9 +32,9 @@ public interface GrubFlixDAO {
 	 
 	 public DVDs insertDVD (DVDs dvd);
 	 
-	 public DVDs editDVD (DVDs dvd);
+	 public DVDs editDVD (int id);
 	 
-	 public DVDs updateDVD (DVDs dvd);
+	 public List<DVDs> updateDVD(DVDs dvd);
 	 
 	 public DVDs deleteDVD (DVDs dvd);
 

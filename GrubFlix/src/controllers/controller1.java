@@ -24,7 +24,7 @@ public class controller1 {
 	    private GrubFlixDAO gfDAO;
 	    
 	    @RequestMapping(path="getDVD.do", method=RequestMethod.POST)
-	    public ModelAndView getDVD(int id){
+	    public ModelAndView getDVD(String id){
 	    		
 	    	DVDs dvd = gfDAO.getDVD(id);
 	    	
@@ -117,7 +117,7 @@ public class controller1 {
 //		session.invalidate();
 //		
 //		
-//		List shoppingCArt = dao.getAllItems();
+//		List shoppingCart = dao.getAllItems();
 //		session.setAttribute("shoppingCart",  shoppingCArt);
 //		session.removeAttribute("shoppingCart");
 //		List shoppingCArt = dao.getAllItems();

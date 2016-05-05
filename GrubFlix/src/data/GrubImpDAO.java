@@ -142,111 +142,65 @@ public class GrubImpDAO implements GrubFlixDAO {
 		em.remove(removedCust);
 
 	}
-	
-	
-	
-	
-	
-	
-//	
-//	@Override
-//	public Customer getCustById(String e) {
-//		System.out.println("dao passed in email: " + e + "passed in password: " + p );
-//		
-//		boolean verify = false;
-//		
-//		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
-//		System.out.println("data base get cust by email: " + cust);
-//		System.out.println("data base get password: " + cust.getPassword());
-//		
-//		
-//		if(p.equals(cust.getPassword())){
-//			verify = true;
-//		}else{
-//			verify = false;
-//		}
-//		
-//		return verify;
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//
+	// @Override
+	// public Customer getCustById(String e) {
+	// System.out.println("dao passed in email: " + e + "passed in password: " +
+	// p );
+	//
+	// boolean verify = false;
+	//
+	// Customers cust = (Customers)(em.createQuery("SELECT c from Customers c
+	// where c.email = :email").setParameter("email", e).getSingleResult());
+	// System.out.println("data base get cust by email: " + cust);
+	// System.out.println("data base get password: " + cust.getPassword());
+	//
+	//
+	// if(p.equals(cust.getPassword())){
+	// verify = true;
+	// }else{
+	// verify = false;
+	// }
+	//
+	// return verify;
+	// }
+
 	@Override
 	public boolean login(String e, String p) {
-		System.out.println("dao passed in email: " + e + "passed in password: " + p );
-		
+		System.out.println("dao passed in email: " + e + "passed in password: " + p);
+
 		boolean verify;
-		
-		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
+
+		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", e).getSingleResult());
 		System.out.println("data base get cust by email: " + cust);
 		System.out.println("data base get password: " + cust.getPassword());
-		
-		
-		if(p.equals(cust.getPassword())){
+
+		if (p.equals(cust.getPassword())) {
 			verify = true;
-		}else{
+		} else {
 			verify = false;
 		}
-		
+
 		return verify;
 	}
-	
-	
-	
-	public Customers getCustomerById(String e){
-		
-		Customers cust = (Customers)(em.createQuery("SELECT c from Customers c where c.email = :email").setParameter("email", e).getSingleResult());
-		
-		
+
+	public Customers getCustomerById(String e) {
+
+		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", e).getSingleResult());
+
 		return cust;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Override
-	public List<Object> cart(String e){
-		
+	public List<Object> cart(String e) {
+
 		List cart = new ArrayList();
-		
-		
-		
-		
+
 		return cart;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public HashMap<String, List<DVDs>> listDVDsByGenre() {
@@ -385,20 +339,14 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-	public DVDs searchDVDByTitle(String title) {
-		if (title == null) {
-			DVDs selectedDVD = em
-					.createQuery("SELECT dvd from DVDs dvd where lower(dvd.dvdTitle) like lower('%ex machina%')",
-							DVDs.class)
-					.getSingleResult(); 
-			return selectedDVD;
-		} else {
-		DVDs selectedDVD = em
+	public List<DVDs> searchDVDByTitle(String title) {
+
+		List<DVDs> selectedDVD = em
 				.createQuery("SELECT dvd from DVDs dvd where lower(dvd.dvdTitle) like lower('%" + title + "%')",
 						DVDs.class)
-				.getSingleResult();
+				.getResultList();
 		return selectedDVD;
-		}
+
 	}
 
 }

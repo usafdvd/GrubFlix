@@ -79,8 +79,8 @@ public class controller1 {
 	@RequestMapping(path="searchDVD.do")
 	public ModelAndView searchDVD(@RequestParam("words") String word) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("edit-movie.jsp");
-		mv.addObject("dvd", gfDAO.searchDVDByTitle(word));
+		mv.setViewName("admin2.jsp");
+		mv.addObject("dvds", gfDAO.searchDVDByTitle(word));
 		return mv;
 		
 	}

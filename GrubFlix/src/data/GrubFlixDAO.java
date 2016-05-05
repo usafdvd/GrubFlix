@@ -36,7 +36,7 @@ public interface GrubFlixDAO {
 	 
 	 public DVDs updateDVD (DVDs dvd);
 	 
-	 public void deleteDVD (DVDs dvd);
+	 public DVDs deleteDVD (DVDs dvd);
 
 	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName);
 

@@ -18,7 +18,7 @@ public class Address {
 	String state;
 	int zip;
 	@Id
-	@Column(name="customer_email")
+	@Column(name="customer_email", insertable=false, updatable=false)
 	private String customerEmail;
 
 	public String getStreetAddress() {

@@ -28,7 +28,7 @@ public interface GrubFlixDAO {
 	
 	public Customers updateCust(Customers cust);
 
-	public void deleteCust(Customers cust);
+	public void deleteCust(String email);
 	 
 	 public DVDs insertDVD (DVDs dvd);
 	 

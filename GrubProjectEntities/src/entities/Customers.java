@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,7 +34,7 @@ public class Customers {
 	//UNIDirectional One-To-Many
 	@OneToMany
 	@JoinColumn(name = "customer_email",
-	referencedColumnName="email")
+	referencedColumnName="email", nullable=false)
 	List<Address> addresses;
 
 	@OneToMany(mappedBy = "customer")

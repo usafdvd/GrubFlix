@@ -13,6 +13,7 @@
 							<div class="input text-center ">
 								<input type="text" name="firstName" placeholder="First Name"
 									class="form-control formNoBrdrSpacing">
+									<input type="hidden" name="accessLevel" value="1">
 							</div>
 						</div>
 						<div class="col-xs-12 col-md-6">
@@ -30,22 +31,21 @@
 							</select>
 						</div>
 
-						<div class="col-xs-12 col-md-6">
+						 <div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
 								<input type="text" name="email" placeholder="Email"
 									class="form-control formNoBrdrSpacing">
 							</div>
 						</div>
 
-						<div class="col-xs-12 col-md-6">
+						 <div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
 								<input type="password" name="password" placeholder="Password"
-									class="form-control formNoBrdrSpacing"> <input
-									type="hidden" name="accessLevel" value="1">
+									class="form-control formNoBrdrSpacing"> 
 							</div>
 						</div>
 						
-						<div class="col-xs-12 col-md-6">
+						  <div class="col-xs-12 col-md-6">
 							<div class="input text-center ">
 								<input type="date" name="birthDate" placeholder="Birthday"
 									class="form-control formNoBrdrSpacing">
@@ -55,7 +55,7 @@
 						<div class="col-xs-12 col-md-6">
 
 							<div class="input text-center ">
-								<input type="tel" name="phone" placeholder="Phone Number"
+								<input type="text" name="phone" placeholder="Phone Number"
 									class="form-control formNoBrdrSpacing">
 							</div>
 						</div>
@@ -94,7 +94,7 @@
 								<input type="text" size="5" name="zip" placeholder="Zip"
 									class="form-control formNoBrdrSpacing">
 							</div>
-						</div>
+						</div> 
 					</div>
 				</div>
 				<div>

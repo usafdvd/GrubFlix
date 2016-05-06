@@ -107,14 +107,22 @@ public class controller1 {
 	}
 
 	@RequestMapping(path = "createCust.do", method = RequestMethod.GET)
-	public ModelAndView createCust(CustomerTO cust) {
+	public ModelAndView createCust(Model model,CustomerTO cust) {
+		
+		
+		
+	
+		
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside create customer");
 		System.out.println(cust.getFirstName());
 		System.out.println(cust.getBirthDate());
 		Customers newCust = gfDAO.insertCust(cust);
-		mv.setViewName("account.jsp");
-		mv.addObject("profile", newCust);
+		
+		model.addAttribute("cart", new ArrayList<DVDs>());
+		mv.setViewName("movies.jsp");
+		mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
+		
 		return mv;
 	}
 
@@ -181,6 +189,7 @@ public class controller1 {
 
 //			session.setAttribute("cust", cust);
 			
+			
 			model.addAttribute("cart", new ArrayList<DVDs>());
 			
 
@@ -188,7 +197,7 @@ public class controller1 {
 			mv.addObject("size", cart.size());
 
 			//
-
+		
 			mv.setViewName("movies.jsp");
 			mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
 		}
@@ -268,8 +277,8 @@ public class controller1 {
 	@RequestMapping(path = "logout.do", method = RequestMethod.POST)
 	public ModelAndView logout(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		session.invalidate();
-		cart.clear();
+//		session.invalidate();
+//		cart.clear();
 		mv.setViewName("index.jsp");
 		return mv;
 	}

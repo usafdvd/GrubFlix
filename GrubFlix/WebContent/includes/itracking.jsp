@@ -12,11 +12,18 @@
 		</div>
 
 		<div class="col-lg-8 col-lg-offset-2">
-
+<!-- 
 			<div class="meter red">
 				<span style="width: 80%"></span>
-			</div>
+			</div> -->
 			
+			
+			<div id="progressbar">
+				<div id="progress" >
+					<div id="pbaranim">
+					</div>
+				</div>
+			</div>
 			
 		</div>
 		

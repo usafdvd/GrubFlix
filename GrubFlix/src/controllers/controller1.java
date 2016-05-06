@@ -177,17 +177,19 @@ public class controller1 {
 	}
 
 	@RequestMapping(path = "EditCust.do", method = RequestMethod.POST)
-	public ModelAndView editCust(Customers cust) {
+	public ModelAndView editCust(@RequestParam("email")String email) {
+		System.out.println(email);
 		System.out.println("inside edit cust");
 		ModelAndView mv = new ModelAndView();
 
 		mv.setViewName("account.jsp");
-		mv.addObject("profile", gfDAO.editCust(cust));
+		mv.addObject("profile", gfDAO.editCust(email));
 		return mv;
 	}
 
 	@RequestMapping(path = "updateCust.do", method = RequestMethod.POST)
-	public ModelAndView updateCust(Customers cust) {
+	public ModelAndView updateCust(CustomerTO cust) {
+		System.out.println("inside updateCust controller");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("inside updating customer");
 		Customers updatedCust = gfDAO.updateCust(cust);

@@ -237,17 +237,18 @@ public class GrubImpDAO implements GrubFlixDAO {
 	}
 
 	@Override
-	public Customers editCust(Customers cust) {
-		Customers managedCust = em.find(Customers.class, cust);
+	public Customers editCust(String email) {
+		Customers managedCust = em.find(Customers.class, email);
 		return managedCust;
 	}
 
 	@Override
-	public Customers updateCust(Customers cust) {
+	public Customers updateCust(CustomerTO cust) {
 		Customers managedCust = em.find(Customers.class, cust.getEmail());
+		System.out.println("in updateCust DAO");
 		managedCust.setEmail(cust.getEmail());
 		managedCust.setPassword(cust.getPassword());
-		managedCust.setBirthDate(cust.getBirthDate());
+		managedCust.setBirthDate(cust.getBD());
 		managedCust.setFirstName(cust.getFirstName());
 		managedCust.setLastName(cust.getLastName());
 		managedCust.setGender(cust.getGender());

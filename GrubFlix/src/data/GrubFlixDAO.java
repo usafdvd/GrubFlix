@@ -21,11 +21,11 @@ public interface GrubFlixDAO {
 
 	public Customers insertCust(CustomerTO cust);
 
-	public Customers editCust(Customers cust);
+	public Customers editCust(String email);
 
 	public Customers viewCust(String email);
 
-	public Customers updateCust(Customers cust);
+	public Customers updateCust(CustomerTO cust);
 
 	public void deleteCust(String email);
 

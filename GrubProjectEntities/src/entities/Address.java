@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -9,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 // @Table(name = "ADDRESS")
 @IdClass(Address_PK.class)
-public class Address {
+public class Address implements Serializable {
 	// ADDING COMMENT.
 	@Id
 	String name;

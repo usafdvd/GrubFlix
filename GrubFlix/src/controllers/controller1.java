@@ -22,7 +22,7 @@ import entities.DVDs;
 import transfers.CustomerTO;
 
 @Controller
-@SessionAttributes({"cart", "size"})
+@SessionAttributes({ "cart", "size" })
 public class controller1 {
 	HashMap<String, List<DVDs>> result = new HashMap<>();
 	ArrayList<DVDs> cart = new ArrayList<>();
@@ -65,8 +65,8 @@ public class controller1 {
 		mv.addObject("dvds", gfDAO.updateDVD(dvd));
 		return mv;
 	}
-	
-	@RequestMapping(path="deleteDVD.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "deleteDVD.do", method = RequestMethod.GET)
 	public ModelAndView deleteDVD(@RequestParam("id") int id) {
 		System.out.println(id);
 		System.out.println("INSIDE DELETE DVD");
@@ -76,14 +76,15 @@ public class controller1 {
 		System.out.println("after DELETEDAO back in controller");
 		return mv;
 	}
-	
-	@RequestMapping(path="searchDVD.do")
+
+	@RequestMapping(path = "searchDVD.do")
 	public ModelAndView searchDVD(@RequestParam("words") String word) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("edit-movie.jsp");
-		mv.addObject("dvd", gfDAO.searchDVDByTitle(word));
+		System.out.println(word);
+		mv.setViewName("admin2.jsp");
+		mv.addObject("dvds", gfDAO.searchDVDByTitle(word));
 		return mv;
-		
+
 	}
 
 	@RequestMapping(path = "adminPower.do", method = RequestMethod.GET)
@@ -94,8 +95,6 @@ public class controller1 {
 		mv.addObject("dvds", dvdList);
 		return mv;
 	}
-
-
 
 	@RequestMapping(path = "searchByGenre.do", method = RequestMethod.GET)
 	public ModelAndView getMovieByGenre(String genre, int limit) {
@@ -157,6 +156,7 @@ public class controller1 {
 		System.out.println("back in view cust");
 		return mv;
 	}
+
 	
 	
 	
@@ -167,136 +167,105 @@ public class controller1 {
 		
 		boolean verify = gfDAO.login(email, password); 
 		
+
 		String wrong = "Wrong Email or Password";
-		
-		if(verify == false){
-		
+
+		if (verify == false) {
+
 			mv.addObject("wrong", wrong);
 			mv.setViewName("login.jsp");
 			return mv;
-		}
-		else{
-			
+		} else {
+
 			Customers cust = gfDAO.getCustomerById(email);
+
 //			session.setAttribute("cust", cust);
 			
 			model.addAttribute("cart", new ArrayList<DVDs>());
 			
 
+
 			mv.addObject("size", cart.size());
-			
-//	
-			
-			
+
+			//
+
 			mv.setViewName("movies.jsp");
-		    mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
+			mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
 		}
-		    
-		    
-		    
-			return mv;
-		}
-	
-
-	
-	
-	
-	@RequestMapping(path="addMovieToCart.do", method=RequestMethod.POST)
-	public ModelAndView addToCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("dvdid") String id) {
-		ModelAndView mv = new ModelAndView();
-		DVDs dvd = gfDAO.getDVD(id);
-		System.out.println(dvd);
-		
-		System.out.println("----------------------ADDING MOVIE TO CART---"
-				+ "---------------dvd passed in--------------" + dvd + "------------"
-						+ "---------------------------------");
-		
-
-		
-		
-		System.out.println(dvd.getDvdTitle());
-		
-		
-		
-		
-		cart.add(dvd);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		model.addAttribute("size", cart.size());
-		System.out.println(dvd.getId());
-		System.out.println(cart.size());
-		
-		for (DVDs dv : cart) {
-			System.out.println("----xx------" + dv + "-----------x--------");
-		}
-		
-		return listGenreGroups();
-		}
-		
-		
-		
-		
-			
-			@RequestMapping(path="removeFromCart.do", method=RequestMethod.POST)
-		public ModelAndView removeFromCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("dvdid") String id) {
-			ModelAndView mv = new ModelAndView();
-			DVDs dvd = gfDAO.getDVD(id);
-			System.out.println(dvd);
-			
-			System.out.println("----------------------REMOVING MOVIE TO CART---"
-					+ "---------------dvd passed in--------------" + dvd + "------------"
-							+ "---------------------------------");
-			
-
-			
-			
-			System.out.println(dvd.getDvdTitle());
-			
-			
-			ArrayList<DVDs> cart2 = new ArrayList<DVDs>();
-			
-//			cart.remove(dvd);
-			
-		
-			
-			
-			for (DVDs dd : cart) {
-				System.out.println(dd);
-				if(dd.getId()!=dvd.getId()){
-					cart2.add(dd);
-				}
-			}
-			
-
-//			System.out.println(cart2);
-//			
-//			if(cart2.size() == 0){
-//				System.out.println("is empty ");
-//			}
-//			
-//			
-//			cart.clear();
-//			
-//			Collections.copy(cart, cart2);
-//			
-			
-
-			mv.setViewName("checkout.jsp");
-			model.addAttribute("cart",cart2);
-			model.addAttribute("size", cart2.size());
 
 		return mv;
 	}
-	
 
-	@RequestMapping(path="logout.do", method=RequestMethod.POST)
+	@RequestMapping(path = "addMovieToCart.do", method = RequestMethod.POST)
+	public ModelAndView addToCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session,
+			@RequestParam("dvdid") String id) {
+		ModelAndView mv = new ModelAndView();
+		DVDs dvd = gfDAO.getDVD(id);
+		System.out.println(dvd);
+
+		System.out
+				.println("----------------------ADDING MOVIE TO CART---" + "---------------dvd passed in--------------"
+						+ dvd + "------------" + "---------------------------------");
+
+		System.out.println(dvd.getDvdTitle());
+
+		cart.add(dvd);
+
+		model.addAttribute("size", cart.size());
+		System.out.println(dvd.getId());
+		System.out.println(cart.size());
+
+		for (DVDs dv : cart) {
+			System.out.println("----xx------" + dv + "-----------x--------");
+		}
+
+		return listGenreGroups();
+	}
+
+	@RequestMapping(path = "removeFromCart.do", method = RequestMethod.POST)
+	public ModelAndView removeFromCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session,
+			@RequestParam("dvdid") String id) {
+		ModelAndView mv = new ModelAndView();
+		DVDs dvd = gfDAO.getDVD(id);
+		System.out.println(dvd);
+
+		System.out.println(
+				"----------------------REMOVING MOVIE TO CART---" + "---------------dvd passed in--------------" + dvd
+						+ "------------" + "---------------------------------");
+
+		System.out.println(dvd.getDvdTitle());
+
+		ArrayList<DVDs> cart2 = new ArrayList<DVDs>();
+
+		// cart.remove(dvd);
+
+		for (DVDs dd : cart) {
+			System.out.println(dd);
+			if (dd.getId() != dvd.getId()) {
+				cart2.add(dd);
+			}
+		}
+
+		// System.out.println(cart2);
+		//
+		// if(cart2.size() == 0){
+		// System.out.println("is empty ");
+		// }
+		//
+		//
+		// cart.clear();
+		//
+		// Collections.copy(cart, cart2);
+		//
+
+		mv.setViewName("checkout.jsp");
+		model.addAttribute("cart", cart2);
+		model.addAttribute("size", cart2.size());
+
+		return mv;
+	}
+
+	@RequestMapping(path = "logout.do", method = RequestMethod.POST)
 	public ModelAndView logout(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		session.invalidate();
@@ -304,26 +273,6 @@ public class controller1 {
 		mv.setViewName("index.jsp");
 		return mv;
 	}
-	
-	
-	
-	
-	
-		
-		
-
-
-		
-		
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// CONSULT WITH TEAM ON BEST WAY TO ACCOMPLISH ORDER LIST
 	// @RequestMapping(path="checkout.do", method=RequestMethod.POST)
@@ -338,45 +287,41 @@ public class controller1 {
 	//
 	// }
 
+	// HashMap<String, List<DVDs>> result = new HashMap<>();
 
-//		HashMap<String, List<DVDs>> result = new HashMap<>();
-	
-	   @RequestMapping("listGenreGroups.do")
-	    public ModelAndView listGenreGroups(){
-		   
-		   ModelAndView mv = new ModelAndView();
-	        mv.setViewName("movies.jsp");
-	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
-	   
-	        return mv;
-	        
-	    }
-	   
-	   @RequestMapping("listAllOfGenre.do")
-	    public ModelAndView listAllGenre(@RequestParam("genre")String genre){
-		   System.out.println("list all of genre.do in controller" + genre);
-		 
-		   ModelAndView mv = new ModelAndView();
-	        mv.setViewName("see-all.jsp");
-	        mv.addObject("genreGroups", gfDAO.listDVDsByGenre(genre));
-	        
-	 
+	@RequestMapping("listGenreGroups.do")
+	public ModelAndView listGenreGroups() {
 
-	        return mv;
-	        
-	    }
-	   
-	   @RequestMapping("viewMovie.do")
-	    public ModelAndView viewMovie(@RequestParam("id")String id){
-		   System.out.println("id in controller" + id);
-		 
-		   ModelAndView mv = new ModelAndView();
-	        mv.setViewName("view-movie.jsp");
-	        mv.addObject("dvd", gfDAO.getDVD(id));
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("movies.jsp");
+		mv.addObject("genreGroups", gfDAO.listDVDsByGenre());
 
-	        return mv;
-	        
-	    }
+		return mv;
 
+	}
+
+	@RequestMapping("listAllOfGenre.do")
+	public ModelAndView listAllGenre(@RequestParam("genre") String genre) {
+		System.out.println("list all of genre.do in controller" + genre);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("see-all.jsp");
+		mv.addObject("genreGroups", gfDAO.listDVDsByGenre(genre));
+
+		return mv;
+
+	}
+
+	@RequestMapping("viewMovie.do")
+	public ModelAndView viewMovie(@RequestParam("id") String id) {
+		System.out.println("id in controller" + id);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("view-movie.jsp");
+		mv.addObject("dvd", gfDAO.getDVD(id));
+
+		return mv;
+
+	}
 
 }

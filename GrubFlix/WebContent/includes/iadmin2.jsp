@@ -31,6 +31,7 @@
 
 						<div class="col-xs-12 col-sm-3 text-center">
 							<h4 class="itemTitle">${dvd.dvdTitle}</h4>
+							<input type="hidden" name="posterURL" value="${dvd.posterURL}">
 							<input type="hidden" name="id" value="${dvd.id}">
 							${dvd.id}
 

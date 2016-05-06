@@ -125,7 +125,6 @@
 			</form>
 			<br>
 		</div>
-		text here
 <c:forEach var="dvd" items="${dvds}">
 		<form action="editDVD.do">
 		<div class="row">

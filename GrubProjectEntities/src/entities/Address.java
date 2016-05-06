@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -7,10 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-//@Table(name = "ADDRESS")
+// @Table(name = "ADDRESS")
 @IdClass(Address_PK.class)
-public class Address {
-//ADDING COMMENT.
+public class Address implements Serializable {
+	// ADDING COMMENT.
 	@Id
 	String name;
 	String streetAddress;
@@ -19,7 +21,7 @@ public class Address {
 	int zip;
 	@Id
 	@ManyToOne
-	@JoinColumn(name="customer_email")
+	@JoinColumn(name = "customer_email")
 	private Customers customer;
 
 	public String getStreetAddress() {

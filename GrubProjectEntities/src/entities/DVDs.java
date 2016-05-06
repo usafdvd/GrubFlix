@@ -15,27 +15,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DVDS")
-public class DVDs implements Serializable{
+public class DVDs implements Serializable {
 	@Id
 	int id;
 	@Column(name = "dvd_title")
 	String dvdTitle;
-//	String status;
+	// String status;
 	@Column(name = "genreid")
 	String genreName;
-//	@Temporal(TemporalType.DATE)
-//	@Column(name = "DVD_releasedate")
-//	Date releaseDate;
+	// @Temporal(TemporalType.DATE)
+	// @Column(name = "DVD_releasedate")
+	// Date releaseDate;
 	String rating;
 	String posterURL;
 
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})     
-	@JoinTable(name="ORDER_DETAILS",              
-		joinColumns=@JoinColumn(name="DVDID"),             
-		inverseJoinColumns=@JoinColumn(name="ORDERID"))          
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "ORDER_DETAILS", joinColumns = @JoinColumn(name = "DVDID"), inverseJoinColumns = @JoinColumn(name = "ORDERID"))
 	private List<CustomerOrder> customerDVDOrders;
-	
+
 	public DVDs() {
 
 	}
@@ -56,8 +53,6 @@ public class DVDs implements Serializable{
 		this.posterURL = posterURL;
 	}
 
-	
-	
 	public String getDvdTitle() {
 		return dvdTitle;
 	}
@@ -66,13 +61,13 @@ public class DVDs implements Serializable{
 		this.dvdTitle = dvdTitle;
 	}
 
-//	public String getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(String status) {
-//		this.status = status;
-//	}
+	// public String getStatus() {
+	// return status;
+	// }
+	//
+	// public void setStatus(String status) {
+	// this.status = status;
+	// }
 
 	public String getGenreName() {
 		return genreName;
@@ -82,18 +77,17 @@ public class DVDs implements Serializable{
 		this.genreName = genreName;
 	}
 
-
-//	public Date getReleaseDate() {
-//		return releaseDate;
-//	}
+	// public Date getReleaseDate() {
+	// return releaseDate;
+	// }
 
 	public List<CustomerOrder> getCustomerDVDOrders() {
 		return customerDVDOrders;
 	}
 
-//	public void setReleaseDate(Date releaseDate) {
-//		this.releaseDate = releaseDate;
-//	}
+	// public void setReleaseDate(Date releaseDate) {
+	// this.releaseDate = releaseDate;
+	// }
 
 	public void setCustomerDVDOrders(List<CustomerOrder> customerDVDOrders) {
 		this.customerDVDOrders = customerDVDOrders;
@@ -112,7 +106,5 @@ public class DVDs implements Serializable{
 		return "DVDs [id=" + id + ", dvdTitle=" + dvdTitle + ", genreName=" + genreName + ", rating=" + rating
 				+ ", customerDVDOrders=" + customerDVDOrders + "]";
 	}
-	
-	
 
 }

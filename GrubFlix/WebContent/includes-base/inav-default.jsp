@@ -77,22 +77,6 @@
 	</div>
 	</li>
 
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				<li class="hidden"><a href="#page-top"></a></li>
 				<li>
 					<form action="listGenreGroups.do">
@@ -124,7 +108,7 @@
 							<li>
 
 								<form action="EditCust.do" method="POST">
-									<button type="submit" value="" class=" btn btn-nav ">Account</button>
+									<button type="submit" name="email" value="${cust.email}" class=" btn btn-nav ">Account</button>
 
 								</form>
 

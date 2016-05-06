@@ -51,35 +51,6 @@
 							</div>
 						</div>
 
-						<%-- <div class="col-xs-12 col-md-6">
-							<div class="input text-center ">
-								<form:input path="name" class="form-control formNoBrdrSpacing"/>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-md-6">
-							<div class="input text-center ">
-								<form:input path="streetAddress" class="form-control formNoBrdrSpacing"/>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-md-6">
-							<div class="input text-center ">
-								<form:input path="city" class="form-control formNoBrdrSpacing"/>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-md-6">
-							<div class="input text-center ">
-								<form:input path="state" class="form-control formNoBrdrSpacing"/>
-							</div>
-						</div>
-
-						<div class="col-xs-12 col-md-6">
-							<div class="input text-center ">
-								<form:input path="zip" class="form-control formNoBrdrSpacing"/>
-							</div>
-						</div> --%>
 					</div>
 				</div>
 				<div>

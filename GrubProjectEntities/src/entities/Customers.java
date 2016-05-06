@@ -1,16 +1,15 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,7 +17,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "CUSTOMERS")
-public class Customers {
+public class Customers implements Serializable {
 	@Id
 	private String email;
 	String password;
@@ -31,14 +30,14 @@ public class Customers {
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 	int phone;
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy = "customer")
 	List<Address> addresses;
 
 	@OneToMany(mappedBy = "customer")
 	private List<CustomerOrder> customerOrder;
-	
+
 	public Customers() {
-		
+
 	}
 
 	public String getEmail() {
@@ -114,10 +113,10 @@ public class Customers {
 	}
 
 	public void setAddresses(List<Address> addresses) {
-	
+
 		this.addresses = addresses;
 	}
-	
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<Address>();
@@ -129,6 +128,4 @@ public class Customers {
 		this.customerOrder = customerOrder;
 	}
 
-	
-	
 }

@@ -19,7 +19,7 @@ import entities.Food;
 import transfers.CustomerTO;
 
 @Transactional
-public class GrubImpDAO implements GrubFlixDAO{
+public class GrubImpDAO implements GrubFlixDAO {
 	private List<Customers> customers = new ArrayList<>();
 
 	private List<DVDs> dvds = new ArrayList<>();
@@ -30,180 +30,14 @@ public class GrubImpDAO implements GrubFlixDAO{
 	public DVDs getDVD(String id) {
 		int dvdId = Integer.parseInt(id);
 		DVDs dvd = em.find(DVDs.class, dvdId);
-		// em.detach(dvd);
 		System.out.println(dvd.getDvdTitle());
-		// em.persist(dvd);
 		return dvd;
-	}
-
-	@Override
-	public String getFoodType(int id) {
-		Food food = em.find(Food.class, id);
-		String foodType = food.getType();
-		return foodType;
-	}
-
-	@Override
-	public List<DVDs> getMovieByGenre(String g, int l) {
-		List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class)
-				.setParameter("genre", g).setMaxResults(l).getResultList();
-		return dvdsByGenre;
-	}
-
-	@Override
-
-	// CHECK WITH TEAM ON WHETHER THIS SHOULD RETURN A CUSTOMER OR INT. PROBABLY
-	// CUSTOMER. EXECUTE QUERY?
-	public Customers insertCust(CustomerTO cust) {
-		Customers newCust = new Customers();
-		Address address = new Address();
-		newCust.setEmail(cust.getEmail());
-		newCust.setPassword(cust.getPassword());
-		newCust.setBirthDate(cust.getBD());
-		newCust.setAccessLevel(cust.getAccessLevel());
-		newCust.setFirstName(cust.getFirstName());
-		newCust.setLastName(cust.getLastName());
-		newCust.setGender(cust.getGender());
-		newCust.setPhone(cust.getPhone());
-		address.setName(cust.getName());
-		address.setStreetAddress(cust.getStreetAddress());
-		address.setCity(cust.getCity());
-		address.setState(cust.getState());
-		address.setZip(cust.getZip());
-		address.setCustomer(newCust);
-		newCust.addAddress(address);
-		em.persist(newCust);
-		em.persist(address);
-		return newCust;
 	}
 
 	@Override
 	public List<DVDs> getAllDVDs() {
 		List<DVDs> dvds = em.createQuery("SELECT dvd FROM DVDs dvd", DVDs.class).getResultList();
 		return dvds;
-	}
-
-	@Override
-	public Customers viewCust(String email) {
-		System.out.println("inside viewCustDAO");
-		customers = em.createQuery("SELECT cust FROM Customers cust", Customers.class).getResultList();
-		System.out.println("after query");
-		Customers cust = null;
-		for (Customers custX : customers) {
-			System.out.println("inside for loop");
-			System.out.println(custX.getEmail());
-			System.out.println("email:" + email);
-			if (custX.getEmail().equalsIgnoreCase(email)) {
-				System.out.println("inside if statement");
-				cust = custX;
-				System.out.println(cust);
-				break;
-			}
-		}
-
-		System.out.println(cust);
-		return cust;
-	}
-
-	@Override
-	public Customers editCust(Customers cust) {
-		Customers managedCust = em.find(Customers.class, cust);
-		System.out.println("--------inside editCust DAO ------- cust:" + managedCust);
-		return managedCust;
-	}
-
-	@Override
-	public Customers updateCust(Customers cust) {
-		Customers managedCust = em.find(Customers.class, cust.getEmail());
-		managedCust.setEmail(cust.getEmail());
-		managedCust.setPassword(cust.getPassword());
-		managedCust.setBirthDate(cust.getBirthDate());
-		managedCust.setFirstName(cust.getFirstName());
-		managedCust.setLastName(cust.getLastName());
-		managedCust.setGender(cust.getGender());
-		managedCust.setPhone(cust.getPhone());
-		return managedCust;
-
-	}
-
-	@Override
-	public void deleteCust(String email) {
-		System.out.println("before");
-		Customers removedCust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
-				.setParameter("email", email).getSingleResult());
-		for (Address a : removedCust.getAddresses()) {
-			System.out.println("removing: " + a.getName());
-			em.remove(a);
-		}
-		for (CustomerOrder c : removedCust.getCustomerOrder()) {
-			em.remove(c);
-		}
-
-		System.out.println(removedCust.getEmail());
-		em.remove(removedCust);
-
-	}
-
-	//
-	// @Override
-	// public Customer getCustById(String e) {
-	// System.out.println("dao passed in email: " + e + "passed in password: " +
-	// p );
-	//
-	// boolean verify = false;
-	//
-	// Customers cust = (Customers)(em.createQuery("SELECT c from Customers c
-	// where c.email = :email").setParameter("email", e).getSingleResult());
-	// System.out.println("data base get cust by email: " + cust);
-	// System.out.println("data base get password: " + cust.getPassword());
-	//
-	//
-	// if(p.equals(cust.getPassword())){
-	// verify = true;
-	// }else{
-	// verify = false;
-	// }
-	//
-	// return verify;
-	// }
-
-	@Override
-	public boolean login(String e, String p) {
-		System.out.println("dao passed in email: " + e + "passed in password: " + p);
-
-		boolean verify;
-
-		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
-				.setParameter("email", e).getSingleResult());
-		System.out.println("data base get cust by email: " + cust);
-		System.out.println("data base get password: " + cust.getPassword());
-
-		if (p.equals(cust.getPassword())) {
-			verify = true;
-		} else {
-			verify = false;
-		}
-
-		return verify;
-	}
-
-	public Customers getCustomerById(String e) {
-
-		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
-				.setParameter("email", e).getSingleResult());
-
-		
-		
-		
-		return cust;
-	}
-
-	@Override
-	public List<Object> cart(String e) {
-
-		List cart = new ArrayList();
-
-		return cart;
 	}
 
 	@Override
@@ -253,6 +87,13 @@ public class GrubImpDAO implements GrubFlixDAO{
 	}
 
 	@Override
+	public List<DVDs> getMovieByGenre(String g, int l) {
+		List<DVDs> dvdsByGenre = em.createQuery("SELECT dvd FROM DVDs dvd WHERE dvd.genreName = :genre", DVDs.class)
+				.setParameter("genre", g).setMaxResults(l).getResultList();
+		return dvdsByGenre;
+	}
+
+	@Override
 	public HashMap<String, List<DVDs>> listDVDsByGenre(String genreName) {
 
 		HashMap<String, List<DVDs>> result = new HashMap<>();
@@ -267,7 +108,6 @@ public class GrubImpDAO implements GrubFlixDAO{
 			List<DVDs> dvdByGenre = em
 					.createQuery("SELECT dvd from DVDs dvd where dvd.genreName='" + genreName + "'", DVDs.class)
 					.getResultList();
-			// for each DVD:
 			for (DVDs dvd : dvdByGenre) {
 				try {
 
@@ -286,7 +126,6 @@ public class GrubImpDAO implements GrubFlixDAO{
 						url = "img/no-image.jpg";
 					}
 					dvd.setPosterURL(url);
-					System.out.println(url);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -314,8 +153,6 @@ public class GrubImpDAO implements GrubFlixDAO{
 	@Override
 	public DVDs editDVD(int id) {
 		System.out.println("in editDAO before the find");
-		// DVDs managedDVD = em.createQuery("Select d from DVDs d where DVDs.id
-		// = " + dvd.getId(), DVDs.class).getSingleResult();
 		DVDs managedDVD = em.find(DVDs.class, id);
 		System.out.println("in editDAO after the find");
 		return managedDVD;
@@ -351,6 +188,134 @@ public class GrubImpDAO implements GrubFlixDAO{
 				.getResultList();
 		return selectedDVD;
 
+	}
+
+	@Override
+	public Customers insertCust(CustomerTO cust) {
+		Customers newCust = new Customers();
+		Address address = new Address();
+		newCust.setEmail(cust.getEmail());
+		newCust.setPassword(cust.getPassword());
+		newCust.setBirthDate(cust.getBD());
+		newCust.setAccessLevel(cust.getAccessLevel());
+		newCust.setFirstName(cust.getFirstName());
+		newCust.setLastName(cust.getLastName());
+		newCust.setGender(cust.getGender());
+		newCust.setPhone(cust.getPhone());
+		address.setName(cust.getName());
+		address.setStreetAddress(cust.getStreetAddress());
+		address.setCity(cust.getCity());
+		address.setState(cust.getState());
+		address.setZip(cust.getZip());
+		address.setCustomer(newCust);
+		newCust.addAddress(address);
+		em.persist(newCust);
+		em.persist(address);
+		return newCust;
+	}
+
+	@Override
+	public Customers viewCust(String email) {
+		System.out.println("inside viewCustDAO");
+		customers = em.createQuery("SELECT cust FROM Customers cust", Customers.class).getResultList();
+		System.out.println("after query");
+		Customers cust = null;
+		for (Customers custX : customers) {
+			System.out.println("inside for loop");
+			System.out.println(custX.getEmail());
+			System.out.println("email:" + email);
+			if (custX.getEmail().equalsIgnoreCase(email)) {
+				System.out.println("inside if statement");
+				cust = custX;
+				System.out.println(cust);
+				break;
+			}
+		}
+
+		System.out.println(cust);
+		return cust;
+	}
+
+	@Override
+	public Customers editCust(String email) {
+		Customers managedCust = em.find(Customers.class, email);
+		return managedCust;
+	}
+
+	@Override
+	public Customers updateCust(CustomerTO cust) {
+		Customers managedCust = em.find(Customers.class, cust.getEmail());
+		System.out.println("in updateCust DAO");
+		managedCust.setEmail(cust.getEmail());
+		managedCust.setPassword(cust.getPassword());
+		managedCust.setBirthDate(cust.getBD());
+		managedCust.setFirstName(cust.getFirstName());
+		managedCust.setLastName(cust.getLastName());
+		managedCust.setGender(cust.getGender());
+		managedCust.setPhone(cust.getPhone());
+		return managedCust;
+
+	}
+
+	@Override
+	public void deleteCust(String email) {
+		System.out.println("before");
+		Customers removedCust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", email).getSingleResult());
+		for (Address a : removedCust.getAddresses()) {
+			System.out.println("removing: " + a.getName());
+			em.remove(a);
+		}
+		for (CustomerOrder c : removedCust.getCustomerOrder()) {
+			em.remove(c);
+		}
+
+		System.out.println(removedCust.getEmail());
+		em.remove(removedCust);
+
+	}
+
+	@Override
+	public boolean login(String e, String p) {
+		System.out.println("dao passed in email: " + e + "passed in password: " + p);
+
+		boolean verify;
+
+		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", e).getSingleResult());
+		System.out.println("data base get cust by email: " + cust);
+		System.out.println("data base get password: " + cust.getPassword());
+
+		if (p.equals(cust.getPassword())) {
+			verify = true;
+		} else {
+			verify = false;
+		}
+
+		return verify;
+	}
+
+	public Customers getCustomerById(String e) {
+
+		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
+				.setParameter("email", e).getSingleResult());
+
+		return cust;
+	}
+
+	@Override
+	public List<Object> cart(String e) {
+
+		List cart = new ArrayList();
+
+		return cart;
+	}
+
+	@Override
+	public String getFoodType(int id) {
+		Food food = em.find(Food.class, id);
+		String foodType = food.getType();
+		return foodType;
 	}
 
 }

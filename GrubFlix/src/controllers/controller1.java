@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,8 +80,8 @@ public class controller1 {
 	@RequestMapping(path="searchDVD.do")
 	public ModelAndView searchDVD(@RequestParam("words") String word) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("admin2.jsp");
-		mv.addObject("dvds", gfDAO.searchDVDByTitle(word));
+		mv.setViewName("edit-movie.jsp");
+		mv.addObject("dvd", gfDAO.searchDVDByTitle(word));
 		return mv;
 		
 	}
@@ -213,7 +214,18 @@ public class controller1 {
 		
 		System.out.println(dvd.getDvdTitle());
 		
+		
+		
+		
 		cart.add(dvd);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		model.addAttribute("size", cart.size());
 		System.out.println(dvd.getId());
@@ -223,16 +235,62 @@ public class controller1 {
 			System.out.println("----xx------" + dv + "-----------x--------");
 		}
 		
-		
-		
-//		int itemCount = cart.size();
-//		session.setAttribute("itemCount", itemCount);
-//		mv.addObject("genreGroups", gfDAO.getAllDVDs());
-//		mv.setViewName("movies.jsp");
-	
-
-		
 		return listGenreGroups();
+		}
+		
+		
+		
+		
+			
+			@RequestMapping(path="removeFromCart.do", method=RequestMethod.POST)
+		public ModelAndView removeFromCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("dvdid") String id) {
+			ModelAndView mv = new ModelAndView();
+			DVDs dvd = gfDAO.getDVD(id);
+			System.out.println(dvd);
+			
+			System.out.println("----------------------REMOVING MOVIE TO CART---"
+					+ "---------------dvd passed in--------------" + dvd + "------------"
+							+ "---------------------------------");
+			
+
+			
+			
+			System.out.println(dvd.getDvdTitle());
+			
+			
+			ArrayList<DVDs> cart2 = new ArrayList<DVDs>();
+			
+//			cart.remove(dvd);
+			
+		
+			
+			
+			for (DVDs dd : cart) {
+				System.out.println(dd);
+				if(dd.getId()!=dvd.getId()){
+					cart2.add(dd);
+				}
+			}
+			
+
+//			System.out.println(cart2);
+//			
+//			if(cart2.size() == 0){
+//				System.out.println("is empty ");
+//			}
+//			
+//			
+//			cart.clear();
+//			
+//			Collections.copy(cart, cart2);
+//			
+			
+
+			mv.setViewName("checkout.jsp");
+			model.addAttribute("cart",cart2);
+			model.addAttribute("size", cart2.size());
+
+		return mv;
 	}
 	
 
@@ -251,15 +309,8 @@ public class controller1 {
 	
 		
 		
-		
-//		session.invalidate();
-		
-//		
-//		List shoppingCart = dao.getAllItems();
-//		session.setAttribute("shoppingCart",  shoppingCArt);
-//		session.removeAttribute("shoppingCart");
-//		List shoppingCArt = dao.getAllItems();
-//		session.setAttribute("shoppingCart",  shoppingCArt);
+
+
 		
 		
 

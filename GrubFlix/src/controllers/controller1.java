@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +25,7 @@ import transfers.CustomerTO;
 @SessionAttributes({"cart", "size"})
 public class controller1 {
 	HashMap<String, List<DVDs>> result = new HashMap<>();
+	ArrayList<DVDs> cart = new ArrayList<>();
 
 	@Autowired
 	private GrubFlixDAO gfDAO;
@@ -161,8 +161,9 @@ public class controller1 {
 	
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public ModelAndView login( Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session, @RequestParam("email") String email, @RequestParam("password")String password){
+	public ModelAndView login( Model model, @RequestParam("email") String email, @RequestParam("password")String password){
 		ModelAndView mv = new ModelAndView();
+		
 		
 		boolean verify = gfDAO.login(email, password); 
 		
@@ -177,10 +178,11 @@ public class controller1 {
 		else{
 			
 			Customers cust = gfDAO.getCustomerById(email);
+//			session.setAttribute("cust", cust);
 			
 			model.addAttribute("cart", new ArrayList<DVDs>());
 			
-//			session.setAttribute("cust", cust);
+
 			mv.addObject("size", cart.size());
 			
 //	

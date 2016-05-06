@@ -31,14 +31,14 @@ public class Customers {
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 	int phone;
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy = "customer")
 	List<Address> addresses;
 
 	@OneToMany(mappedBy = "customer")
 	private List<CustomerOrder> customerOrder;
-	
+
 	public Customers() {
-		
+
 	}
 
 	public String getEmail() {
@@ -114,10 +114,10 @@ public class Customers {
 	}
 
 	public void setAddresses(List<Address> addresses) {
-	
+
 		this.addresses = addresses;
 	}
-	
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<Address>();
@@ -129,6 +129,4 @@ public class Customers {
 		this.customerOrder = customerOrder;
 	}
 
-	
-	
 }

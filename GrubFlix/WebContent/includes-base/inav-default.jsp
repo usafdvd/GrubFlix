@@ -122,7 +122,7 @@
 
 							</li>
 							<li>
-								<form action="account.jsp">
+								<form action="EditCust.do" method="POST">
 									<button type="submit" value="" class=" btn btn-nav ">Account</button>
 								</form>
 

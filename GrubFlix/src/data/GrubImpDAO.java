@@ -19,7 +19,7 @@ import entities.Food;
 import transfers.CustomerTO;
 
 @Transactional
-public class GrubImpDAO implements GrubFlixDAO {
+public class GrubImpDAO implements GrubFlixDAO{
 	private List<Customers> customers = new ArrayList<>();
 
 	private List<DVDs> dvds = new ArrayList<>();
@@ -108,6 +108,7 @@ public class GrubImpDAO implements GrubFlixDAO {
 	@Override
 	public Customers editCust(Customers cust) {
 		Customers managedCust = em.find(Customers.class, cust);
+		System.out.println("--------inside editCust DAO ------- cust:" + managedCust);
 		return managedCust;
 	}
 
@@ -191,6 +192,9 @@ public class GrubImpDAO implements GrubFlixDAO {
 		Customers cust = (Customers) (em.createQuery("SELECT c from Customers c where c.email = :email")
 				.setParameter("email", e).getSingleResult());
 
+		
+		
+		
 		return cust;
 	}
 

@@ -122,14 +122,14 @@
 
 							</li>
 							<li>
-								<form action="account.jsp">
-									<button type="submit" value="" class=" btn btn-nav ">Account</button>
+								<form action="editCust.do" method="POST">
+									<button type="submit" name="email" value="${cust.email}" class=" btn btn-nav ">Account</button>
 								</form>
 
 							</li>
 							<li>
 							
-								<form action="index.jsp">
+								<form action="logout.do" method="POST">
 									<button type="submit" value="" class=" btn btn-nav ">Logout</button>
 								</form>
 

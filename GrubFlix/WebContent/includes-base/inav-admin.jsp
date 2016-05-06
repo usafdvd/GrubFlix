@@ -92,7 +92,7 @@
 					
 
 					<li>
-					<form action="index.jsp">
+					<form action="logout.do">
 						<button type="submit" value="" class=" btn btn-nav ">Logout</button>
 					</form>
 

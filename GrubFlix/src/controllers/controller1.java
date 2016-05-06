@@ -27,6 +27,7 @@ public class controller1 {
 	HashMap<String, List<DVDs>> result = new HashMap<>();
 	ArrayList<DVDs> cart = new ArrayList<>();
 
+
 	@Autowired
 	private GrubFlixDAO gfDAO;
 
@@ -126,10 +127,16 @@ public class controller1 {
 		return mv;
 	}
 
-	@RequestMapping(path = "EditCust.do")
-	public ModelAndView editCust(Customers cust) {
+	@RequestMapping(path = "editCust.do", method = RequestMethod.POST)
+	public ModelAndView editCust(@RequestParam("email") String email ) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("testindex.jsp");
+		
+		System.out.println(email + "--------------------inside editCust.do--------------");
+		
+		Customers cust = gfDAO.getCustomerById(email);
+		
+		
+		mv.setViewName("account.jsp");
 		mv.addObject("profile", gfDAO.editCust(cust));
 		return mv;
 	}
@@ -169,9 +176,13 @@ public class controller1 {
 	
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public ModelAndView login( Model model, @RequestParam("email") String email, @RequestParam("password")String password){
+	public ModelAndView login( Model model, HttpSession session, @RequestParam("email") String email, @RequestParam("password")String password){
 		ModelAndView mv = new ModelAndView();
 		
+		
+		
+				
+				
 		
 		boolean verify = gfDAO.login(email, password); 
 		
@@ -187,10 +198,11 @@ public class controller1 {
 
 			Customers cust = gfDAO.getCustomerById(email);
 
-//			session.setAttribute("cust", cust);
+			model.addAttribute("cust", cust);
 			
-			
+			session.setAttribute("cust", cust);
 			model.addAttribute("cart", new ArrayList<DVDs>());
+			
 			
 
 
@@ -205,6 +217,8 @@ public class controller1 {
 		return mv;
 	}
 
+	
+	
 	@RequestMapping(path = "addMovieToCart.do", method = RequestMethod.POST)
 	public ModelAndView addToCart(Model model, @ModelAttribute("cart") ArrayList<DVDs> cart, HttpSession session,
 			@RequestParam("dvdid") String id) {

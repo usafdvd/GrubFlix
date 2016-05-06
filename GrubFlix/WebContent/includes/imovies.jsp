@@ -6,6 +6,8 @@
 
 
 <div class="movieRow row">
+	
+		<i>Logged in as:</i> <i>${cust.firstName}</i>
 
 	<c:forEach var="genre" items="${genreGroups}">
 

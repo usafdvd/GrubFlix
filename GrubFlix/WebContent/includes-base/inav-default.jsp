@@ -122,8 +122,10 @@
 
 							</li>
 							<li>
-								<form action="editCust.do" method="POST">
-									<button type="submit" name="email" value="${cust.email}" class=" btn btn-nav ">Account</button>
+
+								<form action="EditCust.do" method="POST">
+									<button type="submit" value="" class=" btn btn-nav ">Account</button>
+
 								</form>
 
 							</li>
